@@ -7,4 +7,4 @@
 please enter our [wiki](https://github.com/snir-sh/Grosharies/wiki)
 
 ### Support
-contact us via this [email](groshariesteam@gmail.com)
+contact us <mailto:groshariesteam@gmail.com>
