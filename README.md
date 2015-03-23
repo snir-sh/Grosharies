@@ -6,5 +6,5 @@
 ### For More Information
 please enter our [wiki](https://github.com/snir-sh/Grosharies/wiki)
 
-### Support
-contact us <mailto:groshariesteam@gmail.com>
+### Contact Us
+<mailto:groshariesteam@gmail.com>
