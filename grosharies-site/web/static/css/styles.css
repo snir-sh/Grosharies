@@ -133,8 +133,9 @@ ol li
   
 ul#menu
 { margin:0;
-  margin: 0 0 0 20px;}
-
+  margin: 0 0 0 20px;
+  }
+  
 ul#menu li
 { padding: 0 0 0 0px;
   list-style: none;
@@ -188,6 +189,14 @@ ul#menu li:hover a
 
 .sidebar_item
 { font: normal 100% Arial, Helvetica, sans-serif;
+  width: 215px;}
+  
+.sidebar_item a
+{
+	text-decoration: none;}
+	
+.sidebar_item h3
+{ font: bold 125% Arial, Helvetica, sans-serif;
   width: 215px;}
 
 .sidebar h2
@@ -266,7 +275,9 @@ ul#menu li:hover a
   text-align: center; 
   background: transparent;
   color: #1D1D1D;
-  text-shadow: 1px 1px #FFF;}
+  text-shadow: 1px 1px #FFF;
+  color: #000000
+  }
 
 #footer a, #footer a:hover
 { color: #1D1D1D;
