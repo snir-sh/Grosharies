@@ -15,7 +15,7 @@ handlers:
 - url: /FAQ
   script: web.pages.FAQ.app
   
-  - url: /about
+- url: /about
   script: web.pages.about.app
   
 - url: /listPage
