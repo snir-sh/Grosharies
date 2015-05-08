@@ -27,6 +27,5 @@ class IndexHandler(webapp2.RequestHandler):
 		#self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
-	('/', IndexHandler),
 	('/FAQ', IndexHandler)
 ], debug=True)
