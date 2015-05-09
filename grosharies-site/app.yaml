@@ -24,6 +24,9 @@ handlers:
 - url: /terms
   script: web.pages.terms.app
   
+- url: /privacy
+  script: web.pages.privacy.app
+  
 - url: /listPage
   script: web.pages.listPage.app
 
