@@ -118,7 +118,8 @@ ol li
   height: 50px;
   margin: 0 auto;
   padding-left: 20px;
-  background: transparent;}   
+  background: transparent;
+  text-shadow: 1px 1px #FFF;}   
    
 #welcome H1
 { font: normal 300% Arial, Helvetica, sans-serif;
@@ -284,7 +285,6 @@ ul#menu li:hover a
   text-align: center; 
   background: transparent;
   color: #1D1D1D;
-  text-shadow: 1px 1px #FFF;
   color: #000000
   }
 
