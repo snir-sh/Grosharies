@@ -21,6 +21,9 @@ handlers:
 - url: /about
   script: web.pages.about.app
   
+- url: /terms
+  script: web.pages.terms.app
+  
 - url: /listPage
   script: web.pages.listPage.app
 
