@@ -226,6 +226,14 @@ ul#menu li:hover a
   margin-top: 20px;
   margin-bottom: 20px;}
   
+.content_item li
+{	color:white;
+	font-size:105%; }
+	
+.content_item p
+{	color:white;
+	font-size:105%; }
+  
 .content_image
 { float: left; 
   width: 150px;
