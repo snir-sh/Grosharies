@@ -21,6 +21,9 @@ handlers:
 - url: /listPage
   script: web.pages.listPage.app
 
+- url: /search
+  script: web.pages.search.app
+  
 - url: /static
   static_dir: web/static
 
