@@ -20,6 +20,9 @@ handlers:
   
 - url: /about
   script: web.pages.about.app
+
+- url: /contact
+  script: web.pages.contact.app
   
 - url: /terms
   script: web.pages.terms.app

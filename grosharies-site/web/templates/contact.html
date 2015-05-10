@@ -54,9 +54,7 @@
           <div class="sidebar_item">
             <h2>Lists</h2>
 			 <h3>Create List</h3>
-            <p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
+             <p>list1<br/> list2<br/> list3<br/></p>
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->
 		<div class="sidebar">
@@ -73,15 +71,18 @@
 	  
         <div class="content_item">
          	<div>
-				<h1>About</h1>\
-				<p>These days, everyone is writing their groceries list on a piece of paper hanging on the fridge,
-				or just simply trying to remember the whole list (And eventually forgetting some of them). </p>
-				<p>We think that this is an old-fashioned way to manage the groceries list, so we offer you to try our
-				brand new, cross-platform, highly comfortable web application!</p>
-				<p>This is exactly where 'Grosharies' come into place! </p>
-				<p>'Grosharies' allows multiple users to share and manage their groceries list via web-application
-				that is accessible from any PC, Mac or mobile device. The list is synchronized between all of the users,
-				in order for you to stay updated with it in any time and any place!</p>
+				<h1>Contact Us</h1>
+				<form action="form.asp">
+					<p> Your comment is important to us! </p>
+					<p> We're dedicated to the success of Grosharies and happy to hear of any issues or suggestions
+							for our site. </p>
+					<p> You can contact us by using the form down below or by email us at groshariesteam@gmail.com</p>
+					<p> Name:  &nbsp;				<textarea id="name" rows="1" cols="25"></textarea></p>
+					<p> Email:  &nbsp;&nbsp;  	<textarea id="email" rows="1" cols="25"></textarea></p>
+					<p> Subject: <textarea id="subject" rows="1" cols="25"></textarea> </p>
+					<p> Content: <textarea id="content" rows="15" cols="40"></textarea></p>
+					<p> <button type="button" onclick="alert('Thank you for your comment! We will do our best to take care of it as soon as possible!');location.reload();">Submit</button>
+				</form>
 			</div>
           
 	    </div><!--close content_item-->
