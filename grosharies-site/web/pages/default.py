@@ -4,7 +4,7 @@ from google.appengine.ext.webapp import template
 from models.user import User
 import webapp2
 
-class IndexHandler(webapp2.RequestHandler):
+class DefaultHandler(webapp2.RequestHandler):
 	def get(self):
 		template_params = {}
 #		user = User.checkUser()
@@ -14,7 +14,7 @@ class IndexHandler(webapp2.RequestHandler):
 #			template_params['logoutUrl'] = User.logoutUrl()
 #			template_params['user'] = user.email()
 		
-		html = template.render("web/templates/index.html", template_params)
+		html = template.render("web/templates/default.html", template_params)
 		self.response.write(html)
 #		user = users.get_current_user()
 #
@@ -27,5 +27,6 @@ class IndexHandler(webapp2.RequestHandler):
 		#self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
-	('/index', IndexHandler)
+	('/', DefaultHandler),
+	('/default', DefaultHandler)
 ], debug=True)
