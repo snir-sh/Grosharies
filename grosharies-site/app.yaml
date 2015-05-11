@@ -15,6 +15,12 @@ handlers:
 - url: /FAQ
   script: web.pages.FAQ.app
 
+- url: /createList
+  script: web.pages.createList.app
+
+- url: /createGroup
+  script: web.pages.createGroup.app 
+
 - url: /list
   script: web.pages.list.app
   

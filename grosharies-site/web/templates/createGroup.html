@@ -33,7 +33,7 @@
         <li><a href="index">Logout</a></li>
 		<li>
 		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
-		</li></br>
+		</li></p></p>
 		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
       </ul>
     </div><!--close menubar-->
@@ -44,7 +44,7 @@
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Groups</h2>
-			 <a href="index" ><h3>Create Group</h3></a>
+			 <a href="createGroup" ><h3>Create Group</h3></a>
             <p><a href="listPage"> group1<br/> </a></p>
 			<p><a href="listPage"> group2<br/> </a></p>
 			<p><a href="listPage"> group3<br/> </a></p>
@@ -53,7 +53,7 @@
 		<div class="sidebar" style="visibility: hidden">
           <div class="sidebar_item">
             <h2>Lists</h2>
-			 <h3>Create List</h3>
+			<a href="createList"><h3>Create List</h3></a>
 			<p><a href="list"> list1<br/> </a></p>
 			<p><a href="list"> list2<br/> </a></p>
 			<p><a href="list"> list3<br/> </a></p>
@@ -75,23 +75,19 @@
 			<form action="form.asp">
 			<table style="width:60%" >
 				<tr>
-					<td style="color:white">Group Name:</td>
+					<td style="color:white">Group Name:</p></td>
 					<td><textarea id="name" rows="1" cols="15"></textarea></p></td>		
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px"></td>		
-					<td><select>
-					<option value="Viewer">Viewer</option>
-					<option value="Partner">Partner</option>
-					</select></td>
-					<td><button type="button" onclick ="alert(are you sure you want to submit)">Add</button></td>
+					<td>
+							<input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px"> &nbsp;&nbsp;&nbsp;		
+							<button type="button" onclick ="alert(are you sure you want to submit)">Add</button>
+					</td>
 				</tr>
- 
-
 			</table>
-			</br></br>
+			</br>
 				<p> Group users: </p>
 				<textarea  rows="12" cols="30" disabled></textarea>
 				<p><button type="button" onclick ="alert(are you sure you want to submit)">Submit</button></p>
