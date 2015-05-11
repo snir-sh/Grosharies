@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+  <title>Grosharies</title>
+  <meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+  <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/image_slide.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+	  <div id="banner">
+	    <div id="welcome">
+	      <h1></h1>
+	    </div><!--close welcome-->
+	    <div id="welcome_slogan">
+	      <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
+	    </div><!--close welcome_slogan-->
+	  </div><!--close banner-->
+    </div><!--close header-->
+
+	<div id="menubar">
+      <ul id="menu">
+        <li><a href="index">Home</a></li>
+        <li><a href="FAQ">FAQ</a></li>
+		<li><a href="about">About</a></li>
+        <li><a href="index">Logout</a></li>
+		<li>
+		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
+		</li></br>
+		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
+      </ul>
+    </div><!--close menubar-->
+	
+	<div id="site_content">	
+
+	  <div class="sidebar_container">       
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Groups</h2>
+			 <a href="index" ><h3>Create Group</h3></a>
+            <p><a href="listPage"> group1<br/> </a></p>
+			<p><a href="listPage"> group2<br/> </a></p>
+			<p><a href="listPage"> group3<br/> </a></p>
+          </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->     		
+		<div class="sidebar" style="visibility: hidden">
+          <div class="sidebar_item">
+            <h2>Lists</h2>
+			 <h3><a href ="createList"> Create List</h3>
+			<p><a href="list"> list1<br/> </a></p>
+			<p><a href="list"> list2<br/> </a></p>
+			<p><a href="list"> list3<br/> </a></p>
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->
+		<div class="sidebar">
+          <div class="sidebar_item">
+           
+           
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar--> 
+       </div><!--close sidebar_container-->
+	
+	
+	
+      <div id="content">
+        <div class="content_item">
+		<h1>Create New List</h1>
+			<form action="form.asp">
+			<table style="width:60%;color:white" >
+				<tr>
+					<td>List Name:</td>
+					<td><textarea id="name" rows="1" cols="15"></textarea></p></td>		
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><select>
+					<option value="user1">user1</option>
+					<option value="user2">user2</option>
+					<option value="user3">user3</option>
+					<option value="user4">user4</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;
+					<select>
+					<option value="Viewer">Viewer</option>
+					<option value="Partner">Partner</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;
+					<button type="button" onclick ="alert(are you sure you want to submit)">Add</button></td>
+				</tr>
+ 
+
+			</table>
+			</br></br>
+				<p> Lists users: </p>
+				<textarea  rows="12" cols="30" disabled></textarea>
+				<p><button type="button" onclick ="alert(are you sure you want to submit)">Submit</button></p>
+          
+	    </div><!--close content_item-->
+      </div><!--close content-->   
+	</div><!--close site_content-->  
+ 
+  </div><!--close main-->
+  
+  <div id="footer">
+	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
+	  <br/> © Copyright 2015 Grosharies
+  </div><!--close footer--> 	
+  
+</body>
+</html>
