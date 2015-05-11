@@ -72,18 +72,29 @@
       <div id="content">
         <div class="content_item">
 		<h1>Create New Group</h1>
-				<form action="form.asp">
-					<p> Group Name:  &nbsp;				<textarea id="name" rows="1" cols="25"></textarea></p>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px">
-					<select>
+			<form action="form.asp">
+			<table style="width:60%" >
+				<tr>
+					<td style="color:white">Group Name:</td>
+					<td><textarea id="name" rows="1" cols="15"></textarea></p></td>		
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px"></td>		
+					<td><select>
 					<option value="Viewer">Viewer</option>
 					<option value="Partner">Partner</option>
-					</select>
-					&nbsp;&nbsp;&nbsp;<button type="button" size ="20" onclick=";location.reload();">Add</button></p>
-					<p> Group users: </p>
-					<input type="text" name="Group users" size="40" height="100px">
+					</select></td>
+					<td><button type="button" onclick ="alert(are you sure you want to submit)">Add</button></td>
+				</tr>
+ 
+
+			</table>
+			</br></br>
+				<p> Group users: </p>
+				<textarea  rows="12" cols="30" disabled></textarea>
+				<p><button type="button" onclick ="alert(are you sure you want to submit)">Submit</button></p>
           
 	    </div><!--close content_item-->
       </div><!--close content-->   
