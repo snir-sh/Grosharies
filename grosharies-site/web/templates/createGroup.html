@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 
 <head>
   <title>Grosharies</title>
@@ -35,8 +35,6 @@
 		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
 		</li></br>
 		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
-        <!-- <li class="current"><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact Us</a></li> -->
       </ul>
     </div><!--close menubar-->
 	
@@ -46,94 +44,57 @@
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Groups</h2>
-			 <a href="index"><h3>Create Group</h3></a>
+			 <a href="index" ><h3>Create Group</h3></a>
             <p><a href="listPage"> group1<br/> </a></p>
 			<p><a href="listPage"> group2<br/> </a></p>
 			<p><a href="listPage"> group3<br/> </a></p>
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
-		<div class="sidebar">
+		<div class="sidebar" style="visibility: hidden">
           <div class="sidebar_item">
             <h2>Lists</h2>
-			 <a href="listPage"><h3>Create List</h3></a>
-            <p><a href="list"> list1<br/> </a></p>
+			 <h3>Create List</h3>
+			<p><a href="list"> list1<br/> </a></p>
 			<p><a href="list"> list2<br/> </a></p>
 			<p><a href="list"> list3<br/> </a></p>
 		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->		
+        </div><!--close sidebar-->
+		<div class="sidebar">
+          <div class="sidebar_item">
+           
+           
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar--> 
        </div><!--close sidebar_container-->
+	
+	
 	
       <div id="content">
         <div class="content_item">
-         <div>
-			<h1>Funjoya</h1>
-			<ul style="color:white;font-size:120%" >
-			<style>
-table, th, td {
-    border: 1px solid white;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-</style>
-</head>
-<body>
-
-<table style="width:100%">
-  <tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Units</th>
-	<th></th>
-	<th></th>
-	
-  </tr>
-  <tr>
-    <td>Vodka</td>
-    <td>10</td>
-	<td>Liter</td>
-	<th> <button type="button" onclick="alert('Are you sure you want to delete that!')">Delete</button></th>
-	<th> <button type="button" onclick="alert('Are you sure you want to edit that!')">Edit</button></th>
-  </tr>
-  <tr>
-     <td>Arak</td>
-    <td>1.5</td>
-	<td>Liter</td>
-	<th> <button type="button" onclick="alert('Are you sure you want to delete that!')">Delete</button></th>
-	<th> <button type="button" onclick="alert('Are you sure you want to edit that!')">Edit</button></th>
-  </tr>
-  <tr>
-     <td>Russchian Schweppes</td>
-    <td>20</td>
-	<td>Liter</td>
-	<th> <button type="button" onclick="alert('Are you sure you want to delete that!')">Delete</button></th>
-	<th> <button type="button" onclick="alert('Are you sure you want to edit that!')">Edit</button></th>
-  </tr>
-  <tr>
-     <td>Lemons</td>
-    <td>5</td>
-	<td>Kg</td>
-	<th> <button type="button" onclick="alert('Are you sure you want to delete that!')">Delete</button></th>
-	<th> <button type="button" onclick="alert('Are you sure you want to edit that!')">Edit</button></th>
-  </tr>
-</table>
-			
-			</ul>
-			
-		 </div>
+		<h1>Create New Group</h1>
+				<form action="form.asp">
+					<p> Group Name:  &nbsp;				<textarea id="name" rows="1" cols="25"></textarea></p>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px">
+					<select>
+					<option value="Viewer">Viewer</option>
+					<option value="Partner">Partner</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;<button type="button" size ="20" onclick=";location.reload();">Add</button></p>
+					<p> Group users: </p>
+					<input type="text" name="Group users" size="40" height="100px">
           
 	    </div><!--close content_item-->
       </div><!--close content-->   
-	</div><!--close site_content-->   
+	</div><!--close site_content-->  
  
   </div><!--close main-->
   
   <div id="footer">
 	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
 	  <br/> © Copyright 2015 Grosharies
-  </div><!--close footer-->  	
+  </div><!--close footer--> 	
   
 </body>
 </html>
