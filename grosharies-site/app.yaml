@@ -18,6 +18,9 @@ handlers:
 - url: /createList
   script: web.pages.createList.app
 
+- url: /logout
+  script: web.pages.logout.app
+
 - url: /createGroup
   script: web.pages.createGroup.app 
 

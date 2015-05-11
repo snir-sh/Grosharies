@@ -7,6 +7,7 @@
   <meta name="keywords" content="enter your keywords here" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <meta http-equiv="Refresh" content="5;url=index">
   <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
   <script type="text/javascript" src="../static/js/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/image_slide.js"></script>
@@ -30,7 +31,7 @@
         <li><a href="index">Home</a></li>
         <li><a href="FAQ">FAQ</a></li>
 		<li><a href="about">About</a></li>
-        <li><a href="logout">Logout</a></li>
+        <li><a href="">Logout</a></li>
 		<li>
 		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
 		</li></p></p>
@@ -53,10 +54,8 @@
 		<div class="sidebar" style="visibility: hidden">
           <div class="sidebar_item">
             <h2>Lists</h2>
-			<a href="createList"><h3>Create List</h3></a>
-			<p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
+			 <a href="createList"><h3>Create List</h3></a>
+             <p>list1<br/> list2<br/> list3<br/></p>
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->
 		<div class="sidebar">
@@ -70,28 +69,13 @@
 	
 	
       <div id="content">
+	  
         <div class="content_item">
-		<h1>Create New Group</h1>
-			<form action="form.asp">
-			<table style="width:60%" >
-				<tr>
-					<td style="color:white">Group Name:</p></td>
-					<td><textarea id="name" rows="1" cols="15"></textarea></p></td>		
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-							<input type="text" name="txtSearch" placeholder="User Search" size="15" height="20px"> &nbsp;&nbsp;&nbsp;		
-							<button type="button" onclick ="alert('Added user')">Add</button>
-					</td>
-				</tr>
-			</table>
-			</br>
-				<p> Group users: </p>
-				<textarea  rows="12" cols="30" disabled></textarea>
-				<p><button type="button" onclick ="alert('Group created successfully!');location.reload();">Submit</button></p>
-          
+				<h1>Logging out...</h1>
+				<form action="form.asp">
+					<p> Thank you for using Grosharies! </p>
+					<p> You'll be redirected to home page in 5 seconds, if not click <a href="index">here</a></p>
+				</form>
 	    </div><!--close content_item-->
       </div><!--close content-->   
 	</div><!--close site_content-->  
