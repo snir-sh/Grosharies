@@ -70,20 +70,33 @@
       <div id="content">
 	  
         <div class="content_item">
-         	<div>
 				<h1>Contact Us</h1>
 				<form action="form.asp">
 					<p> Your comment is important to us! </p>
 					<p> We're dedicated to the success of Grosharies and happy to hear of any issues or suggestions
 							for our site. </p>
 					<p> You can contact us by using the form down below or by email us at groshariesteam@gmail.com</p>
-					<p> Name:  &nbsp;				<textarea id="name" rows="1" cols="25"></textarea></p>
-					<p> Email:  &nbsp;&nbsp;  	<textarea id="email" rows="1" cols="25"></textarea></p>
-					<p> Subject: <textarea id="subject" rows="1" cols="25"></textarea> </p>
-					<p> Content: <textarea id="content" rows="15" cols="40"></textarea></p>
-					<p> <button type="button" onclick="alert('Thank you for your comment! We will do our best to take care of it as soon as possible!');location.reload();">Submit</button>
+					
+					<table style="color:white; width:10%">
+						<tr>
+							<td> Name: </p></td>
+							<td> <textarea id="name" rows="1" cols="25"></textarea></p></td>
+						</tr>
+						<tr>
+							<td> Email: </p></td>
+							<td> <textarea id="email" rows="1" cols="25"></textarea></p></td>
+						</tr>
+						<tr>
+							<td> Subject: </p></td>
+							<td> <textarea id="subject" rows="1" cols="25"></textarea></p></td>
+						</tr>
+						<tr>
+							<td> Content: </p></td>
+						</tr>
+					</table>
+					<textarea id="content" rows="10" cols="1"></textarea> </td>
+					<button type="button" onclick="alert('Thank you for your comment! We will do our best to take care of it as soon as possible!');location.reload();">Submit</button>
 				</form>
-			</div>
           
 	    </div><!--close content_item-->
       </div><!--close content-->   
