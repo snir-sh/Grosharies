@@ -21,3 +21,26 @@ class Group(ndb.Model):
 			return q
 		else:
 			return None
+			
+	@classmethod
+	def deleteGroup(self, group_name, group_admin):
+		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
+		query.key.delete()
+
+	
+	@classmethod
+	def changeGroupName(self, group_name, group_admin, new_name):
+		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
+		query.GroupName = new_name
+		query.put()
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
