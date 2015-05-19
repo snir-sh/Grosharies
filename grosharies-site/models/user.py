@@ -4,7 +4,8 @@ from google.appengine.ext import ndb
 
 class User(ndb.Model):
 	email = ndb.StringProperty(required=True)
-	GroupID = ndb.KeyProperty()
+	GroupID = ndb.IntegerProperty()
+	#GroupID = ndb.KeyProperty()
 	
 	@classmethod
 	def checkIfUserNotExists(self,user_name):
@@ -13,5 +14,7 @@ class User(ndb.Model):
 			return False
 		else:
 			return True
-			
+	
+	#@classmethod
+	#def addUser(self, user_name, 
 	
