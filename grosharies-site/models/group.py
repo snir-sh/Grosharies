@@ -1,4 +1,4 @@
-#this model represents a user in our system
+#this model represents a Group in our system
 
 from google.appengine.ext import ndb
 
@@ -7,10 +7,10 @@ class Group(ndb.Model):
 	GroupUsers = ndb.StringProperty()
 	GroupAdmin = ndb.StringProperty(required=True)
 
-	#@classmethod
-	@staticmethod
-	def checkIfGroupExists(group_name,admin_name):
-		q = Group.query(Group.GroupName == group_name, Group.GroupAdmin == admin_name)
-		if q is not None :
+	@classmethod
+	def checkIfGroupNotExists(self,group_name,admin_name):
+		q = Group.query(Group.GroupName == group_name, Group.GroupAdmin == admin_name).get()
+		if q:
 			return False
-		
+		else:
+			return True
