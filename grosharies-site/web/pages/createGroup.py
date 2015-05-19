@@ -1,21 +1,35 @@
 #from google.appengine.api import users
 from google.appengine.ext.webapp import template
 from google.appengine.ext import ndb
-from google.appengine.ext import db
 
 from models.group import Group
+from models.user import User
 import webapp2
 
 class IndexHandler(webapp2.RequestHandler):
 	def get(self):
 		template_params = {}
+		g_key =None
 		if (Group.checkIfGroupNotExists("Habanai 30","Ilya") is True):
 			group = Group()
 			group.GroupName = "Habanai 30"
 			group.GroupUsers = "Ilya"
 			group.GroupAdmin = "Ilya"
 			g_key = group.put()
-
+			if(User.checkIfUserNotExists("Ilya") is True):
+				user = User()
+				user.email = "Ilya"
+				user.GroupID = g_key
+				user.put()
+		
+		user1 = User()
+		user1.email = "Elad"
+		if (g_key is None):
+			user1.GroupID = None
+		else :
+			user1.GroupID =g_key
+		user1.put()
+		
 		
 #		user = User.checkUser()
 #		if not user:

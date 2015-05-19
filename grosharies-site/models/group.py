@@ -14,3 +14,11 @@ class Group(ndb.Model):
 			return False
 		else:
 			return True
+			
+	@classmethod
+	def getAllUsersFromGroup(self,group_name,admin_name):
+		q = Group.query.where(Group.GroupName == group_name, Group.GroupAdmin == admin_name).get()
+		if q:
+			return q
+		else:
+			return None
