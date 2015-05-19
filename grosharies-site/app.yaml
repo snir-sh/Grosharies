@@ -12,9 +12,6 @@ handlers:
 - url: /default
   script: web.pages.default.app
   
-  - url: /sign
-  script: web.pages.sign.app
-  
 - url: /index
   script: web.pages.index.app
   

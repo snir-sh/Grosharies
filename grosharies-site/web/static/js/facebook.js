@@ -1,4 +1,15 @@
-window.fbAsyncInit = function() {
+/*
+ * jQuery JavaScript Library v1.3.2
+ * http://jquery.com/
+ *
+ * Copyright (c) 2009 John Resig
+ * Dual licensed under the MIT and GPL licenses.
+ * http://docs.jquery.com/License
+ *
+ * Date: 2009-02-19 17:34:21 -0500 (Thu, 19 Feb 2009)
+ * Revision: 6246
+ */
+  window.fbAsyncInit = function() {
         FB.init({
     appId      : '1634735740089355',
     cookie     : true,  // enable cookies to allow the server to access 
@@ -15,7 +26,7 @@ window.fbAsyncInit = function() {
          js.src = "//connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-   
+ 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -55,7 +66,6 @@ window.fbAsyncInit = function() {
 	FB.getLoginStatus(function(response) {
 		if (response.status === 'connected') {
       // Logged into your app and Facebook.
-	  
       testAPI();
     }
 	else {
@@ -67,13 +77,9 @@ window.fbAsyncInit = function() {
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      //alert('Successful login for: ' + response.name + ' ' + response.email);
-	  var name = response.name;
-	  var email = response.email;
-	  $.post('../../pages/default.py', { email: email }, function(data) {
-	     
-	  } );
+      console.log('Successful login for: ' + response.name + ' ' + response.email);
 	  if (document.getElementById('status') != null) {
 			document.getElementById('status').innerHTML =
 			'Thanks for logging in, ' + response.name + ' ' + response.email + '!';
