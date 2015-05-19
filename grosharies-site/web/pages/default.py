@@ -7,6 +7,9 @@ import webapp2
 class DefaultHandler(webapp2.RequestHandler):
 	def get(self):
 		template_params = {}
+		html = template.render("web/templates/default.html", template_params)
+		self.response.write(html)
+		
 #		user = User.checkUser()
 #		if not user:
 #			template_params['loginUrl'] = User.loginUrl()
@@ -14,8 +17,7 @@ class DefaultHandler(webapp2.RequestHandler):
 #			template_params['logoutUrl'] = User.logoutUrl()
 #			template_params['user'] = user.email()
 		
-		html = template.render("web/templates/default.html", template_params)
-		self.response.write(html)
+		
 #		user = users.get_current_user()
 #
 #		if user:
@@ -27,6 +29,5 @@ class DefaultHandler(webapp2.RequestHandler):
 		#self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
-	('/', DefaultHandler),
-	('/default', DefaultHandler)
+	('/', DefaultHandler)
 ], debug=True)

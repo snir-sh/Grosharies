@@ -14,6 +14,30 @@ class User(ndb.Model):
 			return False
 		else:
 			return True
+			
+	#generates a url at which the user can login, and then will be redirected back to his original location
+	@staticmethod
+	def loginUrl():
+		return users.create_login_url('/connect')
+	
+	#generates a url at which the user can logout, and then will be redirected back to his original location
+	@staticmethod
+	def logoutUrl():
+		return users.create_logout_url('/')
+	
+	@staticmethod
+	def connect():
+		googleUser = users.get_current_user()
+		if googleUser:
+			user = User.query(User.email == googleUser.email()).get()
+			if not user:
+				user = User()
+				user.email = googleUser.email()
+				user.put()
+			return user
+
+		else:
+			return "not connected"
 	
 	#@classmethod
 	#def addUser(self, user_name, 

@@ -1,20 +1,14 @@
-window.fbAsyncInit = function() {
-        FB.init({
-    appId      : '1634735740089355',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+    FB.init({
+      appId: '1634735740089355',
+      version: 'v2.3' // or v2.0, v2.1, v2.0
+    });     
+    $('#loginbutton,#feedbutton').removeAttr('disabled');
+    FB.getLoginStatus(updateStatusCallback);
   });
-  };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+});
    
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -71,7 +65,7 @@ window.fbAsyncInit = function() {
       //alert('Successful login for: ' + response.name + ' ' + response.email);
 	  var name = response.name;
 	  var email = response.email;
-	  $.post('../../pages/default.py', { email: email }, function(data) {
+	  $.post('/sign', { email: email }, function(data) {
 	     
 	  } );
 	  if (document.getElementById('status') != null) {
