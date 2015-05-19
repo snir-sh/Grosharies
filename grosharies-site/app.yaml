@@ -57,9 +57,6 @@ handlers:
 - url: /api/(.*)
   script: api.\1.app
 
-- url: /scoreboard/(.*)
-  script: web.pages.scoreboard.app
-
 - url: /(.*)
   script: web.pages.\1.app
   
