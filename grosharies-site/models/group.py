@@ -4,7 +4,6 @@ from google.appengine.ext import ndb
 
 class Group(ndb.Model):
 	GroupName = ndb.StringProperty(required=True)
-	GroupUsers = ndb.StringProperty()
 	GroupAdmin = ndb.StringProperty(required=True)
 	ListID = ndb.IntegerProperty()
 
@@ -23,3 +22,22 @@ class Group(ndb.Model):
 			return q
 		else:
 			return None
+			
+	@classmethod
+	def deleteGroup(self, group_name, group_admin):
+		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
+		query.key.delete()
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
