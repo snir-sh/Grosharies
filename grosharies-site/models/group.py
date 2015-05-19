@@ -28,8 +28,12 @@ class Group(ndb.Model):
 		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
 		query.key.delete()
 
-		
-		
+	
+	@classmethod
+	def changeGroupName(self, group_name, group_admin, new_name):
+		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
+		query.GroupName = new_name
+		query.put()
 		
 		
 		

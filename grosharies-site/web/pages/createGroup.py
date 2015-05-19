@@ -15,8 +15,7 @@ class IndexHandler(webapp2.RequestHandler):
 		group.GroupAdmin = "Ilya"
 		group.put()
 		
-		if  (group.checkIfGroupNotExists("nothing","ben") is False):
-			group.deleteGroup("nothing")
+		group.changeGroupName("nothing","ben","Ilya0")
 			#g_id = group.key.id()
 			#if(User.checkIfUserNotExists("Ilya") is True):
 		
