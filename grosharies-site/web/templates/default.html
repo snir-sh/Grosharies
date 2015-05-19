@@ -7,9 +7,11 @@
   
   <!-- Do not delete the line bellow. This line use for Google API login! -->
   <script src="https://apis.google.com/js/client:platform.js" async defer></script> 
+  <script src="../static/js/facebook.js" />
 </head>
 
 <body>
+<script> </script>
   <div id="main">
     <div id="header">
 	  <div id="banner">
@@ -34,7 +36,7 @@
 		<br>
 		<div>
 		<center>	
-			<a href="index"><img id="facebookLogin" width="60" height="60" src="../static/images/facebook.png"></a>
+			<input id="facebookLogin" type="image" width="60" height="60" onclick="loginFacebook()" src="../static/images/facebook.png"/>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="index"><img id="googleLogin" width="60" height="60" src="../static/images/google.png"></a>
 		</br></br></br></br></br>
