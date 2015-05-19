@@ -5,16 +5,24 @@ from google.appengine.ext import ndb
 class User(ndb.Model):
 	email = ndb.StringProperty(required=True)
 	GroupID = ndb.IntegerProperty()
-	#GroupID = ndb.KeyProperty()
 	
 	@classmethod
 	def checkIfUserNotExists(self,user_name):
-		q = User.query(User.email == user_name).get()
-		if q:
+		query = User.query(User.email == user_name).get()
+		if query:
 			return False
 		else:
 			return True
-	
-	#@classmethod
-	#def addUser(self, user_name, 
-	
+			
+	@classmethod
+	def getAllUserGroups(self,user_name):
+		query = User.query(User.email == user_name).get()
+		if query:
+			return query
+		else:
+			return None
+			
+	@classmethod		
+	def deleteUser(self,user_name):
+		query = User.query(User.ProductName == user_name).get()
+		query.key.delete()

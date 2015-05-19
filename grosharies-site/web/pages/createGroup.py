@@ -13,8 +13,12 @@ class IndexHandler(webapp2.RequestHandler):
 		if (Group.checkIfGroupNotExists("Habanai 30","Ilya") is True):
 			group = Group()
 			group.GroupName = "Habanai 30"
-			group.GroupUsers = "Ilya"
 			group.GroupAdmin = "Ilya"
+			g_id = group.put()
+			group = Group()
+			#group.GroupName = "Habanai 30"
+			group.GroupUsers = "Ben"
+			#group.GroupAdmin = "Ilya"
 			g_id = group.put()
 			#g_id = group.key.id()
 			#if(User.checkIfUserNotExists("Ilya") is True):
