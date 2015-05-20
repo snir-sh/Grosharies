@@ -1,31 +1,15 @@
-/*
- * jQuery JavaScript Library v1.3.2
- * http://jquery.com/
- *
- * Copyright (c) 2009 John Resig
- * Dual licensed under the MIT and GPL licenses.
- * http://docs.jquery.com/License
- *
- * Date: 2009-02-19 17:34:21 -0500 (Thu, 19 Feb 2009)
- * Revision: 6246
- */
-  window.fbAsyncInit = function() {
-        FB.init({
-    appId      : '1634735740089355',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $('#facebookLogin').on('click', loginFacebook);
+  $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+    FB.init({
+      appId: '1634735740089355',
+      version: 'v2.3' // or v2.0, v2.1, v2.0
+    });     
+    $('#loginbutton,#feedbutton').removeAttr('disabled');
+    FB.getLoginStatus(updateStatusCallback);
   });
-  };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+});
  
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -69,7 +53,8 @@
       testAPI();
     }
 	else {
-		FB.login();
+		FB.login(function() {
+		},{'scope':'email'});
 	}
 	});
   };  
