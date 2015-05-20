@@ -7,6 +7,10 @@ import json
 class DefaultHandler(webapp2.RequestHandler):
 	def get(self):
 		template_variables = {}
+		if self.request.cookies.get('session'):    #the cookie that should contain the access token!
+			user = User.checkToken(self.request.cookies.get('session'))
+			self.redirect('/index')
+			return
 		email = self.request.get('email')
 		user = None
 		if email:
