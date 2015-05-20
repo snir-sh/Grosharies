@@ -1,9 +1,9 @@
-$(function() {
-	$('#googleLogin').on('click', function() {
-		document.location.href = '/index';
-	});
+$(document).ready(function() {
+	$('#googleLogin').on('click', loginGoogle);
 });
 
 function loginGoogle() {
-	console.log('Test.');
-}
+	console.log('Test.............');
+	document.location.href = '/googleLogin';
+	
+};
