@@ -6,6 +6,7 @@ class Product(ndb.Model):
 	ProductName = ndb.StringProperty(required =True)
 	ProductUnits = ndb.StringProperty()
 	ProductQuantity = ndb.IntegerProperty()
+	ProductID = ndb.IntegerProperty()
 	
 	@classmethod
 	def cheakIfProductExists(self,product_name):
@@ -16,14 +17,11 @@ class Product(ndb.Model):
 			return None
 			
 	@classmethod
-	def deleteProduct(self,product_name):
-		query = Product.query(Product.ProductName == product_name).get()
+	def deleteProduct(self,product_id):
+		query = Product.query(Product.ProductID==product_id).get()
 		query.key.delete()
 		
-    def changeProductQuantity(self,product_name,list_admin,new_list_name):
-		query = List.query(List.ListName == old_list_name,List.ListAdmin == list_admin).get()
-		query.ListName = new_list_name
-		query.put()		
+	
 		
 
 		
