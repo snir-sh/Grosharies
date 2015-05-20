@@ -6,7 +6,7 @@ import json
 
 class DefaultHandler(webapp2.RequestHandler):
 	def get(self):
-		template_variables = {}
+		template_params = {}
 		if self.request.cookies.get('session'):    #the cookie that should contain the access token!
 			user = User.checkToken(self.request.cookies.get('session'))
 			self.redirect('/index')
@@ -26,7 +26,7 @@ class DefaultHandler(webapp2.RequestHandler):
 				self.response.set_cookie('session', str(user.key.id()))
 				return
 		else:
-			html = template.render("web/templates/default.html", template_variables)
+			html = template.render("web/templates/default.html", template_params)
 			self.response.write(html)
 
 
