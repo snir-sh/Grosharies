@@ -13,7 +13,7 @@ class IndexHandler(webapp2.RequestHandler):
 #		else:
 #			template_params['logoutUrl'] = User.logoutUrl()
 #			template_params['user'] = user.email()
-		
+		self.response.delete_cookie('session')
 		html = template.render("web/templates/logout.html", template_params)
 		self.response.write(html)
 #		user = users.get_current_user()

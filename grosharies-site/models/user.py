@@ -7,6 +7,11 @@ class User(ndb.Model):
 	GroupID = ndb.IntegerProperty()
 	
 	@staticmethod
+	def checkToken(token):
+		user = User.get_by_id(long(token))
+		return user
+	
+	@staticmethod
 	def checkIfUserExists(user_name):
 		query = User.query(User.email == user_name).get()
 		if query:
