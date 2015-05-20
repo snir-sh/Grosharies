@@ -1,6 +1,7 @@
 #this model represents a Group in our system
 
 from google.appengine.ext import ndb
+from models.user import User
 
 class Group(ndb.Model):
 	GroupName = ndb.StringProperty(required=True)
@@ -33,7 +34,17 @@ class Group(ndb.Model):
 		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
 		query.GroupName = new_name
 		query.put()
-		
+	
+	@classmethod
+	def addGroup(self,group_name,group_admin):
+		group = Group()
+		group.GroupAdmin = group_admin
+		group.GroupName = group_name
+		group.put()
+		user = User()
+		user.email = group_admin
+		user.GroupID = group.key.id()
+	
 		
 		
 		

@@ -16,7 +16,7 @@ class ListOfProducts(ndb.Model):
 			return None
 			
 	@classmethod
-	def deleteProduct(self, list_id, product_id)
+	def deleteProduct(self, list_id, product_id):
 		query = ListOfProducts.query(ListOfProducts.ListID==list_id, ListOfProducts.ProductID=product_id).key.get()
 		query.key.delete()
 		Product.deleteProduct(product_id)

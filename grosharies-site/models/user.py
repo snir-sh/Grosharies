@@ -10,13 +10,13 @@ class User(ndb.Model):
 	def checkIfUserExists(user_name):
 		query = User.query(User.email == user_name).get()
 		if query:
-			return True
+			return query
 		else:
-			return False
+			return None
 			
 	@classmethod
 	def getAllUserGroups(self,user_name):
-		query = User.query(User.email == user_name).get()
+		query = User.query(User.email == user_name).get(20)
 		if query:
 			return query
 		else:
@@ -27,8 +27,14 @@ class User(ndb.Model):
 		user = User()
 		user.email = user_email
 		user.put()
+		return user 
 	
 	@classmethod		
 	def deleteUser(self,user_name):
-		query = User.query(User.ProductName == user_name).get()
-		query.key.delete()
+		while True:
+			query = User.query(User.email == user_name).get()
+			if query:
+				query.key.delete()
+			
+			
+			
