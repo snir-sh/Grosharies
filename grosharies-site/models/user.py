@@ -7,7 +7,7 @@ class User(ndb.Model):
 	GroupID = ndb.IntegerProperty()
 	
 	@staticmethod
-	def checkIfUserExists(self,user_name):
+	def checkIfUserExists(user_name):
 		query = User.query(User.email == user_name).get()
 		if query:
 			return True
@@ -23,12 +23,10 @@ class User(ndb.Model):
 			return None
 			
 	@staticmethod
-	def addUser(self,user_email)
+	def addUser(user_email):
 		user = User()
 		user.email = user_email
 		user.put()
-
-
 	
 	@classmethod		
 	def deleteUser(self,user_name):
