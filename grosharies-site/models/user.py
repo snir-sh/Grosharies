@@ -21,7 +21,14 @@ class User(ndb.Model):
 			return query
 		else:
 			return None
-			
+	@classmethod
+	def addUser(self,user_email)
+		user = User()
+		user.email = user_email
+		user.put()
+
+
+	
 	@classmethod		
 	def deleteUser(self,user_name):
 		query = User.query(User.ProductName == user_name).get()
