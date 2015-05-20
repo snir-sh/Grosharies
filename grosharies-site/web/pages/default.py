@@ -1,30 +1,30 @@
-#from google.appengine.api import users
 from google.appengine.ext.webapp import template
 
 from models.user import User
 import webapp2
+import json
 
 class DefaultHandler(webapp2.RequestHandler):
 	def get(self):
-		template_params = {}
-#		user = User.checkUser()
-#		if not user:
-#			template_params['loginUrl'] = User.loginUrl()
-#		else:
-#			template_params['logoutUrl'] = User.logoutUrl()
-#			template_params['user'] = user.email()
-		
-		html = template.render("web/templates/default.html", template_params)
-		self.response.write(html)
-#		user = users.get_current_user()
-#
-#		if user:
-#			self.response.headers['Content-Type'] = 'text/plain'
-#			self.response.write('Hello, ' + user.nickname())
-#		else:
-#			self.redirect(users.create_login_url(self.request.uri))
+		template_variables = {}
+		email = self.request.get('email')
+		user = None
+		if email:
+			self.response.write(json.dumps({'status':'OK'}))
+			user = User.checkIfUserExists(email)
+			if user:
+				self.response.set_cookie('session', str(user.key.id()))
+				self.redirect('/index')
+				return
+			else:
+				user = User.addUser(email)
+				self.redirect('/index')
+				self.response.set_cookie('session', str(user.key.id()))
+				return
+		else:
+			html = template.render("web/templates/default.html", template_variables)
+			self.response.write(html)
 
-		#self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
 	('/', DefaultHandler),

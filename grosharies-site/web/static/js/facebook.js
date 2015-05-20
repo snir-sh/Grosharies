@@ -32,13 +32,14 @@ function connected() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name + ' ' + response.email);
+	  var email = response.email;
 	  $.ajax({
-		url:'/login',
+		url:'/',
 		type:'GET',
-		dataType:'json',
-        data:{email:response.email},
+		dataType:'text',
+        data:{email:email},
 		success:function(data, status, xhr) {
-            location.reload();
+            window.location.replace("/index");
 		},
 		error:function(xhr, status, error) {
             alert(xhr.responseText);
