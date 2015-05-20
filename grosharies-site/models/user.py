@@ -6,13 +6,13 @@ class User(ndb.Model):
 	email = ndb.StringProperty(required=True)
 	GroupID = ndb.IntegerProperty()
 	
-	@classmethod
-	def checkIfUserNotExists(self,user_name):
+	@staticmethod
+	def checkIfUserExists(self,user_name):
 		query = User.query(User.email == user_name).get()
 		if query:
-			return False
-		else:
 			return True
+		else:
+			return False
 			
 	@classmethod
 	def getAllUserGroups(self,user_name):
@@ -21,7 +21,8 @@ class User(ndb.Model):
 			return query
 		else:
 			return None
-	@classmethod
+			
+	@staticmethod
 	def addUser(self,user_email)
 		user = User()
 		user.email = user_email
