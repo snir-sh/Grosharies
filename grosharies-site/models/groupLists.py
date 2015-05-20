@@ -13,3 +13,17 @@ class GroupLists(ndb.Model):
 			return query
 		else:
 			return None
+			
+	@classmethod
+	def deleteGroup(self,group_id):
+		query =GroupLists.query(GroupLists.GroupID==group_id).fetch()
+		for group in query:
+			group.key.delete()
+		
+
+	@classmethod
+	def deleteList(self,list_id):
+		query = GroupLists.query(GroupLists.ListID==list_id).fetch()
+		for list in query:
+			list.key.delete()
+			

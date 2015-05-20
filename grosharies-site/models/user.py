@@ -11,6 +11,7 @@ class User(ndb.Model):
 		user = User.get_by_id(long(token))
 		return user
 	
+	#check if the user exists if it does the function return the user
 	@staticmethod
 	def checkIfUserExists(user_name):
 		query = User.query(User.email == user_name).get()
@@ -18,15 +19,23 @@ class User(ndb.Model):
 			return query
 		else:
 			return None
-			
+	
+
+	#return an array of groups
 	@classmethod
 	def getAllUserGroups(self,user_name):
-		query = User.query(User.email == user_name).get(20)
+		userGroups =[]
+		i=0
+		query = User.query(User.email == user_name).fetch()
 		if query:
-			return query
+			for group in query:
+				userGroups[i] = group
+				i+=1
+			return userGroups
 		else:
 			return None
-			
+	
+	#add a user to the data store
 	@staticmethod
 	def addUser(user_email):
 		user = User()
@@ -34,12 +43,25 @@ class User(ndb.Model):
 		user.put()
 		return user 
 	
+	#delete all data about the user in the data store
 	@classmethod		
 	def deleteUser(self,user_name):
-		while True:
-			query = User.query(User.email == user_name).get()
-			if query:
-				query.key.delete()
-			
-			
+		query = User.query(User.email == user_name).fetch()
+		for user in query:
+			user.key.delete()
+	
+	#delete the group from all the users of that group
+	@classmethod
+	def deleteGroup(self,group_id):
+		query = User.query(User.GroupID == group_id).fetch()
+		for user in query:
+			user.key.delete()
+	
+	#add a group to a user
+	@classmethod
+	def addGroup(self,group_id,user_name):
+		user = User()
+		user.email = user_name
+		user.GroupID = group_id
+		user.put()
 			

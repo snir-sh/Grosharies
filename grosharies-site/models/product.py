@@ -21,8 +21,7 @@ class Product(ndb.Model):
 		query = Product.query(Product.ProductID==product_id).get()
 		query.key.delete()
 	
-	#gets listID productName ProductUnits ProductQuantity and add it
-	#	to listOfProducts table and product table
+	#add product to a list 
 	@classmethod
 	def addProduct(self,product_name,product_quantity,product_units,list_id):
 		product = Product()
