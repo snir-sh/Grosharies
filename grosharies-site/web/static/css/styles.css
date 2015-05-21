@@ -175,6 +175,16 @@ ul#menu li:hover a
   border-radius: 0px 0px 15px 15px;
   -moz-border-radius: 0px 0px 15px 15px;
   -webkit-border: 0px 0px 15px 15px;} 
+  
+#site_content2
+{ width: 940px;
+  padding-left: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+  background: #323232;
+  border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 0px 0px 15px 15px;
+  -webkit-border: 0px 0px 15px 15px;} 
 
 .sidebar_container
 { float: left;
