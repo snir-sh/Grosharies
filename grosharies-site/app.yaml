@@ -47,6 +47,9 @@ handlers:
 
 - url: /search
   script: web.pages.search.app
+
+- url: /googleLogin
+  script: web.pages.googleLogin.app
   
 - url: /static
   static_dir: web/static
