@@ -31,29 +31,30 @@ function signinCallback(authResult) {
   if (authResult['status']['signed_in']) {
     // Update the app to reflect a signed in user
     // Hide the sign-in button now that the user is authorized, for example:
-    gapi.client.load('plus','v1', function(){
-	var request = gapi.client.plus.people.get({
-		'userId': 'me'
-		});
-		request.execute(function(resp) {
-			console.log('Retrieved profile for:' + resp.emails[0].value);
-			var email = resp.emails[0].value;
-			$.ajax({
-			url:'/',
-			type:'GET',
-			dataType:'text',
-			data:{email:email},
-			success:function(data, status, xhr) {
-				window.location.replace("/index");
-			},
-			error:function(xhr, status, error) {
+    if (authResult['status']['method'] == 'PROMPT') {
+		gapi.client.load('plus','v1', function(){
+		var request = gapi.client.plus.people.get({
+			'userId': 'me'
+			});
+			request.execute(function(resp) {
+				console.log('Retrieved profile for:' + resp.emails[0].value);
+				var email = resp.emails[0].value;
+				$.ajax({
+				url:'/',
+				type:'GET',
+				dataType:'text',
+				data:{email:email},
+				success:function(data, status, xhr) {
+					window.location.replace("/index");
+				},
+				error:function(xhr, status, error) {
 				alert(xhr.responseText);
 				console.error(xhr, status, error);
-			}
+				}
+				});
 			});
 		});
-	});
-
+	}
   } else {
     // Update the app to reflect a signed out user
     // Possible error values:
