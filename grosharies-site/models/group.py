@@ -17,6 +17,8 @@ class Group(ndb.Model):
 			return False
 		else:
 			return True
+			
+			
 	#return an array of all the users in that group 		
 	@classmethod
 	def getAllUsersFromGroup(self,group_name,admin_name):
@@ -30,6 +32,7 @@ class Group(ndb.Model):
 			return users
 		else:
 			return None
+			
 	#delete group from the data store	
 	@classmethod
 	def deleteGroup(self, group_name, group_admin):
@@ -47,7 +50,7 @@ class Group(ndb.Model):
 		query.put()
 		
 		
-	#add group to the data store and to the admin users groups
+	#add group to the data store 
 	@classmethod
 	def addGroup(self,group_name,group_admin):
 		group = Group()

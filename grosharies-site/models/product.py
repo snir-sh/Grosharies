@@ -2,6 +2,8 @@
 
 from google.appengine.ext import ndb
 from models.listOfProducts import ListOfProducts
+
+
 class Product(ndb.Model):
 	ProductName = ndb.StringProperty(required =True)
 	ProductUnits = ndb.StringProperty()
@@ -15,11 +17,14 @@ class Product(ndb.Model):
 			return True
 		else:
 			return None
-			
+	
+
+	#delete a product from product table and listOfProducts table
 	@classmethod
 	def deleteProduct(self,product_id):
 		query = Product.query(Product.ProductID==product_id).get()
 		query.key.delete()
+		Product.deleteProduct(product_id)
 	
 	#add product to a list 
 	@classmethod
@@ -35,4 +40,12 @@ class Product(ndb.Model):
 		listOfProducts.ProductID =product.key.id()
 		listOfProducts.put()
 
+	#get product by id
+	@classmethod
+	def getProduct(self,product_id):
+		query = Product.query(Product.ProductID == product_id).get()
+		if query:
+			return query
+		else:
+			return None
 		
