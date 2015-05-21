@@ -13,7 +13,7 @@ class List(ndb.Model):
 	
 	#method checks if the list exists. if it does the method returns the list else returns None
 	@classmethod
-	def checkIfListExsist(self,list_name,list_admin):
+	def checkIfListExist(self,list_name,list_admin):
 		query = List.query(List.ListName == list_name,List.ListAdmin ==list_admin).get()
 		if query:
 			return query

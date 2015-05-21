@@ -9,7 +9,7 @@ class Group(ndb.Model):
 	GroupName = ndb.StringProperty(required=True)
 	GroupAdmin = ndb.StringProperty(required=True)
 
-	#cheack if the group not exists 
+	#check if the group not exists 
 	@classmethod
 	def checkIfGroupNotExists(self,group_name,admin_name):
 		query = Group.query(Group.GroupName == group_name, Group.GroupAdmin == admin_name).get()
@@ -61,7 +61,14 @@ class Group(ndb.Model):
 		user.email = group_admin
 		user.GroupID = group.key.id()
 	
-		
+	
+	#gets a group ID
+	@classmethod
+	def getGroupID(self, group_name, group_admin):
+		if(Group.checkIfGroupNotExists(group_name, group_admin) is False):
+			return group.key.id()
+		else:
+			return None
 		
 		
 		

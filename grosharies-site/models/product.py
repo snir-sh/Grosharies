@@ -11,7 +11,7 @@ class Product(ndb.Model):
 	ProductID = ndb.IntegerProperty()
 	
 	@classmethod
-	def cheakIfProductExists(self,product_name):
+	def checkIfProductExists(self,product_name):
 		query = Product.query(Product.ProductName == product_name).get()		
 		if query:
 			return True
@@ -34,11 +34,13 @@ class Product(ndb.Model):
 		product.ProductUnits =product_units
 		product.ProductQuantity = product_quantity
 		product.put()
-		product.ProductID =product.key.id() 
+		product.ProductID = product.key.id()
+		product.put()
 		listOfProducts = ListOfProducts()
 		listOfProducts.ListID = list_id
 		listOfProducts.ProductID =product.key.id()
 		listOfProducts.put()
+		
 
 	#get product by id
 	@classmethod
@@ -48,4 +50,5 @@ class Product(ndb.Model):
 			return query
 		else:
 			return None
+
 		
