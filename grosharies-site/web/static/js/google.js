@@ -7,3 +7,4 @@ function loginGoogle() {
 	document.location.href = '/googleLogin';
 	
 };
+
