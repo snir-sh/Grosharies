@@ -10,13 +10,11 @@ class ListOfProducts(ndb.Model):
 	@classmethod
 	def getAllProducts(self,list_id):
 		products =[]
-		i=0
-		query = ListOfProducts.query(ListOfProducts.ListID == list_id).fetch()	
-		if query:
-			for product in query:
-				products[i] = product.ProductID
-				i+=1
-				return products
+		listOfProducts = ListOfProducts.query(ListOfProducts.ListID == list_id).fetch()	
+		if listOfProducts is not None:
+			for product in listOfProducts:
+				products.append(product)
+			return products
 		else:
 			return None
 			

@@ -2,31 +2,70 @@
 
 from google.appengine.ext import ndb
 from models.listOfProducts import ListOfProducts
-from models.product import Product
+from models.product			 import Product
+from models.groupLists 	 import GroupLists
 
 
 class List(ndb.Model):
 	ListName = ndb.StringProperty(required=True)
 	ListUser = ndb.StringProperty()
 	ListAdmin = ndb.StringProperty(required=True)
+	ListID = ndb.IntegerProperty()
 	userPermit = ndb.StringProperty(choices = ['partner','viewer'])
 	
-	#method checks if the list exists. if it does the method returns the list else returns None
+	@staticmethod
+	def createList(list_name,list_admin, group_id):
+		list = List()
+		list.ListName =list_name
+		list.ListAdmin = list_admin
+		list.put()
+		list.ListID = list.key.id()
+		list.put()
+		groupList = GroupLists()
+		groupList.ListID = list.key.id()
+		groupList.GroupID = group_id
+		groupList.put()
+		return list
+		
+		
+	# returns the ID of a list, if not exist return None
 	@classmethod
-	def checkIfListExist(self,list_name,list_admin):
-		query = List.query(List.ListName == list_name,List.ListAdmin ==list_admin).get()
-		if query:
-			return query
+	def checkExistenceByName(self, list_name, list_admin):
+		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin).get()
+		if query is not None:
+			return query.ListID
 		else:
 			return None
 	
+	#method checks if the list exists. if it does the method returns its ID, else returns None
+	@classmethod
+	def checkExistenceByID(self,list_id):
+		query = List.query(List.ListID == list_id).get()
+		if query is not None:
+			return query.ListID
+		else:
+			return None
+	
+	
+	# returns a listID
+	@classmethod
+	def getListID(self, list_name, list_admin):
+		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin).get()
+		if query is not None:
+			return query.ListID
+		else:
+			return None
+			
+	
 	#delete the list from the data store (list table and listOfProducts table)
 	@classmethod		
-	def deleteList(self,list_name,list_admin):
-		query = List.query(List.ListName == list_name,List.ListAdmin == list_admin).get()
-		key = query.key.id()
-		query.key.delete()
-		ListOfProducts.deleteList(key)
+	def deleteList(self,list_id, group_id):
+		query = List.query(List.ListID == list_id).get()
+		if query is not None:
+			key = query.key.id()
+			query.key.delete()
+			ListOfProducts.deleteList(key)
+			GroupLists.deleteList(key)
 	
 	
 	#changes the list name
@@ -38,14 +77,6 @@ class List(ndb.Model):
 				list.ListName = new_list_name
 				query.put()
 		
-		
-	@classmethod
-	def addList(self,list_name,list_admin):
-		list =List()
-		list.ListName =list_name
-		list.ListAdmin = list_admin
-		list.put()
-		return list
 		
 	#get all the user in the list
 	@classmethod
@@ -63,7 +94,7 @@ class List(ndb.Model):
 			
 			
 	@classmethod
-	def	getAllProductsOfTheList(self, list_id):
+	def getAllProductsOfTheList(self, list_id):
 		products = []
 		i=0
 		productsIds = ListOfProducts.getAllProducts(list_id)
@@ -72,11 +103,13 @@ class List(ndb.Model):
 				product[i] = Product.getProduct(productsIds[i])
 				i+=1
 	
+	
 	@classmethod
 	def deleteUserFromList(self,user_name, list_name,list_admin):
 		query = List.query(List.ListUser == user_name, List.ListAdmin == list_admin,List.ListName ==list_name).get()
 		if query:
 			query.key.delete()
+	
 	
 	@classmethod
 	def addUserToList(self,list_name,list_admin,list_user,list_permit):
@@ -86,3 +119,31 @@ class List(ndb.Model):
 		list.ListUser = list_user
 		list.userPermit = list_permit
 		list.put()
+		
+		
+	@classmethod
+	def addProduct(self, list_id, product_name,product_quantity,product_units):
+		if List.checkExistenceByID(list_id) is None:
+			products = ListOfProducts.getAllProducts(list_id)
+			if products is not None:
+				if product_name not in products:
+					Product.addProduct(product_name,product_quantity,product_units, list_id)
+					return True
+				else:
+					return False
+			else:
+				Product.addProduct(product_name,product_quantity,product_units, list_id)
+				return True
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

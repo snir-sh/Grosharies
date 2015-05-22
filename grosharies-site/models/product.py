@@ -16,7 +16,7 @@ class Product(ndb.Model):
 		if query:
 			return True
 		else:
-			return None
+			return False
 	
 
 	#delete a product from product table and listOfProducts table

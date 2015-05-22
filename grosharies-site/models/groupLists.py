@@ -21,8 +21,8 @@ class GroupLists(ndb.Model):
 	
 	#delete the group from the data store
 	@classmethod
-	def deleteGroup(self,group_id):
-		query =GroupLists.query(GroupLists.GroupID==group_id).fetch()
+	def deleteGroup(self, group_id):
+		query = GroupLists.query(GroupLists.GroupID==group_id).fetch()
 		for group in query:
 			group.key.delete()
 		
@@ -34,9 +34,9 @@ class GroupLists(ndb.Model):
 			list.key.delete()
 	
 	@classmethod
-	def addGroupList(self,group_id,list_id):
+	def addGroupList(self,group_id):
 		groupLists = GroupLists()
 		groupLists.GroupID = group_id
-		groupLists.ListID = list_id
 		groupLists.put()
-			
+		groupLists.ListID = groupLists.key.id()
+		groupLists.put()
