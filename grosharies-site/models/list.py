@@ -15,17 +15,19 @@ class List(ndb.Model):
 	
 	@staticmethod
 	def createList(list_name,list_admin, group_id):
-		list = List()
-		list.ListName =list_name
-		list.ListAdmin = list_admin
-		list.put()
-		list.ListID = list.key.id()
-		list.put()
-		groupList = GroupLists()
-		groupList.ListID = list.key.id()
-		groupList.GroupID = group_id
-		groupList.put()
-		return list
+		if List.checkIfTheNameExists(list_name,group_id) == False:
+			list = List()
+			list.ListName =list_name
+			list.ListAdmin = list_admin
+			list.put()
+			list.ListID = list.key.id()
+			list.put()
+			groupList = GroupLists()
+			groupList.ListID = list.key.id()
+			groupList.GroupID = group_id
+			groupList.put()
+			return list
+		return None
 		
 	
 	#method checks if the list exists. if it does the method returns its ID, else returns None
@@ -142,3 +144,12 @@ class List(ndb.Model):
 			return False
 		return False
 		
+	@classmethod
+	def checkIfTheNameExists(self,list_name,group_id):
+		lists = GroupLists.getAllLists(group_id)
+		if lists:
+			for list in lists:
+				query = List.query(List.ListID == list.ListID).get()
+				if query.ListName == list_name:
+					return True
+		return False
