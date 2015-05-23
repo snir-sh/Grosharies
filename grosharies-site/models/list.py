@@ -57,9 +57,12 @@ class List(ndb.Model):
 		if query is not None:
 			key = query.key.id()
 			query.key.delete()
-			ListOfProducts.deleteList(key)
 			GroupLists.deleteList(key)
-	
+			productsIds = ListOfProducts.getAllProductsIDs(list_id)
+			if productsIds:
+				for productID in productsIds:
+					Product.deleteProduct(productID)
+			ListOfProducts.deleteList(key)
 	
 	#changes the list name
 	@classmethod		
