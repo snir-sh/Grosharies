@@ -8,12 +8,12 @@ class ListOfProducts(ndb.Model):
 
 	#get all the products of the list
 	@classmethod
-	def getAllProducts(self,list_id):
+	def getAllProductsIDs(self,list_id):
 		products =[]
 		listOfProducts = ListOfProducts.query(ListOfProducts.ListID == list_id).fetch()	
 		if listOfProducts is not None:
 			for product in listOfProducts:
-				products.append(product)
+				products.append(product.ProductID)
 			return products
 		else:
 			return None
@@ -38,5 +38,19 @@ class ListOfProducts(ndb.Model):
 		listOfProducts.ListID = list_id
 		listOfProducts.put()
 	
+	@classmethod
+	def getProductByID(self, product_id):
+		product = ListOfProducts.query(ListOfProducts.ProductID == product_id).get()
+		if product is not None:
+			return product
+		else:
+			return None
 	
 	
+	@classmethod
+	def deleteProduct(self, product_id):
+		product = ListOfProducts.query(ListOfProducts.ProductID == product_id).get()
+		if product is not None:
+			product.key.delete()
+			return True
+		return False

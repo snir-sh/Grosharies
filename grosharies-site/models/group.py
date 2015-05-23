@@ -1,9 +1,9 @@
 #this model represents a Group in our system
 
 from google.appengine.ext	import ndb
-from models.user 					import User
+from models.user 			import User
 from models.groupLists 		import GroupLists
-from models.list 					import List
+from models.list 			import List
 
 class Group(ndb.Model):
 	GroupName = ndb.StringProperty(required=True)

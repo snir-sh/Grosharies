@@ -1,9 +1,9 @@
 #this model represents a List in our system
 
-from google.appengine.ext import ndb
-from models.listOfProducts import ListOfProducts
-from models.product			 import Product
-from models.groupLists 	 import GroupLists
+from google.appengine.ext 	import ndb
+from models.listOfProducts 	import ListOfProducts
+from models.product			import Product
+from models.groupLists 	 	import GroupLists
 
 
 class List(ndb.Model):
@@ -123,27 +123,24 @@ class List(ndb.Model):
 		
 	@classmethod
 	def addProduct(self, list_id, product_name,product_quantity,product_units):
-		if List.checkExistenceByID(list_id) is None:
-			products = ListOfProducts.getAllProducts(list_id)
-			if products is not None:
-				if product_name not in products:
-					Product.addProduct(product_name,product_quantity,product_units, list_id)
-					return True
-				else:
-					return False
+		if List.checkExistenceByID(list_id) is not None:
+			products = ListOfProducts.getAllProductsIDs(list_id)
+			if len(products)!=0:
+				for product_id in products:
+					product = Product.getProductByID(product_id)
+					if product is None:
+						Product.addProduct(product_name,product_quantity,product_units, list_id)
+						return True
+					else:
+						return False
 			else:
 				Product.addProduct(product_name,product_quantity,product_units, list_id)
 				return True
 		
+	
+	#@classmethod
+	#def deleteProductFromList(self, list_id, product_id, product_name):
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		

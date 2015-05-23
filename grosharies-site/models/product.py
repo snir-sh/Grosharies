@@ -1,7 +1,7 @@
 #this model represents a Product in our system
 
-from google.appengine.ext import ndb
-from models.listOfProducts import ListOfProducts
+from google.appengine.ext 	import ndb
+from models.listOfProducts 	import ListOfProducts
 
 
 class Product(ndb.Model):
@@ -38,17 +38,17 @@ class Product(ndb.Model):
 		product.put()
 		listOfProducts = ListOfProducts()
 		listOfProducts.ListID = list_id
-		listOfProducts.ProductID =product.key.id()
+		listOfProducts.ProductID = product.key.id()
 		listOfProducts.put()
 		
 
 	#get product by id
 	@classmethod
-	def getProduct(self,product_id):
-		query = Product.query(Product.ProductID == product_id).get()
-		if query:
-			return query
+	def getProductByID(self,product_id):
+		product = Product.query(Product.ProductID == product_id).get()
+		if product:
+			return product
 		else:
 			return None
 
-		
+	
