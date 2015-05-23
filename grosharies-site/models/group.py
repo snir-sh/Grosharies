@@ -48,10 +48,15 @@ class Group(ndb.Model):
 	@classmethod
 	def deleteGroup(self, group_name, group_admin):
 		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
-		key = query.key.id()
-		query.key.delete()
-		GroupLists.deleteGroup(key)
-		User.deleteGroup(key)
+		if query:
+			key = query.key.id()
+			query.key.delete()
+			User.deleteGroup(key)
+			lists = GroupLists.getAllLists(key)
+			if lists:
+				for list in lists:
+					List.deleteList(list.ListID,key)
+			
 
 		
 	#change a group name
