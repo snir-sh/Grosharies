@@ -27,15 +27,6 @@ class List(ndb.Model):
 		groupList.put()
 		return list
 		
-		
-	# returns the ID of a list, if not exist return None
-	@classmethod
-	def checkExistenceByName(self, list_name, list_admin):
-		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin).get()
-		if query is not None:
-			return query.ListID
-		else:
-			return None
 	
 	#method checks if the list exists. if it does the method returns its ID, else returns None
 	@classmethod
@@ -49,8 +40,8 @@ class List(ndb.Model):
 	
 	# returns a listID
 	@classmethod
-	def getListID(self, list_name, list_admin):
-		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin).get()
+	def getListID(self, list_name, list_admin, belong_to):
+		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin, List.BelongToGroup==belong_to).get()
 		if query is not None:
 			return query.ListID
 		else:
@@ -136,11 +127,18 @@ class List(ndb.Model):
 			else:
 				Product.addProduct(product_name,product_quantity,product_units, list_id)
 				return True
+		else:
+			return False
 		
 	
-	#@classmethod
-	#def deleteProductFromList(self, list_id, product_id, product_name):
-		
-
-		
+	@classmethod
+	def deleteProductFromList(self, list_id, product_name):
+		if List.checkExistenceByID(list_id) is not None:
+			product = ListOfProducts.query(ListOfProducts.ProductName==product_name, ListOfProducts.ListID==list_id).get()
+			if product is not None:
+				Product.deleteProduct(product.ProductID)
+				ListOfProducts.deleteProduct(product.ProductID)
+				return True
+			return False
+		return False
 		

@@ -24,8 +24,8 @@ class Product(ndb.Model):
 	def deleteProduct(self,product_id):
 		query = Product.query(Product.ProductID==product_id).get()
 		query.key.delete()
-		Product.deleteProduct(product_id)
-	
+
+		
 	#add product to a list 
 	@classmethod
 	def addProduct(self,product_name,product_quantity,product_units,list_id):
@@ -38,6 +38,7 @@ class Product(ndb.Model):
 		product.put()
 		listOfProducts = ListOfProducts()
 		listOfProducts.ListID = list_id
+		listOfProducts.ProductName = product_name
 		listOfProducts.ProductID = product.key.id()
 		listOfProducts.put()
 		

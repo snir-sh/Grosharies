@@ -22,6 +22,7 @@ class Group(ndb.Model):
 		user = User()
 		user.email = group_admin
 		user.GroupID = group.key.id()
+		user.put()
 	
 	#check if the group not exists 
 	@classmethod
@@ -79,12 +80,19 @@ class Group(ndb.Model):
 	# Create a list in a specific group. If created successfully - returns True, else - return false
 	@classmethod
 	def createList(self,  list_name, list_admin, group_id):
-		if (List.checkExistenceByName(list_name, list_admin) is None):
+		groupLists = GroupLists.getAllLists(group_id)
+		if groupLists is None:
 			List.createList(list_name, list_admin, group_id)
 			return True
 		else:
-			return False
-			
+			for group in groupLists:
+				if (group.GroupID==group_id):
+					return False
+			List.createList(list_name, list_admin, group_id)
+			return True
+
+
+		
 	# Delete a list from a specific group. If deleted successfully - returns True, else - return false
 	@classmethod
 	def deleteList(self, list_id, group_id):
