@@ -22,8 +22,8 @@ class IndexHandler(webapp2.RequestHandler):
 		
 		template_params['emailUser'] = myEmail
 				
-		if myGroups:
-			template_params['groupsUser'] = groupsNames[0]
+		#if myGroups:
+		#	template_params['groupsUser'] = groupsNames[0]
 						
 		html = template.render("web/templates/index.html", template_params)
 		self.response.write(html)
