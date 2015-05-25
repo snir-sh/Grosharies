@@ -43,6 +43,13 @@ class Group(ndb.Model):
 		else:
 			return None
 			
+	@classmethod
+	def getGroupNameByID(self, group_id):
+		query = Group.query(Group.GroupID == group_id).get()
+		if query:
+			return query
+		else:
+			return None
 			
 	#delete group from the data store	
 	@classmethod

@@ -25,12 +25,12 @@ class User(ndb.Model):
 	@classmethod
 	def getAllUserGroups(self,user_name):
 		userGroups =[]
-		i=0
+		
 		query = User.query(User.email == user_name).fetch()
 		if query:
 			for group in query:
-				userGroups[i] = group
-				i+=1
+				userGroups.append(group)
+				
 			return userGroups
 		else:
 			return None

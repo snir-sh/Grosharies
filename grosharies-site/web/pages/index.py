@@ -12,6 +12,19 @@ class IndexHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 		
+		myEmail = user.email
+		myGroups = User.getAllUserGroups(myEmail)
+		
+		groupsNames = []
+		if myGroups:
+			for group in myGroups:
+				groupsNames.append(Group.getGroupNameByID(group.GroupID))
+		
+		template_params['emailUser'] = myEmail
+				
+		if myGroups:
+			template_params['groupsUser'] = groupsNames[0]
+						
 		html = template.render("web/templates/index.html", template_params)
 		self.response.write(html)
 
