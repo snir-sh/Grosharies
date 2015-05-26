@@ -3,6 +3,7 @@ from models.user import User
 from models.group import Group
 import webapp2
 import HTML
+import json
 
 class IndexHandler(webapp2.RequestHandler):
 	def get(self):
@@ -13,27 +14,23 @@ class IndexHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 		
-		myEmail = user.email
-		myGroups = User.getAllUserGroups(myEmail)
+		allGroups = User.getAllUserGroups(user.email)
 		
 		groupsNames = []
-		if myGroups:
-			for group in myGroups:
-				groupsNames.append(Group.getGroupNameByID(group.GroupID))
-		
-		template_params['emailUser'] = myEmail
+		if allGroups:
+			for group in allGroups:
+				if Group.getGroupNameByID(group.GroupID):
+					name = Group.getGroupNameByID(group.GroupID).GroupName
+					groupsNames.append(name)
 				
-		#if myGroups:
-		#	template_params['groupsUser'] = groupsNames[0]
-		
-		# This is test #
-		#table_data = [['list1'],['list2'],['list3'],]
-		#htmlcode = HTML.table(table_data)
-		#print htmlcode
+		template_params['userEmail'] = user.email
+				
+		if groupsNames:
+			template_params['userGroups'] = groupsNames
 						
 		html = template.render("web/templates/index.html", template_params)
 		self.response.write(html)
-
+		
 app = webapp2.WSGIApplication([
 	('/index', IndexHandler)
 ], debug=True)
