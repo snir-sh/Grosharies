@@ -24,14 +24,23 @@ class Group(ndb.Model):
 		user.GroupID = group.key.id()
 		user.put()
 	
-	#check if the group not exists 
+	#check if the group not exists by id
 	@classmethod
-	def checkIfGroupNotExists(self, group_id):
+	def checkIfGroupExistsByID(self, group_id):
 		query = Group.query(Group.GroupID == group_id).get()
 		if query:
-			return False
-		else:
 			return True
+		else:
+			return False
+			
+	#check if the group not exists by name
+	@classmethod
+	def checkIfGroupExistsByName(self, group_name, group_admin):
+		query = Group.query(Group.GroupName == group_name, Group.GroupAdmin == group_admin).get()
+		if query:
+			return True
+		else:
+			return False
 
 	#gets a group ID
 	@classmethod
