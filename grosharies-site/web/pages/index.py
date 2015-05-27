@@ -13,7 +13,7 @@ class IndexHandler(webapp2.RequestHandler):
 			user = User.checkToken(self.request.cookies.get('session'))
 		if not user:
 			self.redirect('/')
-		
+
 		allGroups = User.getAllUserGroups(user.email)
 		
 		groupsNames = []
