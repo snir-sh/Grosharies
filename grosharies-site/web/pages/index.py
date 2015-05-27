@@ -2,7 +2,6 @@ from google.appengine.ext.webapp import template
 from models.user import User
 from models.group import Group
 import webapp2
-import HTML
 import json
 
 class IndexHandler(webapp2.RequestHandler):
@@ -13,7 +12,8 @@ class IndexHandler(webapp2.RequestHandler):
 			user = User.checkToken(self.request.cookies.get('session'))
 		if not user:
 			self.redirect('/')
-
+			return
+			
 		allGroups = User.getAllUserGroups(user.email)
 		
 		groupsNames = []

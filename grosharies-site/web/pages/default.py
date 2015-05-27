@@ -1,5 +1,4 @@
 from google.appengine.ext.webapp import template
-
 from models.user import User
 import webapp2
 import json

@@ -2,8 +2,8 @@ from google.appengine.ext.webapp import template
 from models.user import User
 from models.group import Group
 import webapp2
-import HTML
 import json
+
 class AboutHandler(webapp2.RequestHandler):
 	def get(self):
 		template_params = {}
@@ -12,8 +12,9 @@ class AboutHandler(webapp2.RequestHandler):
 			user = User.checkToken(self.request.cookies.get('session'))
 		if not user:
 			self.redirect('/')
-		allGroups = User.getAllUserGroups(user.email)
-		
+			return
+			
+		allGroups = User.getAllUserGroups(user.email)		
 		groupsNames = []
 		if allGroups:
 			for group in allGroups:
