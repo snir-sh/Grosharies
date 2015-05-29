@@ -14,7 +14,7 @@ class GroupLists(ndb.Model):
 		query = GroupLists.query(GroupLists.GroupID==group_id).fetch()
 		if query:
 			for list in query:
-				lists.append(list)
+				lists.append(list.ListID)
 			return lists
 		else:
 			return None

@@ -22,6 +22,7 @@ class Group(ndb.Model):
 		user = User()
 		user.email = group_admin
 		user.GroupID = group.key.id()
+		user.GroupName =group_name
 		user.put()
 	
 	#check if the group not exists by id

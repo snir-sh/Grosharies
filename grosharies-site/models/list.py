@@ -156,3 +156,11 @@ class List(ndb.Model):
 				if query.ListName == list_name:
 					return True
 		return False
+		
+	@classmethod
+	def getListNameByID(self,list_id):
+		query = List.query(List.ListID ==list_id).get()
+		if query:
+			return query.ListName
+		else:
+			return None

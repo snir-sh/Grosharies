@@ -1,6 +1,7 @@
 from google.appengine.ext.webapp import template
 from models.user import User
 from models.group import Group
+from models.groupLists import GroupLists
 import webapp2
 import json
 

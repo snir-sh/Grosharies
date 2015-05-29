@@ -10,7 +10,7 @@ function createGroup() {
 		dataType:'text',
 			data:{GroupName_id:group_name},
 			success:function(data, status, xhr) {
-				location.reload();
+				
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);

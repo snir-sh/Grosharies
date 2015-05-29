@@ -8,7 +8,9 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/listPage.js"></script>
   <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
   <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
 </head>
@@ -48,7 +50,7 @@
             <h2>Groups</h2>
 			 <a href="createGroup" ><h3>Create Group</h3></a>
 		{% for i in userGroups %}
-			<p><a href="listPage">{{i}}<br/> </a></p>
+			<p><a href="listPage" id ="group_name" name ={{i}}>{{i}}<br/> </a></p>
 		{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
