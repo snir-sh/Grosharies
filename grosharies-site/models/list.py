@@ -152,7 +152,7 @@ class List(ndb.Model):
 		lists = GroupLists.getAllLists(group_id)
 		if lists:
 			for list in lists:
-				query = List.query(List.ListID == list.ListID).get()
+				query = List.query(List.ListID == list).get()
 				if query.ListName == list_name:
 					return True
 		return False

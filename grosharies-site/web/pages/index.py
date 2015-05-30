@@ -21,13 +21,15 @@ class IndexHandler(webapp2.RequestHandler):
 			for group in allGroups:
 				if Group.getGroupNameByID(group.GroupID):
 					name = Group.getGroupNameByID(group.GroupID).GroupName
-					groupsNames.append(name)
+					id = group.GroupID
+					IDandName = [id, name]
+					groupsNames.append(IDandName)
 				
 		template_params['userEmail'] = user.email
 				
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
-						
+					
 		html = template.render("web/templates/index.html", template_params)
 		self.response.write(html)
 app = webapp2.WSGIApplication([

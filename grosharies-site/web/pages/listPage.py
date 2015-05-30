@@ -1,6 +1,7 @@
 from google.appengine.ext.webapp import template
 from models.user import User
 from models.group import Group
+from models.list import List
 from models.groupLists import GroupLists
 import webapp2
 import json
@@ -24,14 +25,18 @@ class ListPageHandler(webapp2.RequestHandler):
 					groupsNames.append(name)
 					
 		group_name = self.request.get('group_name')
-		if group_name:	
-			group_id = User.getGroupID(group_name,user.email)
-			if group_id:
-				my_groupListsIds = GroupLists.getAllLists(group_id)
-				if my_groupListsIds:
-					for list in my_groupListsIds:
-						lists = list.getListNameByID(list)
-					template_params['usersLists'] = lists
+		gid = self.request.get('gid')
+		group_id = int(gid)
+		
+		listNames = []
+		if group_id:	
+			my_groupListsIds = GroupLists.getAllLists(group_id)
+			if my_groupListsIds:
+				for list in my_groupListsIds:
+					lName = List.getListNameByID(list)
+					listNames.append(lName)
+					
+				template_params['groupLists'] = listNames
 		template_params['userEmail'] = user.email
 				
 		if groupsNames:
