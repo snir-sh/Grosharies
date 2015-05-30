@@ -4,7 +4,6 @@ $(document).ready(function(){
 
 function ShowLists() {
 	var group_name =  $(this).attr('name');
-	alert(group_name);
 	$.ajax({
 		url:'/listPage',
 		type:'GET',

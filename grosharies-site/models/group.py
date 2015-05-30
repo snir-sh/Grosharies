@@ -123,8 +123,20 @@ class Group(ndb.Model):
 			return True
 		return False
 		
-		
-		
+	@classmethod
+	def getAllGroupsNames(self, user_name):
+		allGroups = User.getAllUserGroups(user_name)
+		groupsNames = []
+		if allGroups:
+			for group in allGroups:
+				if Group.getGroupNameByID(group.GroupID):
+					name = Group.getGroupNameByID(group.GroupID).GroupName
+					id = group.GroupID
+					IDandName = [id, name]
+					groupsNames.append(IDandName)
+			return groupsNames
+		else:
+			return None
 		
 		
 		

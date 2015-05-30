@@ -16,8 +16,8 @@ class ListPageHandler(webapp2.RequestHandler):
 			self.redirect('/')
 			return
 		allGroups = User.getAllUserGroups(user.email)
-		
-		groupsNames = []
+		groupsNames=[]
+		#groupsNames = Group.getAllGroupsNames(user.email)
 		if allGroups:
 			for group in allGroups:
 				if Group.getGroupNameByID(group.GroupID):

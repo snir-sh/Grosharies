@@ -14,17 +14,7 @@ class IndexHandler(webapp2.RequestHandler):
 			self.redirect('/')
 			return
 			
-		allGroups = User.getAllUserGroups(user.email)
-		
-		groupsNames = []
-		if allGroups:
-			for group in allGroups:
-				if Group.getGroupNameByID(group.GroupID):
-					name = Group.getGroupNameByID(group.GroupID).GroupName
-					id = group.GroupID
-					IDandName = [id, name]
-					groupsNames.append(IDandName)
-				
+		groupsNames = Group.getAllGroupsNames(user.email)		
 		template_params['userEmail'] = user.email
 				
 		if groupsNames:
