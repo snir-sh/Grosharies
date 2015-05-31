@@ -78,7 +78,6 @@
 			<table style="width:60%" >
 				<tr>
 					<td><input type="text" id ="GroupName_id" placeholder="Group Name" rows="1" cols="15" size="15" height="20px"></textarea> &nbsp;&nbsp;&nbsp;
-					<button type="button" id="createGroupButton">Create</button></td>
 				</tr>
 				<tr>
 					<td> </p>
@@ -89,16 +88,14 @@
 							<option value="{{i}}">{{i}}</option>
 							{% endfor %}							
 							</select>
-						<button type="button" onclick ="alert('User created successfully!')">Add</button>
+						<button type="button" id="addUserToList" onclick ="">Add</button>
 					</td>
-					
 				</tr>
 			</table>
 			</br>
 				<p> Group users: </p>
-				<textarea  rows="12" cols="30" disabled></textarea>
-				<p><button type="button" onclick ="alert('Group created successfully!');location.reload();">Submit</button></p>
-          
+				<textarea  id="users_list" rows="12" cols="30" disabled></textarea>
+				<p><button type="button" id="createGroupButton">Submit</button></p>
 	    </div><!--close content_item-->
       </div><!--close content-->   
 	</div><!--close site_content-->  

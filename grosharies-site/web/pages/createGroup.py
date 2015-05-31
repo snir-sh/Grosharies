@@ -15,6 +15,17 @@ class CreateGroupHandler(webapp2.RequestHandler):
 			self.redirect('/')
 			
 		group_name = self.request.get('GroupName_id')
+		
+		result = None
+		#result = self.request.get('Users')
+		result = self.request.get('Users')
+		
+		#if result != None:
+			
+		for email in result:
+			User.addGroup(group_name, email)
+			
+		
 		if group_name:
 			if Group.checkIfGroupExistsByName(group_name,user.email):
 				self.response.write(json.dumps({'status':'exists'}))
