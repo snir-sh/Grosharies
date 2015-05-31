@@ -1,5 +1,6 @@
 $(document).ready(function(){	
 	$('#group_name').on('click', ShowLists);
+	$('#removeUserFromGroup').on('click', removeUserFromGroup)
 });
 
 function ShowLists(gid) {
@@ -22,3 +23,26 @@ function ShowLists(gid) {
 	});					
 							
 	}
+	
+function removeUserFromGroup(gid) {
+	var group_id = gid;
+	var userName = $('#userSelect').val();
+	
+	
+	alert(user.email);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

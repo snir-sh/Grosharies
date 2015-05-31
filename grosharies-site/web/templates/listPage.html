@@ -97,13 +97,13 @@
 					<td valign="top"> 
 						{% if isAdmin %}
 						<h2><u><i>Remove User</i></u></h2>
-						<select>
-							{% for u in groupUsers %} 
-								<option value={{u}}>{{u}}</option>
+						<select id="userSelect">
+							{% for i in groupUsers %} 
+								<option value={{i}}>{{i}}</option>
 							{% endfor %} 
 						</select>
 						&nbsp;&nbsp;
-						<button type="button" id="removeUserButton" onclick=alert("removedUser")>Remove User</button>
+						<button type="button" id="removeUserFromGroup" onclick="">Remove User</button>
 						{% endif %}
 					</td>
 				</tr>
