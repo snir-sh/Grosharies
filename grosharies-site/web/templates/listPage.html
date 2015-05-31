@@ -51,7 +51,7 @@
             <h2>Groups</h2>
 			 <a href="createGroup"><h3>Create Group</h3></a>
             {% for i in userGroups %}
-			<p><a href="listPage" id ="group_name" name ={{i}}>{{i}}<br/> </a></p>
+			<p><a href="listPage?gid ={{i.0}}"id ={{i.0}}>{{i.1}}<br/> </a></p>
 		{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
@@ -60,7 +60,7 @@
             <h2>Lists</h2>
 			 <a href="createList"><h3>Create List</h3></a>
 			 {% for i in groupLists %} 
-			<p><a href="listPage">{{i}}<br/> </a></p> 
+			<p><a href="listPage">{{i.1}}<br/> </a></p> 
 		{% endfor %} 
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->		

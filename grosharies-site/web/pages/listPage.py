@@ -5,6 +5,7 @@ from models.list import List
 from models.groupLists import GroupLists
 import webapp2
 import json
+import locale
 
 class ListPageHandler(webapp2.RequestHandler):
 	def get(self):
@@ -15,35 +16,21 @@ class ListPageHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 			return
-		allGroups = User.getAllUserGroups(user.email)
-		groupsNames=[]
-		#groupsNames = Group.getAllGroupsNames(user.email)
-		if allGroups:
-			for group in allGroups:
-				if Group.getGroupNameByID(group.GroupID):
-					name = Group.getGroupNameByID(group.GroupID).GroupName
-					groupsNames.append(name)
-					
-		group_name = self.request.get('group_name')
+		
+		#group_id = self.request.get('group_id')
 		gid = self.request.get('gid')
 		group_id = int(gid)
-		
-		listNames = []
-		if group_id:	
-			my_groupListsIds = GroupLists.getAllLists(group_id)
-			if my_groupListsIds:
-				for list in my_groupListsIds:
-					lName = List.getListNameByID(list)
-					listNames.append(lName)
-					
-				template_params['groupLists'] = listNames
+		if group_id:
+			listNames = List.getAllListsName(group_id)
+		if listNames:
+			template_params['groupLists'] = listNames
 		template_params['userEmail'] = user.email
-				
+		
+		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)
-
 app = webapp2.WSGIApplication([
 	('/listPage', ListPageHandler)
 ], debug=True)

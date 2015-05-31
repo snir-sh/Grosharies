@@ -164,3 +164,17 @@ class List(ndb.Model):
 			return query.ListName
 		else:
 			return None
+	
+	@classmethod
+	def getAllListsName(self,group_id):
+		listNames = []
+		if group_id:	
+			my_groupListsIds = GroupLists.getAllLists(group_id)
+			if my_groupListsIds:
+				for list in my_groupListsIds:
+					lName = List.getListNameByID(list)
+					IdAndName =[list,lName]
+					listNames.append(IdAndName)
+				return listNames
+			else:
+				return None
