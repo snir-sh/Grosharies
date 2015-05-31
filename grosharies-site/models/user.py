@@ -34,6 +34,18 @@ class User(ndb.Model):
 		else:
 			return None
 	
+	#return a list of all users in the system
+	@classmethod
+	def getAllUsers(self):
+		allUsers = []
+		query = User.query().fetch()
+		if query:
+			for us in query:
+				allUsers.append(us.email)
+			return allUsers
+		else:
+			return None
+	
 	#add a user to the data store
 	@staticmethod
 	def addUser(user_email):

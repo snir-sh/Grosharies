@@ -29,8 +29,10 @@ class CreateGroupHandler(webapp2.RequestHandler):
 				if Group.getGroupNameByID(group.GroupID):
 					name = Group.getGroupNameByID(group.GroupID).GroupName
 					groupsNames.append(name)
-				
-		template_params['userEmail'] = user.email
+					
+		#allUsers = []
+		allUsers = User.getAllUsers()		
+		template_params['allUsers'] = allUsers
 				
 		if groupsNames:
 			template_params['userGroups'] = groupsNames

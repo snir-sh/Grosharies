@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="../static/js/CreateGroup.js"></script>
+  <script type="text/javascript" src="../static/js/combo_search.js"></script>  
 </head>
 
 <body>
@@ -80,9 +81,15 @@
 					<button type="button" id="createGroupButton">Create</button></td>
 				</tr>
 				<tr>
-					<td id ="demo"> </p>
-							<input type="text" id="lala" name="txtSearch" placeholder="User Search" size="15" height="20px"> &nbsp;&nbsp;&nbsp;		
-							<button type="button" onclick ="alert('User created successfully!')">Add</button>
+					<td> </p>
+							<!--<input type="text" id="lala" name="txtSearch" placeholder="User Search" size="15" height="20px"> &nbsp;&nbsp;&nbsp;		-->
+							<select id="combobox">
+							<option value="">Choose user...</option>
+							{% for i in allUsers %}
+							<option value="{{i}}">{{i}}</option>
+							{% endfor %}							
+							</select>
+						<button type="button" onclick ="alert('User created successfully!')">Add</button>
 					</td>
 					
 				</tr>
