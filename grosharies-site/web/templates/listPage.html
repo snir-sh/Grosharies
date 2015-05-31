@@ -59,17 +59,55 @@
           <div class="sidebar_item">
             <h2>Lists</h2>
 			 <a href="createList?gid={{group_id}}"><h3>Create List</h3></a>
-			 {% for i in groupLists %} 
+			{% for i in groupLists %} 
 			<p><a href="listPage">{{i.1}}<br/> </a></p> 
-		{% endfor %} 
+			{% endfor %} 
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->		
        </div><!--close sidebar_container-->
 	
       <div id="content">
-        <div class="content_item">
-         
-          
+        <div class="content_item" style="color:white">
+			<table>
+				<tr>
+					<td  style="width:50%">
+						<h2><u><i>Group Details</i></u></h2>
+						<ul>
+							<li>Name:  {{groupName}}</li>
+							<li>Admin: {{groupAdmin}}</li>
+						</ul>
+					</td>
+					<td td valign="top" style="width:50%">
+						{% if isAdmin %}
+						<h2><u><i>Add User</i></u></h2>
+						<input type="text" id="users" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
+						<button type="button" id="addUserButton" onclick=alert("addedUser")>Add User</button>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td> 
+						<h2><u><i>Group Members</i></u></h2>
+						<ul>
+							{% for user in groupUsers %} 
+								<li>{{user}}</li>
+							{% endfor %} 
+						</ul>
+					</td>
+					<td valign="top"> 
+						{% if isAdmin %}
+						<h2><u><i>Remove User</i></u></h2>
+						<select>
+							{% for u in groupUsers %} 
+								<option value={{u}}>{{u}}</option>
+							{% endfor %} 
+						</select>
+						&nbsp;&nbsp;
+						<button type="button" id="removeUserButton" onclick=alert("removedUser")>Remove User</button>
+						{% endif %}
+					</td>
+				</tr>
+			</table>
 	    </div><!--close content_item-->
       </div><!--close content-->   
 	</div><!--close site_content-->   
