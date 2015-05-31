@@ -23,6 +23,7 @@ class CreateListHandler(webapp2.RequestHandler):
 		if groupUsers:
 			template_params['groupUsers'] = groupUsers
 			
+			
 		groupsNames = Group.getAllGroupsNames(user.email)			
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
@@ -32,6 +33,12 @@ class CreateListHandler(webapp2.RequestHandler):
 			if listNames:
 				template_params['groupLists'] = listNames
 		
+		
+		#usersList = self.request.get('list_usersToAdd')
+		
+
+		
+		template_params['group_id'] = group_id
 		html = template.render("web/templates/createList.html", template_params)
 		self.response.write(html)
 
