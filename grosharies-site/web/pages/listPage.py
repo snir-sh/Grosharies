@@ -39,9 +39,14 @@ class ListPageHandler(webapp2.RequestHandler):
 			if (group.GroupAdmin==user.email):
 				template_params['isAdmin'] = user.email
 		
-		groupUsers = Group.getAllUsersFromGroupByID(group_id)
-		if groupUsers:
-			template_params['groupUsers'] = groupUsers
+		# Retrieving all the users of a group without the admin
+		users = Group.getAllUsersFromGroupByID(group_id)
+		groupMembers = []
+		if users:
+			for gUser in users:
+				if gUser != user.email:
+					groupMembers.append(gUser)
+			template_params['groupUsers'] = groupMembers
 		
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
