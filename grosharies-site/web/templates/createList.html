@@ -45,18 +45,18 @@
           <div class="sidebar_item">
             <h2>Groups</h2>
 			 <a href="index" ><h3>Create Group</h3></a>
-            <p><a href="listPage"> group1<br/> </a></p>
-			<p><a href="listPage"> group2<br/> </a></p>
-			<p><a href="listPage"> group3<br/> </a></p>
+             {% for i in userGroups %}
+			<p><a href="listPage?gid ={{i.0}}"id ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
-		<div class="sidebar" style="visibility: hidden">
+		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Lists</h2>
 			 <h3><a href ="createList"> Create List</h3>
-			<p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
+			  {% for i in groupLists %} 
+			<p><a href="listPage">{{i.1}}<br/> </a></p> 
+		{% endfor %} 
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->
 		<div class="sidebar">
@@ -82,10 +82,9 @@
 				<tr>
 					<td></td>
 					<td><select>
-					<option value="user1">user1</option>
-					<option value="user2">user2</option>
-					<option value="user3">user3</option>
-					<option value="user4">user4</option>
+					{% for i in groupUsers %} 
+					<option>{{i}}</option>
+					{% endfor %} 
 					</select>
 					&nbsp;&nbsp;&nbsp;
 					<select>

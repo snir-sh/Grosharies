@@ -18,17 +18,22 @@ class ListPageHandler(webapp2.RequestHandler):
 			return
 		
 		#group_id = self.request.get('group_id')
+		group_id=None
 		gid = self.request.get('gid')
-		group_id = int(gid)
+		if gid:
+			group_id = int(gid)
+			self.response.set_cookie('group_id_cookie',str(group_id))
+			
 		if group_id:
 			listNames = List.getAllListsName(group_id)
-		if listNames:
-			template_params['groupLists'] = listNames
+			if listNames:
+				template_params['groupLists'] = listNames
 		template_params['userEmail'] = user.email
 		
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
+		template_params['group_id'] = group_id
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)
 app = webapp2.WSGIApplication([

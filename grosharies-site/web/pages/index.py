@@ -13,10 +13,10 @@ class IndexHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 			return
-			
-		groupsNames = Group.getAllGroupsNames(user.email)		
+					
 		template_params['userEmail'] = user.email
-				
+		
+		groupsNames = Group.getAllGroupsNames(user.email)		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 					

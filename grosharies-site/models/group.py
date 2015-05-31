@@ -88,12 +88,10 @@ class Group(ndb.Model):
 	@classmethod
 	def getAllUsersFromGroup(self,group_name,admin_name):
 		users =[]
-		i=0
 		query = Group.query(Group.GroupName == group_name, Group.GroupAdmin == admin_name).fetch()
 		if query:
 			for user in query:
-				users[i] = user
-				i+=1
+				users.append(user)
 			return users
 		else:
 			return None
@@ -138,5 +136,14 @@ class Group(ndb.Model):
 		else:
 			return None
 		
-		
+	@classmethod
+	def getAllUsersFromGroupByID(self,group_id):
+		users =[]
+		query = User.query(Group.GroupID == group_id).fetch()
+		if query:
+			for user in query:
+				users.append(user.email)
+			return users
+		else:
+			return None
 		
