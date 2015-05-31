@@ -16,6 +16,7 @@ class ListPageHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 			return
+		group =None
 		
 		#group_id = self.request.get('group_id')
 		group_id=None
@@ -34,10 +35,9 @@ class ListPageHandler(webapp2.RequestHandler):
 		template_params['userEmail'] = user.email
 		
 		if group:
-			template_params['groupAdmin'] = group.GroupAdmin
-			
-		if (group.GroupAdmin==user.email):
-			template_params['isAdmin'] = user.email
+			template_params['groupAdmin'] = group.GroupAdmin		
+			if (group.GroupAdmin==user.email):
+				template_params['isAdmin'] = user.email
 		
 		groupUsers = Group.getAllUsersFromGroupByID(group_id)
 		if groupUsers:
