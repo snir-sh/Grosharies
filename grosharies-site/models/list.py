@@ -153,8 +153,9 @@ class List(ndb.Model):
 		if lists:
 			for list in lists:
 				query = List.query(List.ListID == list).get()
-				if query.ListName == list_name:
-					return True
+				if query:
+					if query.ListName == list_name:
+						return True
 		return False
 		
 	@classmethod

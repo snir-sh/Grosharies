@@ -1,4 +1,4 @@
-$(function(){	
+$(document).ready(function(){		
 	$('#addUserToGroup').on('click', createList);
 	$('#submit_list').on('click',submitList);
 });
@@ -33,8 +33,9 @@ function submitList() {
 		url:'/listPage',
 		type:'GET',
 		dataType:'text',
-			data:{list_usersToAdd:list, new_list_name:list_name},
+			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
+				window.location.replace("/listPage");
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);

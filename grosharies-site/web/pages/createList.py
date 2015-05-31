@@ -16,8 +16,8 @@ class CreateListHandler(webapp2.RequestHandler):
 		if not user:
 			self.redirect('/')
 			return
-		gid = self.request.get('gid')
-		group_id = int(gid)
+		#gid = self.request.get('gid')
+		group_id = int(self.request.cookies.get('group_id_cookie'))
 		
 		groupUsers = Group.getAllUsersFromGroupByID(group_id)
 		if groupUsers:
@@ -28,12 +28,10 @@ class CreateListHandler(webapp2.RequestHandler):
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 			
-		if group_id:
-			listNames = List.getAllListsName(group_id)
-			if listNames:
-				template_params['groupLists'] = listNames
-		
-		
+		#if group_id:
+		listNames = List.getAllListsName(group_id)
+		if listNames:
+			template_params['groupLists'] = listNames
 		#usersList = self.request.get('list_usersToAdd')
 		
 
