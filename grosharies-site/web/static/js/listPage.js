@@ -19,11 +19,9 @@ function ShowLists(gid) {
 		error:function(xhr, status, error) {
 				alert(status);
 				console.error(xhr, status, error);
-		}
-			
-	});					
-							
-	}
+		}	
+	});										
+}
 	
 function removeUserFromGroup() {
 	var userName = $('#userSelect').val();
@@ -44,9 +42,12 @@ function removeUserFromGroup() {
 }
 
 function addUserToGroup() {
-	var userName = $('#userSelect').val();
-	if (userName==null)
+	var userName = $('#userToAdd').val();
+	if (userName==null || userName=="")
+	{
+		alert('Enter username to add');
 		return;
+	}
 	$.ajax({
 		url:'/listPage',
 		type:'GET',

@@ -67,7 +67,8 @@ class ListPageHandler(webapp2.RequestHandler):
 		if addUser:
 			userToAdd = User.checkIfUserExists(addUser)
 			if userToAdd:
-				Group.addUserToGroup()
+				User.addUserToGroup(userToAdd.email, group_id)
+		
 		
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)

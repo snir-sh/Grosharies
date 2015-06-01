@@ -10,7 +10,6 @@ class GroupLists(ndb.Model):
 	@classmethod
 	def getAllLists(self, group_id):
 		lists =[]
-		i=0
 		query = GroupLists.query(GroupLists.GroupID==group_id).fetch()
 		if query:
 			for list in query:

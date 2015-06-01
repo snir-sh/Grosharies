@@ -5,7 +5,6 @@ from google.appengine.ext import ndb
 class User(ndb.Model):
 	email = ndb.StringProperty(required=True)
 	GroupID = ndb.IntegerProperty()
-	GroupName = ndb.StringProperty()
 	
 	@staticmethod
 	def checkToken(token):
@@ -70,19 +69,15 @@ class User(ndb.Model):
 	
 	#add a group to a user
 	@classmethod
-	def addGroup(self,group_id,user_name):
+	def addUserToGroup(self,user_name, group_id):
+		query = User.query(User.GroupID==group_id, User.email==user_name).get()
+		if query:
+			return None
 		user = User()
 		user.email = user_name
 		user.GroupID = group_id
 		user.put()
-			
-	@classmethod
-	def getGroupID(self,group_name,user_name):
-		query = User.query(User.GroupName ==group_name,User.email ==user_name).get()
-		if query:
-			return query.GroupID
-		else:
-			return None
+	
 			
 	@classmethod
 	def deleteUserFromGroup(self, group_id, user_name):
