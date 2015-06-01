@@ -1,6 +1,7 @@
 $(document).ready(function(){	
 	$('#group_name').on('click', ShowLists);
 	$('#removeUserFromGroup').on('click', removeUserFromGroup)
+	$('#addUserToGroup').on('click', addUserToGroup)
 });
 
 function ShowLists(gid) {
@@ -24,15 +25,41 @@ function ShowLists(gid) {
 							
 	}
 	
-function removeUserFromGroup(gid) {
-	var group_id = gid;
+function removeUserFromGroup() {
 	var userName = $('#userSelect').val();
-	
-	
-	alert(user.email);
+	if (userName==null)
+		return;
+	$.ajax({
+		url:'/listPage',
+		type:'GET',
+		dataType:'text',
+		data:{deleteUser:userName},
+		success:function(data, status, xhr) {
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}
+	});
 }
 
-
+function addUserToGroup() {
+	var userName = $('#userSelect').val();
+	if (userName==null)
+		return;
+	$.ajax({
+		url:'/listPage',
+		type:'GET',
+		dataType:'text',
+		data:{addUser:userName},
+		success:function(data, status, xhr) {
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}
+	});
+}
 
 
 

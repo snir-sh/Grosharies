@@ -83,3 +83,23 @@ class User(ndb.Model):
 			return query.GroupID
 		else:
 			return None
+			
+	@classmethod
+	def deleteUserFromGroup(self, group_id, user_name):
+		query = User.query(User.email==user_name, User.GroupID==group_id).fetch()
+		if query:
+			for user in query:
+				user.key.delete()
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

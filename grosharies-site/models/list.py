@@ -32,19 +32,19 @@ class List(ndb.Model):
 	
 	#method checks if the list exists. if it does the method returns its ID, else returns None
 	@classmethod
-	def checkExistenceByID(self,list_id):
+	def getListByID(self,list_id):
 		query = List.query(List.ListID == list_id).get()
-		if query is not None:
-			return query.ListID
+		if query:
+			return query
 		else:
 			return None
 	
 	
 	# returns a listID
 	@classmethod
-	def getListID(self, list_name, list_admin, belong_to):
-		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin, List.BelongToGroup==belong_to).get()
-		if query is not None:
+	def getListID(self, list_name, list_admin):
+		query = List.query(List.ListName==list_name, List.ListAdmin==list_admin).get()
+		if query:
 			return query.ListID
 		else:
 			return None
@@ -54,7 +54,7 @@ class List(ndb.Model):
 	@classmethod		
 	def deleteList(self,list_id, group_id):
 		query = List.query(List.ListID == list_id).get()
-		if query is not None:
+		if query:
 			key = query.key.id()
 			query.key.delete()
 			GroupLists.deleteList(key)
@@ -78,12 +78,10 @@ class List(ndb.Model):
 	@classmethod
 	def getAllListUsers(self,list_name,list_admin):
 		users = []
-		i=0
 		query = List.query(List.ListName == list_name , List.ListAdmin == list_admin).fetch()
 		if query:
 			for user in query:
-				users[i] = user.ListUsers
-				i+=1
+				users.append(user.ListUsers)
 			return users
 		else:
 			return None
@@ -92,28 +90,27 @@ class List(ndb.Model):
 	@classmethod
 	def getAllProductsOfTheList(self, list_id):
 		products = []
-		i=0
 		productsIds = ListOfProducts.getAllProducts(list_id)
 		if productsIds:
 			for productid in productsIds:
-				product[i] = Product.getProduct(productsIds[i])
-				i+=1
+				products.append(Product.getProduct(productsIds[i]))
 	
 	
 	@classmethod
-	def deleteUserFromList(self,user_name, list_name,list_admin):
-		query = List.query(List.ListUser == user_name, List.ListAdmin == list_admin,List.ListName ==list_name).get()
+	def deleteUserFromList(self,user_name, list_id):
+		query = List.query(List.ListUser == user_name, List.ListID == list_id).get()
 		if query:
 			query.key.delete()
 	
 	
 	@classmethod
-	def addUserToList(self,list_name,list_admin,list_user,list_permit):
+	def addUserToList(self,list_name,list_admin,list_user,list_permit, list_id):
 		list = List()
 		list.ListAdmin = list_admin
 		list.ListName = list_name
 		list.ListUser = list_user
 		list.userPermit = list_permit
+		list.ListID = list_id
 		list.put()
 		
 		

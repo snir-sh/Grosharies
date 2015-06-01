@@ -56,7 +56,19 @@ class ListPageHandler(webapp2.RequestHandler):
 		new_list_name = self.request.get('new_list_name')
 		if new_list_name:
 			List.createList(new_list_name,user.email,group_id)
-			
+		
+		#delete user from a group
+		deleteUser = self.request.get('deleteUser')
+		if deleteUser:
+			Group.deleteUserFromGroup(group_id, deleteUser)
+		
+		#add user to a group
+		addUser = self.request.get('addUser')
+		if addUser:
+			userToAdd = User.checkIfUserExists(addUser)
+			if userToAdd:
+				Group.addUserToGroup()
+		
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)
 		

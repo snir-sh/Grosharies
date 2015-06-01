@@ -147,3 +147,17 @@ class Group(ndb.Model):
 		else:
 			return None
 		
+		
+	@classmethod
+	def deleteUserFromGroup(self, group_id, user_name):
+		if user_name:
+			User.deleteUserFromGroup(group_id, user_name)
+			lists = GroupLists.getAllLists(group_id)
+			if lists:
+				for list in lists:
+					List.deleteUserFromList(user_name, list)
+		
+		
+		
+		
+		
