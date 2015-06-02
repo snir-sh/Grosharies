@@ -25,8 +25,11 @@ function createGroup() {
 					return;
 				}
 				else
-					alert('Success!');
-				
+				{
+					var id = data.status;
+					window.location.replace('/index');
+					return;
+				}
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);

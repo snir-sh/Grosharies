@@ -16,6 +16,7 @@ class NewGroupHandler(webapp2.RequestHandler):
 			self.redirect('/')
 			return
 		
+		this_group = None
 		new_group_name = self.request.get('GroupName_id')
 		if new_group_name:
 			if Group.checkIfGroupExistsByName(new_group_name,user.email):
@@ -28,7 +29,7 @@ class NewGroupHandler(webapp2.RequestHandler):
 					for groupUser in group_usersToAdd:
 						User.addUserToGroup(str(groupUser),this_group.GroupID)
 		
-		self.response.write(json.dumps({"status":"created"}))
+				self.response.write(json.dumps({'status':this_group.GroupID}))
 
 app = webapp2.WSGIApplication([
 	('/newGroup', NewGroupHandler)
