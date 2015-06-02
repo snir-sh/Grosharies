@@ -1,5 +1,5 @@
 $(document).ready(function(){		
-	$('#addUserToGroup').on('click', createList);
+	$('#addUserToList').on('click', createList);
 	$('#submit_list').on('click',submitList);
 });
 

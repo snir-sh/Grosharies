@@ -46,7 +46,7 @@
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Groups</h2>
-			 <a href="index" ><h3>Create Group</h3></a>
+			 <a href="createGroup" ><h3>Create Group</h3></a>
              {% for i in userGroups %}
 			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
 			{% endfor %}
@@ -55,9 +55,9 @@
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Lists</h2>
-			 <h3><a href="createList"> Create List</h3>
+			 <h3><a href="createList"> Create List</a></h3>
 			  {% for i in groupLists %} 
-			<p><a href="listPage">{{i.1}}<br/> </a></p> 
+			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
 		{% endfor %} 
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->
@@ -94,7 +94,7 @@
 					<option value="Partner">Partner</option>
 					</select>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" id ="addUserToGroup">Add</button></td>
+					<button type="button" id ="addUserToList">Add</button></td>
 				</tr>
 			</table>
 			</br>
