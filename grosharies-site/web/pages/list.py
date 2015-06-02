@@ -28,10 +28,15 @@ class ListHandler(webapp2.RequestHandler):
 		groupsLists = List.getAllListsName(group_id)	
 		if groupsLists:	
 			template_params['groupsLists'] = groupsLists
-		list_id = self.request.get('lid')
+		
+		#show the all the products of the list
+		list_id = int(self.request.get('lid'))
 		if list_id:
-			listProducts = List.getAllProductsOfTheList()
+			listProducts = List.getAllProductsOfTheList(list_id)
 			template_params['listProducts'] = listProducts
+			list_name = List.getListByID(list_id).ListName
+			template_params['list_name'] = list_name
+			
 		html = template.render("web/templates/list.html", template_params)
 		self.response.write(html)
 

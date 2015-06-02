@@ -89,18 +89,19 @@ class List(ndb.Model):
 			
 	@classmethod
 	def getAllProductsOfTheList(self, list_id):
-		data =[]
+		i=0
 		products = []
-		productsIds = ListOfProducts.getAllProducts(list_id)
+		productsIds = ListOfProducts.getAllProductsIDs(list_id)
 		if productsIds:
 			for productid in productsIds:
-				p = Product.getProduct(productsIds[i])
+				p = Product.getProductByID(productsIds[i])
 				pData = []
 				pData.append(p.ProductName)
 				pData.append(p.ProductUnits)
 				pData.append(p.ProductQuantity)
 				pData.append(p.ProductID)
 				products.append(pData)
+				i+=1
 			if products:
 				return products
 		else:
