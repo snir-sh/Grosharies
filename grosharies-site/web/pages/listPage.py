@@ -50,19 +50,7 @@ class ListPageHandler(webapp2.RequestHandler):
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
-		template_params['group_id'] = group_id
-		
-		#create new list
-		new_list_name = self.request.get('new_list_name')
-		if new_list_name:
-			if List.checkIfTheNameExists(new_list_name,group_id):
-				template_params['listExist'] = 'true'
-			else:
-				list_usersToAdd = self.request.get('list_usersToAdd')
-				newList = List.createList(new_list_name,user.email,group_id)
-				if newList:
-					for listUser in list_usersToAdd:
-						List.addUserToList(new_list_name,user.email,listUser[0],listUser[1],newList.ListID)
+		template_params['group_id'] = group_id			
 		
 		#delete user from a group
 		deleteUser = self.request.get('deleteUser')

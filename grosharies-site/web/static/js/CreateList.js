@@ -32,14 +32,14 @@ function submitList() {
 		return;
 	}
 	
-	//list = JSON.stringify(list)
+	list = JSON.stringify(list)
 	$.ajax({
-		url:'/listPage',
+		url:'/newList',
 		type:'GET',
 		dataType:'json',
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
-				alert('Success!')
+				alert('Success!');
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
