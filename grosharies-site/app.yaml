@@ -24,7 +24,10 @@ handlers:
 - url: /newList
   script: web.pages.newList.app
 
-- url: /logout
+- url: /newGroup
+  script: web.pages.newGroup.app
+
+  - url: /logout
   script: web.pages.logout.app
 
 - url: /createGroup
