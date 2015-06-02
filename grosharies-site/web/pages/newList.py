@@ -29,14 +29,15 @@ class NewListHandler(webapp2.RequestHandler):
 		new_list_name = self.request.get('new_list_name')
 		if new_list_name:
 			if List.checkIfTheNameExists(new_list_name,group_id):
-				self.response.write(json.dumps({"status":"exist"}))
+				self.response.write(json.dumps({"status":"exist", "name":new_list_name}))
 				return
 			else:
 				list_usersToAdd = json.loads(self.request.get('list_usersToAdd'))
 				newList = List.createList(new_list_name,user.email,group_id)
 				if newList:
-					for listUser in list_usersToAdd:
-						List.addUserToList(new_list_name,user.email,listUser[0],listUser[1],newList.ListID)
+					if list_usersToAdd:
+						for listUser in list_usersToAdd:
+							List.addUserToList(new_list_name,user.email,listUser[0],listUser[1],newList.ListID)
 		
 		self.response.write(json.dumps({"status":"created"}))
 

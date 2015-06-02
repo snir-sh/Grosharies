@@ -23,7 +23,6 @@ function createList() {
 	$('#box').val($('#box').val()+user_name +"\t" +user_permit + "\n");
 }
 
-var list = [];
 function submitList() {
 	var list_name = $('#listName').val();
 	if(list_name=="")
@@ -32,14 +31,18 @@ function submitList() {
 		return;
 	}
 	
-	list = JSON.stringify(list)
+	list = JSON.stringify(list);
+	alert(list);
 	$.ajax({
 		url:'/newList',
 		type:'GET',
 		dataType:'json',
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
-				alert('Success!');
+				if (data.status == "created")
+					alert('Success!');
+				if (data.status == "exist")
+					alert(data.name + ' Already Exists in Group');
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
