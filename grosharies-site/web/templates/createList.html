@@ -78,12 +78,13 @@
 			<table style="width:60%;color:white" >
 				<tr>
 					<td>List Name:</p></td>
-					<td><input type="text" id="listName"></p></td>		
+					<td><input type="text" placeholder="enter name here" id="listName"></p></td>		
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><select id="drop_usersList">
+					<option value="">Choose user...</option>
 					{% for i in groupUsers %} 
 					<option>{{i}}</option>
 					{% endfor %} 

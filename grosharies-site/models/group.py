@@ -146,6 +146,18 @@ class Group(ndb.Model):
 			return users
 		else:
 			return None
+			
+	@classmethod
+	def getAllUsersFromGroupByIDWithoutListAdmin(self,group_id, user_email):
+		users =[]
+		query = User.query(Group.GroupID == group_id).fetch()
+		if query:
+			for user in query:
+				if user.email != user_email:
+					users.append(user.email)
+			return users
+		else:
+			return None
 		
 		
 	@classmethod

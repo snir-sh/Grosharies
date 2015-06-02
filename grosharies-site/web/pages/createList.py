@@ -19,7 +19,7 @@ class CreateListHandler(webapp2.RequestHandler):
 		#gid = self.request.get('gid')
 		group_id = int(self.request.cookies.get('group_id_cookie'))
 		
-		groupUsers = Group.getAllUsersFromGroupByID(group_id)
+		groupUsers = Group.getAllUsersFromGroupByIDWithoutListAdmin(group_id, user.email)
 		if groupUsers:
 			template_params['groupUsers'] = groupUsers
 			

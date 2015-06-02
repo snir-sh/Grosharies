@@ -59,9 +59,9 @@
           <div class="sidebar_item">
             <h2>Lists</h2>
 			 <a href="createList"><h3>Create List</h3></a>
-			{% for i in groupLists %} 
-			<p><a href="listPage">{{i.1}}<br/> </a></p> 
-			{% endfor %} 
+			 {% for i in groupLists %} 
+			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
+		{% endfor %} 
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->		
        </div><!--close sidebar_container-->

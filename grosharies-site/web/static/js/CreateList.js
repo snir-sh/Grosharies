@@ -35,7 +35,7 @@ function submitList() {
 		dataType:'text',
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
-				window.location.replace("/listPage");
+				
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
