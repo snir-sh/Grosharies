@@ -71,6 +71,11 @@ class ListPageHandler(webapp2.RequestHandler):
 				self.response.write('userNotExist')
 				return
 		
+		# changing a group name
+		newGroupName = self.request.get('newGroupName')
+		if newGroupName:
+			Group.changeGroupName(group_id, newGroupName)
+		
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)
 		

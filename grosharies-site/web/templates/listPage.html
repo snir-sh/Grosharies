@@ -70,42 +70,68 @@
         <div class="content_item" style="color:white">
 			<table>
 				<tr>
-					<td width="400">
-						<h2><u><i>Group Details</i></u></h2>
-						<ul>
-							<li>Name:  {{groupName}}</li>
-							<li>Admin: {{groupAdmin}}</li>
-						</ul>
+					<td valign="top">
+						<table>
+							<tr>	
+								<td width="400">
+									<h2><u><i>Group Details</i></u></h2>
+									<ul>
+										<li>Name:  {{groupName}}</li>
+										<li>Admin: {{groupAdmin}}</li>
+									</ul>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<h2><u><i>Group Members</i></u></h2>
+									<ul>
+										{% for user in groupUsers %} 
+											<li>{{user}}</li>
+										{% endfor %} 
+									</ul>
+								</td> 
+							</tr>
+						</table>
 					</td>
-					<td td valign="top" width="400">
-						{% if isAdmin %}
-						<h2><u><i>Add User</i></u></h2>
-						<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
-						<button type="button" id="addUserToGroup" onclick="">Add User</button>
-						{% endif %}
-					</td>
-				</tr>
-				<tr>
-					<td> 
-						<h2><u><i>Group Members</i></u></h2>
-						<ul>
-							{% for user in groupUsers %} 
-								<li>{{user}}</li>
-							{% endfor %} 
-						</ul>
-					</td>
-					<td valign="top"> 
-						{% if isAdmin %}
-						<h2><u><i>Remove User</i></u></h2>
-						<select id="userSelect">
-							<option value="">Select user...</option>
-							{% for i in groupUsers %} 
-								<option value={{i}}>{{i}}</option>
-							{% endfor %} 
-						</select>
-						&nbsp;&nbsp;
-						<button type="button" id="removeUserFromGroup" onclick="">Remove User</button>
-						{% endif %}
+					<td  valign="top">
+						<table>
+							<tr>	
+								<td width="400">
+									{% if isAdmin %}
+									<h2><u><i>Add User</i></u></h2>
+									<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
+									<button type="button" id="addUserToGroup" onclick="">Add User</button>
+									{% endif %}
+									<p><p>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									{% if isAdmin %}
+									<h2><u><i>Remove User</i></u></h2>
+									<select id="userSelect">
+										<option value="">Select user...</option>
+										{% for i in groupUsers %} 
+											<option value={{i}}>{{i}}</option>
+										{% endfor %} 
+									</select>
+									&nbsp;&nbsp;
+									<button type="button" id="removeUserFromGroup" onclick="">Remove User</button>
+									{% endif %}
+									<p><p>
+								</td> 
+							</tr>
+							<tr>
+								<td>
+									{% if isAdmin %}
+									<h2><u><i>Change Group Name</i></u></h2>
+									<input type="text" id="newNameForGroup" name="txtSearch" placeholder="Enter a Name" size="15" height="20px"> &nbsp;&nbsp;
+									<button type="button" id="changeGroupName" onclick="">Change Name</button>
+									<p><p>
+									{% endif %}
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>

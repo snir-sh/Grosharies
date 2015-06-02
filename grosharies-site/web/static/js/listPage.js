@@ -1,7 +1,8 @@
 $(document).ready(function(){	
 	$('#group_name').on('click', ShowLists);
-	$('#removeUserFromGroup').on('click', removeUserFromGroup)
-	$('#addUserToGroup').on('click', addUserToGroup)
+	$('#removeUserFromGroup').on('click', removeUserFromGroup);
+	$('#addUserToGroup').on('click', addUserToGroup);
+	$('#changeGroupName').on('click', changeGroupName);
 });
 
 function ShowLists(gid) {
@@ -71,7 +72,27 @@ function addUserToGroup() {
 	});
 }
 
-
+function changeGroupName() {
+	var newGroupName = $('#newNameForGroup').val();
+	if (newGroupName==null || newGroupName=="")
+	{
+		alert('Enter a name');
+		return;
+	}
+	$.ajax({
+		url:'/listPage',
+		type:'GET',
+		dataType:'text',
+		data:{newGroupName:newGroupName},
+		success:function(data, status, xhr) {
+			alert('Name changed successfully');
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}
+	});
+}
 
 
 

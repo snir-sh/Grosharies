@@ -79,10 +79,11 @@ class Group(ndb.Model):
 		
 	#change a group name
 	@classmethod
-	def changeGroupName(self, group_name, group_admin, new_name):
-		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
-		query.GroupName = new_name
-		query.put()
+	def changeGroupName(self, group_id, new_name):
+		query = Group.query(Group.GroupID==group_id).get()
+		if query:
+			query.GroupName = new_name
+			query.put()
 		
 		
 	#return an array of all the users in that group 		
