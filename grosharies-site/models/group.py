@@ -24,6 +24,7 @@ class Group(ndb.Model):
 		user.GroupID = group.key.id()
 		user.GroupName =group_name
 		user.put()
+		return group
 	
 	#check if the group not exists by id
 	@classmethod

@@ -1,37 +1,47 @@
 $(function(){	
 	$('#createGroupButton').on('click', createGroup);
-	$('#addUserToList').on('click', addUserToTextArea);
+	$('#addUserToList').on('click', addUser);
 });
 
 var users = [];
 function createGroup() {
 	var group_name = $('#GroupName_id').val();
 	var usersToAdd = JSON.stringify(users);
+	if (group_name =="")
+	{
+		alert("Please enter group name");
+		return;
+	}
 	
 	$.ajax({
-		url:'/createGroup',
+		url:'/newGroup',
 		type:'GET',
 		dataType:'json',
 			data:{GroupName_id:group_name, Users:usersToAdd},
-			success:function(data, status, xhr) {				
+			success:function(data, status, xhr) {
+				if (data.status == 'exists')
+				{
+					alert('Exist!');
+					return;
+				}
+				else
+					alert('Success!');
+				
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
 			}			
-		});	
-	
-	
-							
+		});							
 	}
 	
-function addUserToTextArea(){
+function addUser(){
 	var exist = 0;
 	var addUser = $('#combobox').val();
 	var i;
 	for (i=0; i<users.length; i++)
 		if (addUser == users[i])
 		{
-			alert("User already exist!");
+			alert("User already exist");
 			exist = 1;
 		}
 	if (exist == 0)

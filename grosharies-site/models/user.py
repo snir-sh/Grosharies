@@ -37,7 +37,7 @@ class User(ndb.Model):
 	@classmethod
 	def getAllUsers(self):
 		allUsers = []
-		query = User.query().fetch()
+		query = User.query(projection=[User.email],distinct=True).fetch()
 		if query:
 			for us in query:
 				allUsers.append(us.email)
