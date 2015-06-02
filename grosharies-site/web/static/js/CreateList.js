@@ -13,13 +13,13 @@ function createList() {
 	{
 		if(list[i][0]==user_name)
 		{
-			alert('User Already Exists');
+			alert('User Already Selected!');
 			return;
 		}
 	}
 	nameAndPermit.push(user_name);
 	nameAndPermit.push(user_permit);
-	list.push(nameAndPermit);							
+	list.push(nameAndPermit);					
 	$('#box').val($('#box').val()+user_name +"\t" +user_permit + "\n");
 }
 
@@ -32,7 +32,6 @@ function submitList() {
 	}
 	
 	list = JSON.stringify(list);
-	alert(list);
 	$.ajax({
 		url:'/newList',
 		type:'GET',
