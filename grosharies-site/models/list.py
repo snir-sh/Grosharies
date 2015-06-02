@@ -11,7 +11,7 @@ class List(ndb.Model):
 	ListUser = ndb.StringProperty()
 	ListAdmin = ndb.StringProperty(required=True)
 	ListID = ndb.IntegerProperty()
-	userPermit = ndb.StringProperty(choices = ['partner','viewer'])
+	userPermit = ndb.StringProperty(choices = ['Partner','Viewer'])
 	
 	@staticmethod
 	def createList(list_name,list_admin, group_id):
@@ -89,12 +89,17 @@ class List(ndb.Model):
 			
 	@classmethod
 	def getAllProductsOfTheList(self, list_id):
+		data =[]
 		products = []
 		productsIds = ListOfProducts.getAllProducts(list_id)
 		if productsIds:
 			for productid in productsIds:
-				products.append(Product.getProduct(productsIds[i]))
-	
+				p = Product.getProduct(productsIds[i])
+				pData = []
+				pData.append()
+				products.append()
+			if products:
+				
 	
 	@classmethod
 	def deleteUserFromList(self,user_name, list_id):
