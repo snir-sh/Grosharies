@@ -77,6 +77,7 @@ class User(ndb.Model):
 		user.email = user_name
 		user.GroupID = group_id
 		user.put()
+		return True
 	
 			
 	@classmethod

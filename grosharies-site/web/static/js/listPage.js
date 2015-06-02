@@ -25,14 +25,17 @@ function ShowLists(gid) {
 	
 function removeUserFromGroup() {
 	var userName = $('#userSelect').val();
-	if (userName==null)
+	if (userName==null || userName=="") {
+		alert('Select a user to remove');
 		return;
+	}
 	$.ajax({
 		url:'/listPage',
 		type:'GET',
 		dataType:'text',
 		data:{deleteUser:userName},
 		success:function(data, status, xhr) {
+			alert('User removed successfully');
 		},
 		error:function(xhr, status, error) {
 				alert(status);
@@ -54,6 +57,12 @@ function addUserToGroup() {
 		dataType:'text',
 		data:{addUser:userName},
 		success:function(data, status, xhr) {
+			if (data == 'userNotExist')
+				alert('User doesn\'t exist');
+			else if (data == 'userExist')
+				alert('User already in group');
+			else
+				alert('User added successfully');
 		},
 		error:function(xhr, status, error) {
 				alert(status);

@@ -39,14 +39,15 @@ class ListPageHandler(webapp2.RequestHandler):
 				template_params['isAdmin'] = user.email
 		
 		# Retrieving all the users of a group without the admin
-		users = Group.getAllUsersFromGroupByID(group_id)
+		group = Group.getGroupNameByID(group_id)
+		users = Group.getAllUsersFromGroupByIDWithoutListAdmin(group_id, group.GroupAdmin)
 		groupMembers = []
 		if users:
 			for gUser in users:
-				if gUser != user.email:
-					groupMembers.append(gUser)
+				groupMembers.append(gUser)
 			template_params['groupUsers'] = groupMembers
 		
+		# Retrieving all the groups names for showing on left side.
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
@@ -62,8 +63,13 @@ class ListPageHandler(webapp2.RequestHandler):
 		if addUser:
 			userToAdd = User.checkIfUserExists(addUser)
 			if userToAdd:
-				User.addUserToGroup(userToAdd.email, group_id)
-		
+				exist = User.addUserToGroup(userToAdd.email, group_id)
+				if exist==None:
+					self.response.write('userExist')
+					return
+			else:
+				self.response.write('userNotExist')
+				return
 		
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)

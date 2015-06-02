@@ -70,14 +70,14 @@
         <div class="content_item" style="color:white">
 			<table>
 				<tr>
-					<td  style="width:50%">
+					<td width="400">
 						<h2><u><i>Group Details</i></u></h2>
 						<ul>
 							<li>Name:  {{groupName}}</li>
 							<li>Admin: {{groupAdmin}}</li>
 						</ul>
 					</td>
-					<td td valign="top" style="width:50%">
+					<td td valign="top" width="400">
 						{% if isAdmin %}
 						<h2><u><i>Add User</i></u></h2>
 						<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
@@ -98,6 +98,7 @@
 						{% if isAdmin %}
 						<h2><u><i>Remove User</i></u></h2>
 						<select id="userSelect">
+							<option value="">Select user...</option>
 							{% for i in groupUsers %} 
 								<option value={{i}}>{{i}}</option>
 							{% endfor %} 
