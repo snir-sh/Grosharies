@@ -96,10 +96,15 @@ class List(ndb.Model):
 			for productid in productsIds:
 				p = Product.getProduct(productsIds[i])
 				pData = []
-				pData.append()
-				products.append()
+				pData.append(p.ProductName)
+				pData.append(p.ProductUnits)
+				pData.append(p.ProductQuantity)
+				pData.append(p.ProductID)
+				products.append(pData)
 			if products:
-				
+				return products
+		else:
+			return None
 	
 	@classmethod
 	def deleteUserFromList(self,user_name, list_id):
