@@ -44,10 +44,10 @@
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Groups</h2>
-			 <a href="createGroup" ><h3>Create Group</h3></a>
-            <p><a href="listPage"> group1<br/> </a></p>
-			<p><a href="listPage"> group2<br/> </a></p>
-			<p><a href="listPage"> group3<br/> </a></p>
+            <a href="createGroup"><h3>Create Group</h3></a>
+            {% for i in userGroups %}
+			<p><a href="listPage?gid={{i.0}}" name ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
 		<div class="sidebar" style="visibility: hidden">
