@@ -10,22 +10,20 @@ class AboutHandler(webapp2.RequestHandler):
 		user = None
 		if self.request.cookies.get('session'):
 			user = User.checkToken(self.request.cookies.get('session'))
+			template_params['isUser'] = 'true'
 		if not user:
-			self.redirect('/')
+			template_params['isGuest'] = 'true'
+			html = template.render("web/templates/about.html", template_params)
+			self.response.write(html)
 			return
-			
-		allGroups = User.getAllUserGroups(user.email)		
-		groupsNames = []
-		if allGroups:
-			for group in allGroups:
-				if Group.getGroupNameByID(group.GroupID):
-					name = Group.getGroupNameByID(group.GroupID).GroupName
-					groupsNames.append(name)
 				
 		template_params['userEmail'] = user.email
-				
+		group_id = int(self.request.cookies.get('group_id_cookie'))
+		
+		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
+			
 		html = template.render("web/templates/about.html", template_params)
 		self.response.write(html)
 
