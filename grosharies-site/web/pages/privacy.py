@@ -1,5 +1,7 @@
 from google.appengine.ext.webapp import template
+from models.group import Group
 from models.user import User
+from models.list import List
 import webapp2
 
 class PrivacyHandler(webapp2.RequestHandler):
@@ -8,8 +10,19 @@ class PrivacyHandler(webapp2.RequestHandler):
 		user = None
 		if self.request.cookies.get('session'):
 			user = User.checkToken(self.request.cookies.get('session'))
+			template_params['isUser'] = 'true'
 		if not user:
-			self.redirect('/')
+			template_params['isGuest'] = 'true'
+			html = template.render("web/templates/privacy.html", template_params)
+			self.response.write(html)
+			return
+			
+		template_params['userEmail'] = user.email
+		group_id = int(self.request.cookies.get('group_id_cookie'))
+		
+		groupsNames = Group.getAllGroupsNames(user.email) 		
+		if groupsNames:
+			template_params['userGroups'] = groupsNames
 		
 		html = template.render("web/templates/privacy.html", template_params)
 		self.response.write(html)

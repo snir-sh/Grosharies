@@ -27,6 +27,13 @@
 
 	<div id="menubar">
       <ul id="menu">
+        {% if isGuest %}
+		<li><a href="default">Login</a></li>
+        <li><a href="FAQ">FAQ</a></li>
+		<li><a href="about">About</a></li>
+	    {% endif %}
+		
+		{% if isUser %}
         <li><a href="index">Home</a></li>
         <li><a href="FAQ">FAQ</a></li>
 		<li><a href="about">About</a></li>
@@ -35,28 +42,33 @@
 		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
 		</li></p></p>
 		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
+		{% endif %}
       </ul>
     </div><!--close menubar-->
 	
 	<div id="site_content">	
 
-	  <div class="sidebar_container">       
+	  {% if isGuest %}
+	  <div class="guest_sidebar">
+	  </div>
+	  {% endif %}
+	  
+	  {% if isUser %}
+	  <div class="sidebar_container">
 		<div class="sidebar">
           <div class="sidebar_item">
             <h2>Groups</h2>
 			 <a href="createGroup" ><h3>Create Group</h3></a>
-            {% for i in userGroups %}
-			<p><a href="listPage">{{i}}<br/> </a></p>
-		{% endfor %}
+             {% for i in userGroups %}
+			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
 		<div class="sidebar" style="visibility: hidden">
           <div class="sidebar_item">
             <h2>Lists</h2>
-			<a href="createList"><h3>Create List</h3></a>
-            <p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
+			 <a href="createList"><h3>Create List</h3></a>
+             <p>list1<br/> list2<br/> list3<br/></p>
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->
 		<div class="sidebar">
@@ -66,6 +78,7 @@
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar--> 
        </div><!--close sidebar_container-->
+	   {% endif %}
 	
 	
 	

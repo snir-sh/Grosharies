@@ -191,6 +191,12 @@ ul#menu li:hover a
   margin: 10px 20px 0 0;
   width: 215px;
   padding: 0;}
+  
+.guest_sidebar {
+	float: left;
+	margin: 10px 20px 0 0;
+	width: 110px;
+}
 
 .sidebar
 { float: left;
