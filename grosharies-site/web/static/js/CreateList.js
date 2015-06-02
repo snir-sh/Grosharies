@@ -39,9 +39,9 @@ function submitList() {
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
 				if (data.status == "created")
-					alert('Success!');
+					alert('List Created Successfully!');
 				if (data.status == "exist")
-					alert(data.name + ' Already Exists in Group');
+					alert(data.name + ' Already Exists in Group!');
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
