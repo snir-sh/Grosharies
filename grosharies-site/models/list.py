@@ -94,11 +94,12 @@ class List(ndb.Model):
 		productsIds = ListOfProducts.getAllProducts(list_id)
 		if productsIds:
 			for productid in productsIds:
-				p = Product.getProduct(productsIds[i])
-				pData = []
-				pData.append()
-				products.append()
-			if products:
+				products.append(Product.getProduct(productsIds[i]))
+				#p = Product.getProduct(productsIds[i])
+				#pData = []
+				#pData.append()
+				#products.append()
+			#if products:
 				
 	
 	@classmethod

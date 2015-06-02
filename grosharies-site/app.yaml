@@ -20,6 +20,9 @@ handlers:
 
 - url: /createList
   script: web.pages.createList.app
+ 
+- url: /newList
+  script: web.pages.newList.app
 
 - url: /logout
   script: web.pages.logout.app
