@@ -184,6 +184,7 @@ class List(ndb.Model):
 					lName = List.getListNameByID(list)
 					IdAndName =[list,lName]
 					listNames.append(IdAndName)
+				listNames.sort(key=lambda x: x[1].lower())
 				return listNames
 			else:
 				return None

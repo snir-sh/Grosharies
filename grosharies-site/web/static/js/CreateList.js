@@ -55,10 +55,25 @@ function submitList() {
 		dataType:'json',
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
-				if (data.status == "created")
-					alert('List Created Successfully!');
 				if (data.status == "exist")
+				{
 					alert(data.name + ' Already Exists in Group!');
+					return;
+				}
+				else
+				{	
+					if (data == null)
+						return;
+					var dom = document.getElementById('allLists');
+					$( "#allLists" ).empty();
+					for (i = 0; i < data.length; ++i)
+					{
+						dom.insertAdjacentHTML('beforeend','<p><a href="list?lid=' + data[i][0] + '">' + data[i][1] + '<br/> </a></p>');
+					}
+					$( "#listName" ).val("");
+					$("#box").empty();
+					return;
+				}
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);

@@ -134,7 +134,7 @@ class Group(ndb.Model):
 					id = group.GroupID
 					IDandName = [id, name]
 					groupsNames.append(IDandName)
-			groupsNames.sort(key=lambda x: x[1])
+			groupsNames.sort(key=lambda x: x[1].lower())
 			return groupsNames
 		else:
 			return None

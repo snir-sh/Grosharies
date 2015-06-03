@@ -27,12 +27,16 @@ function createGroup() {
 				}
 				else
 				{
+					if (data == null)
+						return;
 					var dom = document.getElementById('allGroups');
 					$( "#allGroups" ).empty();
 					for (i = 0; i < data.length; ++i)
 					{
 						dom.insertAdjacentHTML('beforeend','<p><a href="listPage?gid=' + data[i][0] + '">' + data[i][1] + '<br/> </a></p>');
 					}
+					$( "#GroupName_id" ).val("");
+					$("#users_list").empty();
 					return;
 				}
 			},

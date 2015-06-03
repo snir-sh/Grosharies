@@ -28,7 +28,7 @@ class NewGroupHandler(webapp2.RequestHandler):
 				if group_usersToAdd:
 					for groupUser in group_usersToAdd:
 						User.addUserToGroup(str(groupUser),this_group.GroupID)
-				time.sleep(0.1)
+				time.sleep(0.3)
 				groupsNames = Group.getAllGroupsNames(user.email)	
 				if groupsNames:
 					self.response.write(json.dumps(groupsNames))
