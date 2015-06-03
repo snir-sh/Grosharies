@@ -188,3 +188,11 @@ class List(ndb.Model):
 				return listNames
 			else:
 				return None
+				
+	@classmethod
+	def getUserPermit(self,list_id,user_email):
+		query = List.query(List.ListUser ==user_email,List.ListID==list_id).get()
+		if query:
+			return query.userPermit
+		else:
+			return 'Admin'

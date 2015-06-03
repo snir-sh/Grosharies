@@ -250,6 +250,9 @@ ul#menu li:hover a
 
 .content_item_listProduct table
 {
+	width:100%;
+	padding: 5px;
+	text-align: left;
 	border: 1px solid white;
 	border-collapse: collapse;
 }

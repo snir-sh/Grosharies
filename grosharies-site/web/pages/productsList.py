@@ -21,10 +21,12 @@ class ProductsList(webapp2.RequestHandler):
 		if list_id:
 			listProducts = List.getAllProductsOfTheList(list_id)
 			list_name = List.getListByID(list_id).ListName
+			user_permit =List.getUserPermit(list_id,user.email)
 			data =[]
 			if list_name:
 				data.append(list_name)
 				data.append(listProducts)
+				data.append(user_permit)
 				self.response.write(json.dumps(data))
 		else:
 			self.response.write(json.dumps({'status':'error'}))
