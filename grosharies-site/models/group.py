@@ -134,9 +134,14 @@ class Group(ndb.Model):
 					id = group.GroupID
 					IDandName = [id, name]
 					groupsNames.append(IDandName)
+			sorted(groupsNames, key=getName())
 			return groupsNames
 		else:
 			return None
+	
+	@classmethod	
+	def getName(self):
+		return GroupName
 		
 	@classmethod
 	def getAllUsersFromGroupByID(self,group_id):

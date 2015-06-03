@@ -26,8 +26,10 @@ function createGroup() {
 				}
 				else
 				{
-					var id = data.status;
-					window.location.replace('/index');
+					var id = data[0];
+					var name = data[1];
+					var dom = document.getElementById('allGroups');
+					dom.insertAdjacentHTML('beforeend','<p><a href="listPage?gid=' + id + '">' + name + '<br/> </a></p>');
 					return;
 				}
 			},

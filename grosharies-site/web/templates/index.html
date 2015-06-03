@@ -11,6 +11,7 @@
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/listPage.js"></script>
+  <script type="text/javascript" src="../static/js/group.js"></script>
   <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
   <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
 </head>
@@ -49,9 +50,8 @@
           <div class="sidebar_item">
             <h2>Groups</h2>
 			 <a href="createGroup" ><h3>Create Group</h3></a>
-		{% for i in userGroups %}
-			<p><a href="listPage?gid={{i.0}}" id={{i.0}} >{{i.1}}<br/> </a></p>
-		{% endfor %}
+			 <div id = "allGroups">
+			 </div>
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
 		<div class="sidebar" style="visibility: hidden">

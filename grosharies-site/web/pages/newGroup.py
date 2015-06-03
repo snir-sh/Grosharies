@@ -28,8 +28,10 @@ class NewGroupHandler(webapp2.RequestHandler):
 				if group_usersToAdd:
 					for groupUser in group_usersToAdd:
 						User.addUserToGroup(str(groupUser),this_group.GroupID)
-		
-				self.response.write(json.dumps({'status':this_group.GroupID}))
+				data = []
+				data.append(this_group.GroupID)
+				data.append(new_group_name)
+				self.response.write(json.dumps(data))
 
 app = webapp2.WSGIApplication([
 	('/newGroup', NewGroupHandler)
