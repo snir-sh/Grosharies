@@ -54,6 +54,9 @@ handlers:
 - url: /listPage
   script: web.pages.listPage.app
 
+- url: /productsList
+  script: web.pages.productsList.app
+ 
 - url: /search
   script: web.pages.search.app
 

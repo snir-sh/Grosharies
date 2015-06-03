@@ -32,6 +32,7 @@ class ListHandler(webapp2.RequestHandler):
 		#show the all the products of the list
 		list_id = int(self.request.get('lid'))
 		if list_id:
+			self.response.set_cookie('list_id_cookie',str(list_id))
 			listProducts = List.getAllProductsOfTheList(list_id)
 			template_params['listProducts'] = listProducts
 			list_name = List.getListByID(list_id).ListName

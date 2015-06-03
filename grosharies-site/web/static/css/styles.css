@@ -238,7 +238,38 @@ ul#menu li:hover a
 { width: 680px;
   margin-bottom: 20px;
   float: left;}
+  
+.content_item_listProduct
+ {
+	font-size:120%;
+	color:white;
+	width: 680px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+ }
 
+.content_item_listProduct table
+{
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
+.content_item_listProduct th
+{
+	padding: 5px;
+	text-align: left;
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
+.content_item_listProduct th:td
+{
+	padding: 5px;
+	text-align: left;
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+ 
 .content_item
 { width: 680px;
   margin-top: 20px;

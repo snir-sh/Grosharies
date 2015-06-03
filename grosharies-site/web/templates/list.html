@@ -8,8 +8,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
   <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
-  <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
-  <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
+  <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/js/ProductsList.js"></script>
 </head>
 
 <body>
@@ -65,36 +65,19 @@
 	
       <div id="content">
         <div class="content_item">
-         <div>
-			<ul style="color:white;font-size:120%" >
-			<style>
-			table, th, td {
-			border: 1px solid white;
-			border-collapse: collapse;
-			}
-			th, td {
-			padding: 5px;
-			text-align: left;
-			}
-			</style>
-			</head>
-			<body>
+			
 			<h1>{{list_name}}</h1>
-			<table style="width:100%">
+			<div class="content_item_listProduct">
+			<table id = "product_table" style="width:100%">
 				<tr>
 					<th>Product</th>
 					<th>Quantity</th>
 					<th>Units</th>
 				</tr>
-					{% for Product in listProducts %}
-					<tr>
-					<td>{{Product.0}}</td>
-					<td>{{Product.1}}</td>
-					<td>{{Product.2}}</td>
-					{% endfor %}
+					
 			</table>
-			</ul>
-		 </div>  
+			</div>
+			
 	    </div><!--close content_item-->
       </div><!--close content-->   
 	</div><!--close site_content-->   
