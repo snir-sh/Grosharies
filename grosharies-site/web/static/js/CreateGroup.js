@@ -19,6 +19,7 @@ function createGroup() {
 		dataType:'json',
 			data:{GroupName_id:group_name, Users:usersToAdd},
 			success:function(data, status, xhr) {
+				
 				if (data.status == 'exists')
 				{
 					alert('Exist!');
@@ -26,10 +27,12 @@ function createGroup() {
 				}
 				else
 				{
-					var id = data[0];
-					var name = data[1];
 					var dom = document.getElementById('allGroups');
-					dom.insertAdjacentHTML('beforeend','<p><a href="listPage?gid=' + id + '">' + name + '<br/> </a></p>');
+					$( "#allGroups" ).empty();
+					for (i = 0; i < data.length; ++i)
+					{
+						dom.insertAdjacentHTML('beforeend','<p><a href="listPage?gid=' + data[i][0] + '">' + data[i][1] + '<br/> </a></p>');
+					}
 					return;
 				}
 			},

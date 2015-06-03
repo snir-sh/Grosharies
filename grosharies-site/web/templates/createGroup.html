@@ -11,7 +11,6 @@
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="../static/js/CreateGroup.js"></script>
   <script type="text/javascript" src="../static/js/combo_search.js"></script>
-  <script type="text/javascript" src="../static/js/group.js"></script>  
 </head>
 
 <body>
@@ -49,6 +48,9 @@
             <h2>Groups</h2>
 			 <a href="createGroup" ><h3>Create Group</h3></a>
             <div id = "allGroups">
+			{% for i in userGroups %}
+			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
 			 </div>
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		

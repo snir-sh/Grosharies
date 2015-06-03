@@ -4,7 +4,7 @@ from google.appengine.ext import ndb
 from models.group import Group
 import webapp2
 import json
-import locale
+import time
 
 class NewGroupHandler(webapp2.RequestHandler):
 	def get(self):
@@ -28,10 +28,10 @@ class NewGroupHandler(webapp2.RequestHandler):
 				if group_usersToAdd:
 					for groupUser in group_usersToAdd:
 						User.addUserToGroup(str(groupUser),this_group.GroupID)
-				data = []
-				data.append(this_group.GroupID)
-				data.append(new_group_name)
-				self.response.write(json.dumps(data))
+				time.sleep(0.1)
+				groupsNames = Group.getAllGroupsNames(user.email)	
+				if groupsNames:
+					self.response.write(json.dumps(groupsNames))
 
 app = webapp2.WSGIApplication([
 	('/newGroup', NewGroupHandler)

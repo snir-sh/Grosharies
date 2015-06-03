@@ -51,8 +51,9 @@
           <div class="sidebar_item">
             <h2>Groups</h2>
 			 <a href="createGroup"><h3>Create Group</h3></a>
-            <div id = "allGroups">
-			 </div>
+            {% for i in userGroups %}
+			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
           </div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
 		<div class="sidebar">
