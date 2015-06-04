@@ -94,20 +94,18 @@
 						</table>
 					</td>
 					<td  valign="top">
+						{% if isAdmin %}
 						<table>
 							<tr>	
 								<td width="400">
-									{% if isAdmin %}
 									<h2><u><i>Add User</i></u></h2>
 									<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
 									<button type="button" id="addUserToGroup" onclick="">Add User</button>
-									{% endif %}
 									<p><p>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									{% if isAdmin %}
 									<h2><u><i>Remove User</i></u></h2>
 									<select id="userSelect">
 										<option value="">Select user...</option>
@@ -117,21 +115,25 @@
 									</select>
 									&nbsp;&nbsp;
 									<button type="button" id="removeUserFromGroup" onclick="">Remove User</button>
-									{% endif %}
 									<p><p>
 								</td> 
 							</tr>
 							<tr>
 								<td>
-									{% if isAdmin %}
 									<h2><u><i>Change Group Name</i></u></h2>
 									<input type="text" id="newNameForGroup" name="txtSearch" placeholder="Enter a Name" size="15" height="20px"> &nbsp;&nbsp;
 									<button type="button" id="changeGroupName" onclick="">Change Name</button>
 									<p><p>
-									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h2><u><i>Delete Group</i></u></h2>
+									<button type="button" id="deleteGroupButton" onclick="">Delete Group</button>
 								</td>
 							</tr>
 						</table>
+						{% endif %}
 					</td>
 				</tr>
 			</table>

@@ -64,8 +64,8 @@ class Group(ndb.Model):
 			
 	#delete group from the data store	
 	@classmethod
-	def deleteGroup(self, group_name, group_admin):
-		query = Group.query(Group.GroupName==group_name, Group.GroupAdmin==group_admin).get()
+	def deleteGroup(self, group_id):
+		query = Group.query(Group.GroupID==group_id).get()
 		if query:
 			key = query.key.id()
 			query.key.delete()

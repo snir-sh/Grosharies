@@ -3,6 +3,7 @@ from models.user import User
 from models.group import Group
 from models.list import List
 from models.groupLists import GroupLists
+import time
 import webapp2
 import json
 import locale
@@ -39,7 +40,6 @@ class ListPageHandler(webapp2.RequestHandler):
 				template_params['isAdmin'] = user.email
 		
 		# Retrieving all the users of a group without the admin
-
 		group = Group.getGroupNameByID(group_id)
 		users = None
 		if group:
@@ -79,6 +79,14 @@ class ListPageHandler(webapp2.RequestHandler):
 		if newGroupName:
 			Group.changeGroupName(group_id, newGroupName)
 		
+		# check if asked to delete group
+		confirmDeletion = self.request.get('confirmDeletion')
+		if confirmDeletion:
+			Group.deleteGroup(group_id)
+			self.response.delete_cookie('group_id')
+			time.sleep(0.3)
+			self.response.write('statusDeleted')
+			
 		html = template.render("web/templates/listPage.html", template_params)
 		self.response.write(html)
 		

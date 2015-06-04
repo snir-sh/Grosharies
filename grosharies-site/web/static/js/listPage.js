@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#removeUserFromGroup').on('click', removeUserFromGroup);
 	$('#addUserToGroup').on('click', addUserToGroup);
 	$('#changeGroupName').on('click', changeGroupName);
+	$('#deleteGroupButton').on('click', deleteGroup);
 });
 
 function ShowLists(gid) {
@@ -94,9 +95,29 @@ function changeGroupName() {
 	});
 }
 
-
-
-
+function deleteGroup() {
+		if (confirm('Are you sure you want to delete this group?')) {
+			confirmDeletion="yes";
+		} 
+		else {
+			return;
+		}
+		$.ajax({
+		url:'/listPage',
+		type:'GET',
+		dataType:'text',
+		data:{confirmDeletion:confirmDeletion},
+		success:function(data, status, xhr) {
+			if (data == "statusDeleted")
+				alert('dsds');
+				window.location = "/index";
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}
+	});
+}
 
 
 
