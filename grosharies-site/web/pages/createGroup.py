@@ -19,8 +19,14 @@ class CreateGroupHandler(webapp2.RequestHandler):
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 					
-		allUsers = User.getAllUsers()		
-		template_params['allUsers'] = allUsers
+		# get all the users but the current one
+		allUsers = User.getAllUsers()
+		allUsersButCurrent = []
+		for u in allUsers:
+			if u==user.email:
+				continue
+			allUsersButCurrent.append(u)
+		template_params['allUsers'] = allUsersButCurrent
 				
 		html = template.render("web/templates/createGroup.html", template_params)
 		self.response.write(html)
