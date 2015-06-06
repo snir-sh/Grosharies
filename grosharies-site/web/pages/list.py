@@ -24,19 +24,22 @@ class ListHandler(webapp2.RequestHandler):
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 		
-		#get the lists names from the group
-		groupsLists = List.getAllListsName(group_id)	
-		if groupsLists:	
-			template_params['groupsLists'] = groupsLists
-		
 		#show the all the products of the list
 		list_id = int(self.request.get('lid'))
 		if list_id:
 			self.response.set_cookie('list_id_cookie',str(list_id))
 			listProducts = List.getAllProductsOfTheList(list_id)
 			template_params['listProducts'] = listProducts
-			list_name = List.getListByID(list_id).ListName
+			list = List.getListByID(list_id)
+			list_name = list.ListName
 			template_params['list_name'] = list_name
+			if (list.ListAdmin==user.email):
+				template_params['isListAdmin'] = user.email
+				
+		#get the lists names from the group
+		groupsLists = List.getAllListsNameOfTheUser(group_id, user.email)	
+		if groupsLists:	
+			template_params['groupsLists'] = groupsLists
 			
 		html = template.render("web/templates/list.html", template_params)
 		self.response.write(html)

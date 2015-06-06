@@ -8,7 +8,7 @@ import webapp2
 import json
 import locale
 
-class ListPageHandler(webapp2.RequestHandler):
+class ManageListHandler(webapp2.RequestHandler):
 	def get(self):
 		template_params = {}			
 		user = None
@@ -21,25 +21,23 @@ class ListPageHandler(webapp2.RequestHandler):
 		
 		template_params['userEmail'] = user.email
 		group_id=None
-		gid = self.request.get('gid')
-		if gid:
-			group_id = int(gid)
-			self.response.set_cookie('group_id_cookie',str(group_id))
-		else:
-			group_id = int(self.request.cookies.get('group_id_cookie'))
+		group_id = int(self.request.cookies.get('group_id_cookie'))
 			
-		listNames = List.getAllListsNameOfTheUser(group_id, user.email)
-		if listNames:
-			template_params['groupLists'] = listNames
+		groupsLists = List.getAllListsNameOfTheUser(group_id, user.email)	
+		if groupsLists:
+			template_params['groupLists'] = groupsLists
 			
-		group = Group.getGroupNameByID(group_id)
-		if group:
-			template_params['groupName'] = group.GroupName
-			template_params['groupAdmin'] = group.GroupAdmin		
-			if (group.GroupAdmin==user.email):
-				template_params['isAdmin'] = user.email
+		list_id = int(self.request.cookies.get('list_id_cookie'))
+		if list_id:
+			list = List.getListByID(list_id)
+			users = List.getAllListUsersByID(list_id)
+			template_params['listUsers'] = users
+			template_params['listName'] = list.ListName
+			template_params['listAdmin'] = list.ListAdmin
+			if (list.ListAdmin==user.email):
+				template_params['isListAdmin'] = user.email
 		
-		# Retrieving all the users of a group without the admin
+		# Retrieving all the users of a list without the admin
 		group = Group.getGroupNameByID(group_id)
 		users = None
 		if group:
@@ -87,11 +85,11 @@ class ListPageHandler(webapp2.RequestHandler):
 			time.sleep(0.3)
 			self.response.write('statusDeleted')
 			
-		html = template.render("web/templates/listPage.html", template_params)
+		html = template.render("web/templates/manageList.html", template_params)
 		self.response.write(html)
 		
 		
 		
 app = webapp2.WSGIApplication([
-	('/listPage', ListPageHandler)
+	('/manageList', ManageListHandler)
 ], debug=True)

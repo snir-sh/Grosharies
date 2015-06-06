@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Grosharies</title>
+  <!--<meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" />-->
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="../static/js/listPage.js"></script>
+  
+  <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+	  <div id="banner">
+	    <div id="welcome">
+	      <h1></h1>
+	    </div><!--close welcome-->
+	    <div id="welcome_slogan">
+	      <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
+	    </div><!--close welcome_slogan-->
+	  </div><!--close banner-->
+    </div><!--close header-->
+
+	<div id="menubar">
+      <ul id="menu">
+        <li><a href="index">Home</a></li>
+        <li><a href="FAQ">FAQ</a></li>
+		<li><a href="about">About</a></li>
+        <li><a href="logout">Logout</a></li>
+		<li>
+		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
+		</li></p></p>
+		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
+        <!-- <li class="current"><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li> -->
+      </ul>
+    </div><!--close menubar-->
+	
+	<div id="site_content">	
+
+	  <div class="sidebar_container">       
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Groups</h2>
+			 <a href="createGroup"><h3>Create Group</h3></a>
+            {% for i in userGroups %}
+			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+			{% endfor %}
+          </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->     		
+		<div class="sidebar">
+          <div class="sidebar_item">
+            <h2>Lists</h2>
+			 <a href="createList"><h3>Create List</h3></a>
+			 {% for i in groupLists %} 
+			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
+		{% endfor %} 
+		  </div><!--close sidebar_item--> 
+        </div><!--close sidebar-->		
+       </div><!--close sidebar_container-->
+	
+      <div id="content">
+        <div class="content_item" style="color:white">
+			<table>
+				<tr>
+					<td valign="top">
+						<table>
+							<tr>	
+								<td width="400">
+									<h2><u><i>List Details</i></u></h2>
+									<ul>
+										<li>Name:  {{listName}}</li>
+										<li>Admin: {{listAdmin}}</li>
+									</ul>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<h2><u><i>List Members</i></u></h2>
+									<ul>
+										{% for user in listUsers %} 
+											<li>{{user}}</li>
+										{% endfor %} 
+									</ul>
+								</td> 
+							</tr>
+						</table>
+					</td>
+					<td  valign="top">
+						{% if isListAdmin %}
+						<table>
+							<tr>	
+								<td width="400">
+									<h2><u><i>Add User</i></u></h2>
+									<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
+									<button type="button" id="addUserToList">Add User</button>
+									<p><p>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<h2><u><i>Remove User</i></u></h2>
+									<select id="userSelect">
+										<option value="">Select user...</option>
+										{% for i in listUsers %} 
+											<option value={{i}}>{{i}}</option>
+										{% endfor %} 
+									</select>
+									&nbsp;&nbsp;
+									<button type="button" id="removeUserFromList">Remove User</button>
+									<p><p>
+								</td> 
+							</tr>
+							<tr>
+								<td>
+									<h2><u><i>Change List Name</i></u></h2>
+									<input type="text" id="newNameForList" name="txtSearch" placeholder="Enter a Name" size="15" height="20px"> &nbsp;&nbsp;
+									<button type="button" id="changeListName">Change Name</button>
+									<p><p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h2><u><i>Delete List</i></u></h2>
+									<button type="button" id="deleteListButton">Delete List</button>
+								</td>
+							</tr>
+						</table>
+						{% endif %}
+					</td>
+				</tr>
+			</table>
+	    </div><!--close content_item-->
+      </div><!--close content-->   
+	</div><!--close site_content-->   
+ 
+  </div><!--close main-->
+  
+  <div id="footer">
+	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
+	  <br/> © Copyright 2015 Grosharies
+  </div><!--close footer-->  	
+  
+</body>
+</html>

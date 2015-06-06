@@ -24,6 +24,9 @@ handlers:
 - url: /newList
   script: web.pages.newList.app
   
+- url: /manageList
+  script: web.pages.manageList.app
+  
 - url: /getAllGroups
   script: web.pages.getAllGroups.app
 

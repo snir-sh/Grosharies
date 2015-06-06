@@ -81,11 +81,20 @@ class List(ndb.Model):
 		query = List.query(List.ListName == list_name , List.ListAdmin == list_admin).fetch()
 		if query:
 			for user in query:
-				users.append(user.ListUsers)
-			return users
-		else:
-			return None
+				if user.ListUser != None:
+					users.append(user.ListUser)
+		return users
 			
+	#get all the user in the list
+	@classmethod
+	def getAllListUsersByID(self,list_id):
+		users = []
+		query = List.query(List.ListID == list_id).fetch()
+		if query:
+			for user in query:
+				if user.ListUser != None:
+					users.append(user.ListUser)
+		return users
 			
 	@classmethod
 	def getAllProductsOfTheList(self, list_id):
@@ -183,6 +192,34 @@ class List(ndb.Model):
 				return listNames
 			else:
 				return None
+				
+	@classmethod
+	def getAllListsNameOfTheUser(self,group_id, user_email):
+		listNames = []
+		if group_id:	
+			my_groupListsIds = GroupLists.getAllLists(group_id)
+			if my_groupListsIds:
+				for list_id in my_groupListsIds:
+					userInList = List.checkIfUserInList(list_id, user_email)
+					if userInList == True:
+						lName = List.getListNameByID(list_id)
+						IdAndName =[list_id,lName]
+						listNames.append(IdAndName)
+				listNames.sort(key=lambda x: x[1].lower())
+				return listNames
+			else:
+				return None
+				
+	@classmethod
+	def checkIfUserInList(self,list_id,user_email):
+		if list_id:
+			query = List.query(List.ListUser ==user_email,List.ListID==list_id).get()
+			if query:
+				return True
+			query2 = List.query(List.ListAdmin ==user_email,List.ListID==list_id).get()
+			if query2:
+				return True
+		return False
 				
 	@classmethod
 	def getUserPermit(self,list_id,user_email):
