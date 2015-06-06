@@ -10,10 +10,7 @@ $(document).ready(function(){
 				listProducts = data[1];
 				user_permit =data[2];
 				saveOrEdit = "edit";
-				if(listProducts != null)	
-				{
-					showProducts(listProducts,user_permit,saveOrEdit);
-				}				
+				showProducts(listProducts,user_permit,saveOrEdit);			
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
@@ -80,14 +77,17 @@ function showProducts(listProducts,user_permit,saveOrEdit,add)
 	dom.insertAdjacentHTML('beforeend',title);
 	if (add)
 		dom.insertAdjacentHTML('beforeend',addLine);
-	for (i = 0; i < listProducts.length; ++i)
+	if(listProducts!=null)
 	{
-		if(user_permit!='Viewer')
-			dom.insertAdjacentHTML('beforeend','<tr id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
+		for (i = 0; i < listProducts.length; ++i)
+		{
+			if(user_permit!='Viewer')
+				dom.insertAdjacentHTML('beforeend','<tr id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
 						+'<td><button onclick='+saveOrEdit+'Product('+i+')>'+saveOrEdit+'</td></tr>');
-		else
-			dom.insertAdjacentHTML('beforeend','<tr><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
+			else
+				dom.insertAdjacentHTML('beforeend','<tr><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
 		
+		}
 	}
 	
 	
@@ -112,9 +112,6 @@ function AddNewProduct()
 		alert("Please enter your units");
 		return;
 	}
-	alert(productName);
-	alert(productUnits);
-	alert(productQuantity);
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
