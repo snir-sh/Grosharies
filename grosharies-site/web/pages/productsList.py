@@ -24,6 +24,12 @@ class ProductsList(webapp2.RequestHandler):
 			pid = self.request.get('pid')
 			if pid:
 				List.deleteProductFromList(list_id,int(pid))
+				p_name = self.request.get('p_name')
+				p_quantity = self.request.get('p_quantity')
+				p_units = self.request.get('p_units')
+				if p_name and p_quantity and p_units:
+					Product.addProduct(p_name,int(p_quantity),p_units,list_id)
+					time.sleep(0.5)
 			new_Product_name = self.request.get('new_Product_name')
 			new_Product_quantity = self.request.get('new_Product_quantity')
 			new_Product_units = self.request.get('new_Product_units')
