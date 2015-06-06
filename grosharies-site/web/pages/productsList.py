@@ -28,12 +28,18 @@ class ProductsList(webapp2.RequestHandler):
 				p_quantity = self.request.get('p_quantity')
 				p_units = self.request.get('p_units')
 				if p_name and p_quantity and p_units:
+					if Product.checkIfProductExists(p_name):
+						self.response.write(json.dumps({'status':'exists'}))
+						return
 					Product.addProduct(p_name,int(p_quantity),p_units,list_id)
 					time.sleep(0.5)
 			new_Product_name = self.request.get('new_Product_name')
 			new_Product_quantity = self.request.get('new_Product_quantity')
 			new_Product_units = self.request.get('new_Product_units')
 			if new_Product_name and new_Product_quantity and new_Product_units:
+				if Product.checkIfProductExists(new_Product_name):
+					self.response.write(json.dumps({'status':'exists'}))
+					return
 				Product.addProduct(new_Product_name,int(new_Product_quantity),new_Product_units,list_id)
 				time.sleep(0.5)
 			listProducts = List.getAllProductsOfTheList(list_id)

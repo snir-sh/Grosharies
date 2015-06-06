@@ -9,8 +9,7 @@ $(document).ready(function(){
 				var list_name = data[0];
 				listProducts = data[1];
 				user_permit =data[2];
-				saveOrEdit = "edit";
-				showProducts(listProducts,user_permit,saveOrEdit);			
+				showProducts(listProducts,user_permit);			
 			},
 			error:function(xhr, status, error) {
 				console.error(xhr, status, error);
@@ -35,8 +34,7 @@ function deleteProduct(index) {
 				else
 				{
 					listProducts.splice(index,1);
-					saveOrEdit ="edit";
-					showProducts(listProducts,user_permit,saveOrEdit);
+					showProducts(listProducts,user_permit);
 				}
 			},
 			error:function(xhr, status, error) {
@@ -70,16 +68,20 @@ function changeProduct(index)
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 			data:{p_name:p_name,p_quantity:p_quantity,p_units:p_units,pid:pid},
 			success:function(data, status, xhr) {
 				if (data.status == "error")
 					return;
+				if(data.status == "exists")
+				{
+					alert(p_name + ' Already Exists in the List!');
+					return;
+				}
 				else
 				{
 					listProducts.splice(index,1);
-					saveOrEdit ="edit";
-					showProducts(listProducts,user_permit,saveOrEdit);
+					showProducts(listProducts,user_permit);
 				}
 			},
 			error:function(xhr, status, error) {
@@ -95,7 +97,6 @@ function changeProduct(index)
 
 
 function editProduct(index) {
-	saveOrEdit = "save";
 	var id = "#Panme" +index;
 	var id ="tr" + index;
 	var str ='<select id="New_Product_quantity">';
@@ -110,7 +111,7 @@ function editProduct(index) {
 					+'<td><button onclick=AddRow()>Add</td><td></td>';
 	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
 	+'<th>'+str+'</th>'
-	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,saveOrEdit,add=false)>cancel</td>'
+	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
 		+'<td><button onclick=AddNewProduct()>save</td></td>';
 		
 	
@@ -126,7 +127,7 @@ function editProduct(index) {
 			{
 				if(i==index)
 				{
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></th><th><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></th><th><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></th><td><button onclick=showProducts(listProducts,user_permit,saveOrEdit,add=false)>cancel</button></td>'
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></th><th><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></th><th><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</button></td>'
 						+'<td><button onclick=changeProduct('+i+')>save</td></tr>');
 						
 				}
@@ -163,7 +164,7 @@ function editProduct(index) {
 
 
 
-function showProducts(listProducts,user_permit,saveOrEdit,add)
+function showProducts(listProducts,user_permit,add)
 {
 	var str ='<select id="New_Product_quantity">';
 	var color= "#666562";
@@ -177,7 +178,7 @@ function showProducts(listProducts,user_permit,saveOrEdit,add)
 					+'<td><button onclick=AddRow()>Add</td><td></td>';
 	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
 	+'<th>'+str+'</th>'
-	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,saveOrEdit,add=false)>cancel</td>'
+	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
 		+'<td><button onclick=AddNewProduct()>save</td></td>';
 		
 	
@@ -196,7 +197,7 @@ function showProducts(listProducts,user_permit,saveOrEdit,add)
 				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
 						+'<td><button onclick=editProduct('+i+')>edit</td></tr>');
 			else
-				dom.insertAdjacentHTML('beforeend','<tr><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
 			
 			if(colorType ==1)
 			{
@@ -237,16 +238,19 @@ function AddNewProduct()
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 			data:{new_Product_name:productName,new_Product_quantity:productQuantity,new_Product_units:productUnits},
 			success:function(data, status, xhr) {
 				if (data.status == "error")
 					return;
-				showProducts(listProducts,user_permit,saveOrEdit);
+				if(data.status == "exists")
+				{
+					alert(productName + ' Already Exists in the List!');
+					return;
+				}
+				showProducts(listProducts,user_permit);
 			},
 			error:function(xhr, status, error) {
-				if(data.status=="int")
-					alert("מה זה החרא הזה?");
 				console.error(xhr, status, error);
 			}
 			
@@ -257,5 +261,5 @@ function AddNewProduct()
 function AddRow()
 {
 	var add = true;
-	showProducts(listProducts,user_permit,saveOrEdit,add);
+	showProducts(listProducts,user_permit,add);
 }
