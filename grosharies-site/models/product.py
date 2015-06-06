@@ -31,8 +31,8 @@ class Product(ndb.Model):
 	def addProduct(self,product_name,product_quantity,product_units,list_id):
 		product = Product()
 		product.ProductName = product_name
-		product.ProductUnits =product_units
 		product.ProductQuantity = product_quantity
+		product.ProductUnits =product_units
 		product.put()
 		product.ProductID = product.key.id()
 		product.put()

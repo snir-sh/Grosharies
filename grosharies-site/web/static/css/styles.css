@@ -265,6 +265,14 @@ ul#menu li:hover a
 	border-collapse: collapse;
 }
 
+.content_item_listProduct td
+{
+	padding: 5px;
+	text-align: left;
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
 .content_item_listProduct th:td
 {
 	padding: 5px;

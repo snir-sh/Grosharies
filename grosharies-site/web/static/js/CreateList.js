@@ -52,7 +52,7 @@ function submitList() {
 	$.ajax({
 		url:'/newList',
 		type:'GET',
-		dataType:'json',
+		dataType:'text',
 			data:{new_list_name:list_name,list_usersToAdd:list},
 			success:function(data, status, xhr) {
 				if (data.status == "exist")

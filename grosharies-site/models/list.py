@@ -97,8 +97,8 @@ class List(ndb.Model):
 				p = Product.getProductByID(productsIds[i])
 				pData = []
 				pData.append(p.ProductName)
-				pData.append(p.ProductUnits)
 				pData.append(p.ProductQuantity)
+				pData.append(p.ProductUnits)
 				pData.append(p.ProductID)
 				products.append(pData)
 				i+=1
@@ -127,33 +127,28 @@ class List(ndb.Model):
 		
 	@classmethod
 	def addProduct(self, list_id, product_name,product_quantity,product_units):
-		if List.checkExistenceByID(list_id) is not None:
-			products = ListOfProducts.getAllProductsIDs(list_id)
-			if len(products)!=0:
-				for product_id in products:
-					product = Product.getProductByID(product_id)
-					if product is None:
-						Product.addProduct(product_name,product_quantity,product_units, list_id)
-						return True
-					else:
-						return False
-			else:
-				Product.addProduct(product_name,product_quantity,product_units, list_id)
-				return True
+		products = ListOfProducts.getAllProductsIDs(list_id)
+		if len(products)!=0:
+			for product_id in products:
+				product = Product.getProductByID(product_id)
+				if product is None:
+					Product.addProduct(product_name,product_quantity,product_units, list_id)
+					return True
+				else:
+					return False
 		else:
-			return False
+			Product.addProduct(product_name,product_quantity,product_units, list_id)
+			return True
 		
 	
 	@classmethod
-	def deleteProductFromList(self, list_id, product_name):
-		if List.checkExistenceByID(list_id) is not None:
-			product = ListOfProducts.query(ListOfProducts.ProductName==product_name, ListOfProducts.ListID==list_id).get()
-			if product is not None:
-				Product.deleteProduct(product.ProductID)
-				ListOfProducts.deleteProduct(product.ProductID)
-				return True
+	def deleteProductFromList(self, list_id, pid):
+
+		if list_id ==None or pid ==None:
 			return False
-		return False
+		Product.deleteProduct(pid)
+		ListOfProducts.deleteProduct(pid)
+		return True
 		
 	@classmethod
 	def checkIfTheNameExists(self,list_name,group_id):
