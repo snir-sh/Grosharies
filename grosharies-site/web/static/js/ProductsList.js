@@ -173,7 +173,7 @@ function showProducts(listProducts,user_permit,add)
 	{
 		str+='<option value="'+i+'">'+i+'</option>'
 	}
-	str +="</select>"
+	str +="</select>";
 	var title ='<tr><th>Product</th><th>Quantity</th><th>Units</th>'
 					+'<td><button onclick=AddRow()>Add</td><td></td>';
 	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
@@ -181,11 +181,15 @@ function showProducts(listProducts,user_permit,add)
 	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
 		+'<td><button onclick=AddNewProduct()>save</td></td>';
 		
+	var viewerTitle ='<tr><th>Product</th><th>Quantity</th><th>Units</th>';
 	
 	var dom = document.getElementById('product_table');
 	$("#product_table").empty();
-	
-	dom.insertAdjacentHTML('beforeend',title);
+	if(user_permit != 'Viewer')
+		dom.insertAdjacentHTML('beforeend',title);
+	else
+		dom.insertAdjacentHTML('beforeend',viewerTitle);
+
 	if (add)
 		dom.insertAdjacentHTML('beforeend',addLine);
 	if(listProducts!=null)
@@ -197,7 +201,7 @@ function showProducts(listProducts,user_permit,add)
 				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
 						+'<td><button onclick=editProduct('+i+')>edit</td></tr>');
 			else
-				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr>');
 			
 			if(colorType ==1)
 			{
