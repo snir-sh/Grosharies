@@ -19,14 +19,12 @@ function fillUsers() {
 			$( "#userToAdd" ).autocomplete({
 				source: users,
 				minLength: 2,
-				autoFocus: true
-			})
-			.data('ui-autocomplete')._renderItem = function( ul, item ) {
-				return $( "<div> </div>" )
-				.data( "ui-autocomplete-item", item )
-				.append( '<div style=\'background-color: white;width: 180px;\'><span style=\'color:black;\'>' + item.label + '</span></div>' )
-				.appendTo( ul );
-			};
+				autoFocus: true,
+				messages: {
+					noResults: '',
+					results: function() {}
+				}
+			});
 		},
 		error:function(xhr, status, error) {
 				alert(status);

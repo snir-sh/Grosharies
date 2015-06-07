@@ -497,3 +497,13 @@ ul img {
  textarea  {
   resize:none
  }
+ 
+.ui-widget-content { background: #ffffff; }
+.ui-helper-hidden-accessible { position: absolute; left: -9999px; }
+.ui-autocomplete { border: 1px solid #abadb3; border-top: none; position: absolute; top: 0; left: 0; cursor: pointer; }
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.ui-menu-item { list-style:none; margin: 0px; padding: 0px; border-bottom:1px dotted #000; }
+.ui-menu-item a { display: block; padding: 6px; }
+.ui-menu-item:last-child { border-bottom:none; }
+.ui-menu-item  strong{ color: #003b63; }
+.ui-state-focus { background-color: #aad9fb; color:#000; display: block; }
