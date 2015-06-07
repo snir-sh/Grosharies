@@ -252,6 +252,13 @@ function AddNewProduct()
 					alert(productName + ' Already Exists in the List!');
 					return;
 				}
+				if(data !=null)
+				{	
+					var list_name = data[0];
+					listProducts = data[1];
+					user_permit =data[2];
+				}
+				
 				showProducts(listProducts,user_permit);
 			},
 			error:function(xhr, status, error) {

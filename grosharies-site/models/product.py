@@ -11,12 +11,17 @@ class Product(ndb.Model):
 	ProductID = ndb.IntegerProperty()
 	
 	@classmethod
-	def checkIfProductExists(self,product_name):
-		query = Product.query(Product.ProductName == product_name).get()		
-		if query:
-			return True
+	def checkIfProductExists(self,product_name, list_id):
+		p_list = Product.getProductByName(product_name)
+		if p_list:
+			for p in p_list:
+				query = ListOfProducts.query(ListOfProducts.ProductID ==p.ProductID, ListOfProducts.ListID ==list_id).get()
+				if query:
+					return True
 		else:
 			return False
+			
+		
 	
 
 	#delete a product from product table and listOfProducts table
@@ -51,5 +56,11 @@ class Product(ndb.Model):
 			return product
 		else:
 			return None
-
+	
+	@classmethod
+	def getProductByName(self,p_name):
+		query = Product.query(Product.ProductName==p_name).fetch()
+		if query:
+			return query
+		return None
 	
