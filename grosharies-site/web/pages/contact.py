@@ -17,7 +17,6 @@ class ContactHandler(webapp2.RequestHandler):
 			return
 			
 		template_params['userEmail'] = user.email
-		group_id = int(self.request.cookies.get('group_id_cookie'))
 		
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
