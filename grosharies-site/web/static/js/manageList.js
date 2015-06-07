@@ -19,13 +19,7 @@ function fillUsers() {
 			$( "#userToAdd" ).autocomplete({
 				source: users,
 				minLength: 2,
-				autoFocus: true,
-				_renderMenu: function( ul, items ) {
-					var self = this;
-					$.each( items, function( index, item ) {
-					self._renderItem( ul, item );
-					});
-				}
+				autoFocus: true
 			})
 			.data('ui-autocomplete')._renderItem = function( ul, item ) {
 				return $( "<div> </div>" )
