@@ -41,7 +41,6 @@ function removeUserFromList() {
 		alert('Select a user to remove');
 		return;
 	}
-	alert(userName);
 	$.ajax({
 		url:'/listDetails',
 		type:'GET',
