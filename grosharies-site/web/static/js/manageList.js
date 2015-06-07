@@ -1,8 +1,8 @@
 $(document).ready(function(){	
-	$('#removeUserFromGroup').on('click', removeUserFromList);
-	$('#addUserToGroup').on('click', addUserToList);
-	$('#changeGroupName').on('click', changeListName);
-	$('#deleteGroupButton').on('click', deleteList);
+	$('#removeUserFromList').on('click', removeUserFromList);
+	$('#addUserToList').on('click', addUserToList);
+	$('#changeListName').on('click', changeListName);
+	$('#deleteListButton').on('click', deleteList);
 	fillUsers();
 });
 
@@ -41,11 +41,12 @@ function removeUserFromList() {
 		alert('Select a user to remove');
 		return;
 	}
+	alert(userName);
 	$.ajax({
-		url:'/manageList',
+		url:'/listDetails',
 		type:'GET',
-		dataType:'json',
-		data:{deleteUser:userName},
+		dataType:'text',
+		data:{'deleteUser':userName},
 		success:function(data, status, xhr) {
 			alert('User removed successfully');
 		},
@@ -64,14 +65,12 @@ function addUserToList() {
 		return;
 	}
 	$.ajax({
-		url:'/manageList',
+		url:'/listDetails',
 		type:'GET',
-		dataType:'json',
+		dataType:'text',
 		data:{addUser:userName},
 		success:function(data, status, xhr) {
-			if (data == 'userNotExist')
-				alert('User doesn\'t exist');
-			else if (data == 'userExist')
+			if (data == 'userExist')
 				alert('User already in group');
 			else
 				alert('User added successfully');
@@ -84,17 +83,17 @@ function addUserToList() {
 }
 
 function changeListName() {
-	var newGroupName = $('#newNameForGroup').val();
-	if (newGroupName==null || newGroupName=="")
+	var newListName = $('#newNameForList').val();
+	if (newListName==null || newListName=="")
 	{
 		alert('Enter a name');
 		return;
 	}
 	$.ajax({
-		url:'/manageList',
+		url:'/listDetails',
 		type:'GET',
-		dataType:'json',
-		data:{newGroupName:newGroupName},
+		dataType:'text',
+		data:{newListName:newListName},
 		success:function(data, status, xhr) {
 			alert('Name changed successfully');
 		},
@@ -113,9 +112,9 @@ function deleteList() {
 			return;
 		}
 		$.ajax({
-		url:'/manageList',
+		url:'/listDetails',
 		type:'GET',
-		dataType:'json',
+		dataType:'text',
 		data:{confirmDeletion:confirmDeletion},
 		success:function(data, status, xhr) {
 			if (data == "statusDeleted")

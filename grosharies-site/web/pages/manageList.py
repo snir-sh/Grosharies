@@ -30,6 +30,8 @@ class ManageListHandler(webapp2.RequestHandler):
 			users = Group.getAllUsersFromGroupByID(group_id)
 			self.response.write(json.dumps(users))
 			return
+			
+		
 		
 		#create new list
 		new_list_name = self.request.get('new_list_name')

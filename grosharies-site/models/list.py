@@ -66,12 +66,11 @@ class List(ndb.Model):
 	
 	#changes the list name
 	@classmethod		
-	def changeListName(self,old_list_name,list_admin,new_list_name):
-		query = List.query(List.ListName == old_list_name,List.ListAdmin == list_admin).fetch()
+	def changeListName(self,list_id,new_list_name):
+		query = List.query(List.ListID == list_id).get()
 		if query:
-			for list in query:
-				list.ListName = new_list_name
-				query.put()
+			query.ListName = new_list_name
+			query.put()
 		
 		
 	#get all the user in the list

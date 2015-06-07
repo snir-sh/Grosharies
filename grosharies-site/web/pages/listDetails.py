@@ -37,51 +37,39 @@ class ListDetailsHandler(webapp2.RequestHandler):
 			if (list.ListAdmin==user.email):
 				template_params['isListAdmin'] = user.email
 		
-		# Retrieving all the users of a list without the admin
-		group = Group.getGroupNameByID(group_id)
-		users = None
-		if group:
-			users = Group.getAllUsersFromGroupByIDWithoutListAdmin(group_id, group.GroupAdmin)
-		groupMembers = []
-		if users:
-			for gUser in users:
-				groupMembers.append(gUser)
-			template_params['groupUsers'] = groupMembers
-		
 		# Retrieving all the groups names for showing on left side.
 		groupsNames = Group.getAllGroupsNames(user.email) 		
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 		template_params['group_id'] = group_id			
 		
-		#delete user from a group
+		#delete user from a list
 		deleteUser = self.request.get('deleteUser')
 		if deleteUser:
-			Group.deleteUserFromGroup(group_id, deleteUser)
+			List.deleteUserFromList(deleteUser,list_id)
+			return
 		
-		#add user to a group
+		#add user to a list
 		addUser = self.request.get('addUser')
 		if addUser:
-			userToAdd = User.checkIfUserExists(addUser)
-			if userToAdd:
-				exist = User.addUserToGroup(userToAdd.email, group_id)
-				if exist==None:
-					self.response.write('userExist')
-					return
-			else:
-				self.response.write('userNotExist')
+			userToAdd = List.checkIfUserInList(addUser)
+			if userToAdd == True:
+				self.response.write('userExist')
 				return
+			else:
+				#need to implement
+				self.response.write('userNotExist')
 		
-		# changing a group name
-		newGroupName = self.request.get('newGroupName')
-		if newGroupName:
-			Group.changeGroupName(group_id, newGroupName)
+		# changing a list name
+		newListName = self.request.get('newListName')
+		if newListName:
+			List.changeListName(list_id, newListName)
 		
 		# check if asked to delete group
 		confirmDeletion = self.request.get('confirmDeletion')
 		if confirmDeletion:
-			Group.deleteGroup(group_id)
-			self.response.delete_cookie('group_id')
+			List.deleteList(list_id,group_id)
+			self.response.delete_cookie('list_id')
 			time.sleep(0.3)
 			self.response.write('statusDeleted')
 			
