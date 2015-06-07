@@ -4,6 +4,7 @@ from google.appengine.ext import ndb
 from models.group import Group
 import webapp2
 import json
+import time
 
 class NewGroupHandler(webapp2.RequestHandler):
 	def get(self):
@@ -27,6 +28,7 @@ class NewGroupHandler(webapp2.RequestHandler):
 				if group_usersToAdd:
 					for groupUser in group_usersToAdd:
 						User.addUserToGroup(str(groupUser),this_group.GroupID)
+				time.sleep(0.3);
 				allData =[]
 				groupsNames = Group.getAllGroupsNames(user.email)	
 				if groupsNames:

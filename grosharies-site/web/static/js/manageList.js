@@ -1,40 +1,56 @@
 $(document).ready(function(){	
-	$('#group_name').on('click', ShowLists);
-	$('#removeUserFromGroup').on('click', removeUserFromGroup);
-	$('#addUserToGroup').on('click', addUserToGroup);
-	$('#changeGroupName').on('click', changeGroupName);
-	$('#deleteGroupButton').on('click', deleteGroup);
+	$('#removeUserFromGroup').on('click', removeUserFromList);
+	$('#addUserToGroup').on('click', addUserToList);
+	$('#changeGroupName').on('click', changeListName);
+	$('#deleteGroupButton').on('click', deleteList);
+	fillUsers();
 });
 
-function ShowLists(gid) {
-	var group_id = gid;
+function fillUsers() {
 	$.ajax({
-		url:'/listPage',
+		url:'/manageList',
 		type:'GET',
-		dataType:'text',
-		data:{group_id:group_id},
+		dataType:'json',
+		data:{'fillUsers':'true'},
 		success:function(data, status, xhr) {
-			alert(data);
-			alert(status);
-
+			var users = [];
+			for (i = 0; i < data.length; ++i)
+				users.push(data[i]);
+			$( "#userToAdd" ).autocomplete({
+				source: users,
+				minLength: 2,
+				autoFocus: true,
+				_renderMenu: function( ul, items ) {
+					var self = this;
+					$.each( items, function( index, item ) {
+					self._renderItem( ul, item );
+					});
+				}
+			})
+			.data('ui-autocomplete')._renderItem = function( ul, item ) {
+				return $( "<div> </div>" )
+				.data( "ui-autocomplete-item", item )
+				.append( '<div style=\'background-color: white;width: 180px;\'><span style=\'color:black;\'>' + item.label + '</span></div>' )
+				.appendTo( ul );
+			};
 		},
 		error:function(xhr, status, error) {
 				alert(status);
 				console.error(xhr, status, error);
-		}	
-	});										
+		}
+	});
 }
 	
-function removeUserFromGroup() {
+function removeUserFromList() {
 	var userName = $('#userSelect').val();
 	if (userName==null || userName=="") {
 		alert('Select a user to remove');
 		return;
 	}
 	$.ajax({
-		url:'/listPage',
+		url:'/manageList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 		data:{deleteUser:userName},
 		success:function(data, status, xhr) {
 			alert('User removed successfully');
@@ -46,7 +62,7 @@ function removeUserFromGroup() {
 	});
 }
 
-function addUserToGroup() {
+function addUserToList() {
 	var userName = $('#userToAdd').val();
 	if (userName==null || userName=="")
 	{
@@ -54,9 +70,9 @@ function addUserToGroup() {
 		return;
 	}
 	$.ajax({
-		url:'/listPage',
+		url:'/manageList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 		data:{addUser:userName},
 		success:function(data, status, xhr) {
 			if (data == 'userNotExist')
@@ -73,7 +89,7 @@ function addUserToGroup() {
 	});
 }
 
-function changeGroupName() {
+function changeListName() {
 	var newGroupName = $('#newNameForGroup').val();
 	if (newGroupName==null || newGroupName=="")
 	{
@@ -81,9 +97,9 @@ function changeGroupName() {
 		return;
 	}
 	$.ajax({
-		url:'/listPage',
+		url:'/manageList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 		data:{newGroupName:newGroupName},
 		success:function(data, status, xhr) {
 			alert('Name changed successfully');
@@ -95,17 +111,17 @@ function changeGroupName() {
 	});
 }
 
-function deleteGroup() {
-		if (confirm('Are you sure you want to delete this group?')) {
+function deleteList() {
+		if (confirm('Are you sure you want to delete this list?')) {
 			confirmDeletion="yes";
 		} 
 		else {
 			return;
 		}
 		$.ajax({
-		url:'/listPage',
+		url:'/manageList',
 		type:'GET',
-		dataType:'text',
+		dataType:'json',
 		data:{confirmDeletion:confirmDeletion},
 		success:function(data, status, xhr) {
 			if (data == "statusDeleted")

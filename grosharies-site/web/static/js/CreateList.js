@@ -65,13 +65,16 @@ function submitList() {
 					if (data == null)
 						return;
 					var dom = document.getElementById('allLists');
+					var lid = data[1];
+					var names = data[0];
 					$( "#allLists" ).empty();
-					for (i = 0; i < data.length; ++i)
+					for (i = 0; i < names.length; ++i)
 					{
-						dom.insertAdjacentHTML('beforeend','<p><a href="list?lid=' + data[i][0] + '">' + data[i][1] + '<br/> </a></p>');
+						dom.insertAdjacentHTML('beforeend','<p><a href="list?lid=' + names[i][0] + '">' + names[i][1] + '<br/> </a></p>');
 					}
 					$( "#listName" ).val("");
-					$("#box").empty();
+					if (lid != null)
+						window.location.replace("list?lid="+lid);
 					return;
 				}
 			},

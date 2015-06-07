@@ -38,10 +38,13 @@ class NewListHandler(webapp2.RequestHandler):
 					if list_usersToAdd:
 						for listUser in list_usersToAdd:
 							List.addUserToList(new_list_name,user.email,listUser[0],listUser[1],newList.ListID)
-				time.sleep(0.3)
+				time.sleep(0.3);
+				allData = []
 				listNames = List.getAllListsName(group_id)
 				if listNames:
-					self.response.write(json.dumps(listNames))
+					allData.append(listNames)
+					allData.append(newList.ListID)
+					self.response.write(json.dumps(allData))
 		
 		
 
