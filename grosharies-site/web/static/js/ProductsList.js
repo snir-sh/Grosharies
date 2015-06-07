@@ -81,6 +81,12 @@ function changeProduct(index)
 				else
 				{
 					listProducts.splice(index,1);
+					if(data !=null)
+					{	
+						var list_name = data[0];
+						listProducts = data[1];
+						user_permit =data[2];
+					}
 					showProducts(listProducts,user_permit);
 				}
 			},
