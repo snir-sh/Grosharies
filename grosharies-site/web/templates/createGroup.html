@@ -75,7 +75,7 @@
 	
       <div id="content">
         <div class="content_item">
-		<h1>Create New Group</h1>
+		<h1><u><i>Create New Group</u></i></h1>
 			<form action="form.asp">
 			<table style="width:60%" >
 				<tr>
@@ -95,9 +95,13 @@
 				</tr>
 			</table>
 			</br>
-				<p> Group users: </p>
-				<textarea  id="users_list" rows="12" cols="30" disabled></textarea>
-				<p><button type="button" id="createGroupButton">Submit</button></p>
+				<p><h2><u><i>Group users</u></i></h2></p>
+				<!--<textarea  id="users_list" rows="12" cols="30" disabled></textarea>-->
+				<table id ="users_list" style="table-layout:fixed;color:white;font-size:110%" border="0px">
+					<col width="300px" />
+					<col width="30px" />
+				</table>
+				<p><button type="button" id="submit_group">Submit</button></p>
 	    </div><!--close content_item-->
       </div><!--close content-->   
 	</div><!--close site_content-->  

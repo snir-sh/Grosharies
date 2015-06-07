@@ -1,6 +1,6 @@
-from google.appengine.ext.webapp import template
-from models.user import User
-from google.appengine.ext import ndb
+from google.appengine.ext.webapp 	import template
+from google.appengine.ext				import ndb
+from models.user 	import User
 from models.group import Group
 import webapp2
 import json
