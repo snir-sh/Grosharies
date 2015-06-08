@@ -83,12 +83,14 @@
 							</tr>	
 							<tr>
 								<td>
+									{% if groupUsers %}
 									<h2><u><i>Group Members</i></u></h2>
 									<ul id="group_members">
 										{% for user in groupUsers %} 
 											<li>{{user}}</li>
 										{% endfor %}
 									</ul>
+									{% endif %}
 								</td> 
 							</tr>
 						</table>
