@@ -49,7 +49,7 @@ function createGroup() {
 	
 function addUser(){
 	var exist = 0;
-	var user_name = $('#combobox').val();
+	var user_name = $('#selectUser').val();
 	var i;
 	for (i=0; i<users.length; i++)
 		if (user_name == users[i])

@@ -41,7 +41,7 @@ handlers:
 
 - url: /createGroup
   script: web.pages.createGroup.app 
-
+ 
 - url: /list
   script: web.pages.list.app
   
@@ -71,7 +71,10 @@ handlers:
   
 - url: /static
   static_dir: web/static
-
+  
+- url: /showUsers
+  script: web.pages.showUsers.app 
+  
 - url: /
   script: web.pages.default.app
   
