@@ -27,7 +27,7 @@ class UsersList(webapp2.RequestHandler):
 				if u==user.email:
 					continue
 				allUsersButCurrent.append(u)
-				self.response.write(json.dumps(allUsersButCurrent))
+			self.response.write(json.dumps(allUsersButCurrent))
 		else:
 			self.response.write(json.dumps({'status':'error'}))
 			

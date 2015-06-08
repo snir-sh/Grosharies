@@ -45,26 +45,26 @@
 	
 	<div id="site_content">	
 
-	  <div class="sidebar_container">       
+	<div class="sidebar_container">       
 		<div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Groups</h2>
-			 <a href="createGroup"><h3>Create Group</h3></a>
-            {% for i in userGroups %}
-			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
-			{% endfor %}
-          </div><!--close sidebar_item--> 
+			<div class="sidebar_item" id="current_user_groups">
+				<h2>Groups</h2>
+				<a href="createGroup"><h3>Create Group</h3></a>
+				{% for i in userGroups %}
+					<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+				{% endfor %}
+			</div><!--close sidebar_item--> 
         </div><!--close sidebar-->     		
 		<div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Lists</h2>
-			 <a href="createList"><h3>Create List</h3></a>
-			 {% for i in groupLists %} 
-			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
-		{% endfor %} 
-		  </div><!--close sidebar_item--> 
+			<div class="sidebar_item">
+				<h2>Lists</h2>
+				<a href="createList"><h3>Create List</h3></a>
+				{% for i in groupLists %} 
+				<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
+				{% endfor %} 
+			</div><!--close sidebar_item--> 
         </div><!--close sidebar-->		
-       </div><!--close sidebar_container-->
+    </div><!--close sidebar_container-->
 	
       <div id="content">
         <div class="content_item" style="color:white">
@@ -75,7 +75,7 @@
 							<tr>	
 								<td width="400">
 									<h2><u><i>Group Details</i></u></h2>
-									<ul>
+									<ul id="group_details">
 										<li>Name:  {{groupName}}</li>
 										<li>Admin: {{groupAdmin}}</li>
 									</ul>
@@ -84,10 +84,10 @@
 							<tr>
 								<td>
 									<h2><u><i>Group Members</i></u></h2>
-									<ul>
+									<ul id="group_members">
 										{% for user in groupUsers %} 
 											<li>{{user}}</li>
-										{% endfor %} 
+										{% endfor %}
 									</ul>
 								</td> 
 							</tr>

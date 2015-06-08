@@ -59,20 +59,19 @@ class ListPageHandler(webapp2.RequestHandler):
 		#delete user from a group
 		deleteUser = self.request.get('deleteUser')
 		if deleteUser:
-			Group.deleteUserFromGroup(group_id, deleteUser)
-		
-		#add user to a group
-		addUser = self.request.get('addUser')
-		if addUser:
-			userToAdd = User.checkIfUserExists(addUser)
-			if userToAdd:
-				exist = User.addUserToGroup(userToAdd.email, group_id)
-				if exist==None:
-					self.response.write('userExist')
+			Group.deleteUserFromGroup(group_id, str(deleteUser))
+			time.sleep(0.5)
+			# Retrieving all the users of a group without the admin
+			group = Group.getGroupNameByID(group_id)
+			if group:
+				users = Group.getAllUsersFromGroupByIDWithoutListAdmin(group_id, group.GroupAdmin)
+				groupMembers = []
+				if users:
+					for gUser in users:
+						groupMembers.append(gUser)
+					self.response.write(json.dumps(groupMembers))
 					return
-			else:
-				self.response.write('userNotExist')
-				return
+		
 		
 		# changing a group name
 		newGroupName = self.request.get('newGroupName')
