@@ -106,19 +106,20 @@ function editProduct(index) {
 	var id = "#Panme" +index;
 	var id ="tr" + index;
 	var str ='<select id="New_Product_quantity">';
-	var color= "#666562";
+	var color1= "#666562";
+	var color = "#123033";
 	var colorType =1;
 	for (i=1;i<20;++i)
 	{
-		str+='<option value="'+i+'">'+i+'</option>'
+		str+='<option value="'+i/2+'">'+i/2+'</option>'
 	}
 	str +="</select>"
-	var title ='<tr><th>Product</th><th>Quantity</th><th>Units</th>'
-					+'<td><button onclick=AddRow()>Add</td><td></td>';
-	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
-	+'<th>'+str+'</th>'
-	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
-		+'<td><button onclick=AddNewProduct()>save</td></td>';
+	var title ='<tr bgColor="'+color1+'"><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
+					+'<td><center><img src="../static/images/plus.png" width="35" height="35" onclick=AddRow()></center></td><td></td>';
+	var addLine ='<tr><th><center><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></center></th>'
+	+'<th><center>'+str+'</center></th>'
+	+'<th><center><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></center></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
+		+'<td><center><button onclick=AddNewProduct()>save</center></td></td>';
 		
 	
 	var dom = document.getElementById('product_table');
@@ -133,26 +134,26 @@ function editProduct(index) {
 			{
 				if(i==index)
 				{
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></th><th><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></th><th><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</button></td>'
-						+'<td><button onclick=changeProduct('+i+')>save</td></tr>');
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></center></th><th><center><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></center></th><th><center><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></center></th><td><center><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</button></center></td>'
+						+'<td><center><button onclick=changeProduct('+i+')>save</center></td></tr>');
 						
 				}
 				else
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
-						+'<td><button onclick=editProduct('+i+')>edit</td></tr>');
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
+						+'<td><center><img src="../static/images/edit.png" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
 			}
 			else
-				dom.insertAdjacentHTML('beforeend','<tr><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr><td></td><td></td>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th></tr>');
 			
 			if(colorType ==1)
 			{
-				color = "#565654";
+				color = "#2a3233";
 				colorType =0;
 			}
 			else if(colorType ==0)
 			{
 				
-				color= "#666562";
+				color= "#123033";
 				colorType =1;
 			}
 		}
@@ -172,11 +173,6 @@ function editProduct(index) {
 
 function showProducts(listProducts,user_permit,add)
 {
-	   // Create new img element
-	//img.src = './web/static/images/delete_image.jpg'; // Set source path
-	//var img = document.createElement("img");
-	var img = new Image();
-	img.src = "";
 	
 	var str ='<select id="New_Product_quantity">';
 	var color1= "#666562";
