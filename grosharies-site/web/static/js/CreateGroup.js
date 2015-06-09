@@ -62,7 +62,7 @@ function addUser()
 	var dom = document.getElementById('users_list');
 	i = users.length-1;
 	dom.insertAdjacentHTML('beforeend','<td>'+ users[i] + '</td>'
-		+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
+		+'<td><img src="../static/images/deleteButton.png" onclick=deleteFromList('+i+') valign="bottom"></td></p>')
 	$( "#selectUser" ).val("");
 }
 
@@ -74,6 +74,6 @@ function deleteFromList(index) {
 	for (i = 0; i < users.length; ++i)
 	{
 		dom.insertAdjacentHTML('beforeend','<td>'+ users[i] + '</td>'
-			+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
+			+'<td><img src="../static/images/deleteButton.png" onclick=deleteFromList('+i+') valign="bottom"></td></p>')
 	}
 }

@@ -23,7 +23,9 @@ function createList() {
 	var dom = document.getElementById('box');
 	var i = list.length-1;
 	dom.insertAdjacentHTML('beforeend','<td>'+ list[i][0] + '</td>' + '<td>' +list[i][1] + '</td>'
-	+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
+	+'<td><img src="../static/images/deleteButton.png" onclick=deleteFromList('+i+') valign="bottom"></td></p>')
+	
+	
 	//$('#box').val($('#box').val()+user_name +"\t" +user_permit + "\n");
 	
 }
@@ -36,7 +38,7 @@ function deleteFromList(index) {
 	for (i = 0; i < list.length; ++i)
 	{
 		dom.insertAdjacentHTML('beforeend','<td>'+ list[i][0] + '</td>' + '<td>' +list[i][1] + '</td>'
-		+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
+			+'<td><img src="../static/images/deleteButton.png" onclick=deleteFromList('+i+') valign="bottom"></td></p>')
 	}
 }
 

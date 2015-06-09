@@ -15,115 +15,109 @@
 </head>
 
 <body>
-  <div id="main">
-    <div id="header">
-	  <div id="banner">
-	    <div id="welcome">
-	      <h1></h1>
-	    </div><!--close welcome-->
-	    <div id="welcome_slogan">
-	      <h1 style="text-shadow: 4px 4px 1px #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
-	    </div><!--close welcome_slogan-->
-	  </div><!--close banner-->
-    </div><!--close header-->
+	<div id="main">
+		<div id="header">
+			<div id="banner">
+				<div id="welcome">
+				  <h1></h1>
+				</div><!--close welcome-->
+				<div id="welcome_slogan">
+					<h1 style="text-shadow: 4px 4px 1px #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
+				</div><!--close welcome_slogan-->
+			</div><!--close banner-->
+		</div><!--close header-->
 
-	<div id="menubar">
-      <ul id="menu">
-        <li><a href="index">Home</a></li>
-        <li><a href="FAQ">FAQ</a></li>
-		<li><a href="about">About</a></li>
-        <li><a href="logout" style="float:right;">Logout</a></li>
-      </ul>
-    </div><!--close menubar-->
+		<div id="menubar">
+			<ul id="menu">
+				<li><a href="index">Home</a></li>
+				<li><a href="FAQ">FAQ</a></li>
+				<li><a href="about">About</a></li>
+				<li><a href="logout" style="float:right;">Logout</a></li>
+			</ul>
+		</div><!--close menubar-->
 	
-	<div id="site_content">	
-
-	  <div class="sidebar_container">       
-		<div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Groups</h2>
-			 <a href="createGroup" ><h3>Create Group</h3></a>
-             {% for i in userGroups %}
-			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
-			{% endfor %}
-          </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->     		
-		<div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Lists</h2>
-			 <h3><a href="createList"> Create List</a></h3>
-			  <div id="allLists">
-			  {% for i in groupLists %} 
-			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
-		{% endfor %} 
-			 </div>
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->
-		<div class="sidebar">
-          <div class="sidebar_item">
-           
-           
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar--> 
-       </div><!--close sidebar_container-->
-	
-	
-	
-      <div id="content">
-        <div class="content_item">
-		<h1>Create New List</h1>
-			<form action="form.asp">
-			<table style="width:60%;color:white" >
-				<tr>
-					<td>List Name:</p></td>
-					<td><input type="text" placeholder="enter name here" id="listName"></p></td>		
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><select id="drop_usersList">
-					<option value="">Choose user...</option>
-					{% for i in groupUsers %} 
-					<option>{{i}}</option>
-					{% endfor %} 
-					</select>
-					&nbsp;&nbsp;&nbsp;
-					<select id="userPermit">
-					<option value="Viewer">Viewer</option>
-					<option value="Partner">Partner</option>
-					</select>
-					&nbsp;&nbsp;&nbsp;
-					<button type="button" id ="addUserToList">Add</button></td>
-				</tr>
-			</table>
-			</br>
-				
-				
-					<p> Lists users: </p>
-				<!--<textarea  id ="box" rows="12" cols="35" disabled></textarea>-->
-					<table id ="box" style="table-layout:fixed;color:white;font-size:110%" border="0px">
-					<col width="300px" />
-					<col width="130px" />
-					<col width="30px" />
-					<tr>
-					<td><h3>Username</h3></td>
-					<td><h3>User Permit</h3></td>
-					</tr>
-					</table>
-					</br></br>
-				<p><button type="button" id="submit_list">Submit</button></p>
-				
-          
-	    </div><!--close content_item-->
-      </div><!--close content-->   
-	</div><!--close site_content-->  
- 
-  </div><!--close main-->
+		<div id="site_content">	
+			<div class="sidebar_container">       
+				<div class="sidebar">
+					<div class="sidebar_item">
+						<h2>Groups</h2>
+						<a href="createGroup" ><h3>Create Group</h3></a>
+						{% for i in userGroups %}
+						<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+						{% endfor %}
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar-->     		
+				<div class="sidebar">
+					<div class="sidebar_item">
+						<h2>Lists</h2>
+						<h3><a href="createList"> Create List</a></h3>
+						<div id="allLists">
+							{% for i in groupLists %} 
+							<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
+							{% endfor %} 
+						</div>
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar-->
+				<div class="sidebar">
+					<div class="sidebar_item">
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar--> 
+			</div><!--close sidebar_container-->
+		
+			<div id="content">
+				<div class="content_item">
+					<h1><u><i>Create New List</u></i></h1>
+					<form action="form.asp">
+						<table style="width:60%;color:white">
+							<tr>
+								<td>List Name:</p></td>
+								<td><input type="text" placeholder="enter name here" id="listName"></p></td>		
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<select id="drop_usersList">
+									<option value="">Choose user...</option>
+									{% for i in groupUsers %} 
+										<option>{{i}}</option>
+									{% endfor %} 
+									</select>
+									&nbsp;&nbsp;&nbsp;
+									<select id="userPermit">
+										<option value="Viewer">Viewer</option>
+										<option value="Partner">Partner</option>
+									</select>
+									&nbsp;&nbsp;&nbsp;
+									<img src="../static/images/addUserButtonSmall.png" id="addUserToList" valign="bottom">
+								</td>
+							</tr>
+						</table>
+						</br>
+					
+						<h1><u><i> List users </u></i></h1>
+						<table id ="box" style="table-layout:fixed;color:white;font-size:110%" border="0px">
+							<col width="300px" />
+							<col width="130px" />
+							<col width="30px" />
+							<tr>
+								<td><h3>Username</h3></td>
+								<td><h3>User Permit</h3></td>
+							</tr>
+						</table>
+						</br></br>
+						<p>
+							<img src="../static/images/submitButton.png" id="submit_list">
+						</p>
+					</form>
+				</div><!--close content_item-->
+			</div><!--close content-->   
+		</div><!--close site_content-->  
+	</div><!--close main-->
   
-  <div id="footer">
-	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
-	  <br/> © Copyright 2015 Grosharies
-  </div><!--close footer--> 	
-  
+	<div id="footer">
+		<a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
+		<br/> © Copyright 2015 Grosharies
+	</div><!--close footer--> 	
 </body>
 </html>
