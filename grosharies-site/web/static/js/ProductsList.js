@@ -179,14 +179,15 @@ function showProducts(listProducts,user_permit,add)
 	img.src = "";
 	
 	var str ='<select id="New_Product_quantity">';
-	var color= "#666562";
+	var color1= "#666562";
+	var color = "#123033";
 	var colorType =1;
 	for (i=1;i<40;++i)
 	{
 		str+='<option value="'+(i/2)+'">'+i/2+'</option>'
 	}
 	str +="</select>";
-	var title ='<tr><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
+	var title ='<tr bgcolor ="'+color1+'"><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
 					+'<td><center><img src="../static/images/plus.png" width="35" height="35" onclick=AddRow()></img></center></td><td></td>';
 	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
 	+'<th>'+str+'</th>'
@@ -210,22 +211,23 @@ function showProducts(listProducts,user_permit,add)
 		for (i = 0; i < listProducts.length; ++i)
 		{
 			if(user_permit!='Viewer')
-				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
 						+'<td><center><img src="../static/images/edit.png" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
 			else
 				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th></tr>');
 			
 			if(colorType ==1)
 			{
-				color = "#565654";
+				color = "#2a3233";
 				colorType =0;
 			}
 			else if(colorType ==0)
 			{
 				
-				color= "#666562";
+				color= "#123033";
 				colorType =1;
 			}
+			
 		}
 	}
 	
