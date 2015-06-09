@@ -53,16 +53,16 @@ class List(ndb.Model):
 	#delete the list from the data store (list table and listOfProducts table)
 	@classmethod		
 	def deleteList(self,list_id, group_id):
-		query = List.query(List.ListID == list_id).get()
+		query = List.query(List.ListID == list_id).fetch()
 		if query:
-			key = query.key.id()
-			query.key.delete()
-			GroupLists.deleteList(key)
+			for list in query:
+				list.key.delete()
+			GroupLists.deleteList(list_id)
 			productsIds = ListOfProducts.getAllProductsIDs(list_id)
 			if productsIds:
 				for productID in productsIds:
 					Product.deleteProduct(productID)
-			ListOfProducts.deleteList(key)
+			ListOfProducts.deleteList(list_id)
 	
 	#changes the list name
 	@classmethod		
