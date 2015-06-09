@@ -34,8 +34,8 @@ function fillUsers() {
 }
 	
 function removeUserFromList() {
-	var userName = $('#userSelect').val();
-	if (userName==null || userName=="") {
+	var username = $('#userSelect').val();
+	if (username==null || username=="") {
 		alert('Select a user to remove');
 		return;
 	}
@@ -43,9 +43,20 @@ function removeUserFromList() {
 		url:'/manageList',
 		type:'GET',
 		dataType:'json',
-		data:{'removeUser':userName},
+		data:{'removeUser':username},
 		success:function(data, status, xhr) {
-			alert(data.status);
+			var dom = document.getElementById('userSelect');
+			if (data.status == 'empty')
+			{
+				$( "#userSelect" ).empty();
+				dom.insertAdjacentHTML('beforeend','<option>Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
+				listUsersAJAX(data);
+			}
+			else
+			{
+				listUsersAJAX(data);
+				drpListUsersAJAX(data);
+			}
 		},
 		error:function(xhr, status, error) {
 				alert(status);
@@ -80,18 +91,8 @@ function addUserToList() {
 			}
 			else
 			{	
-				if (data == null)
-					return;
-				var dom = document.getElementById('listUsers');
-				$( "#listUsers" ).empty();
-				dom.insertAdjacentHTML('beforeend', '<table id ="box" style="table-layout:fixed;color:white;" border="0px"><col width="230px" /><col width="130px" />');
-				for (i = 0; i < data.length; ++i)
-				{
-					dom.insertAdjacentHTML('beforeend','<tr><td>'+data[i][0]+'</td> <td>'+data[i][1]+'</td></br></tr>');
-				}
-				dom.insertAdjacentHTML('beforeend','</table>');
-				$( "#userToAdd" ).val("");
-				return;
+				listUsersAJAX(data);
+				drpListUsersAJAX(data);
 			}
 		},
 		error:function(xhr, status, error) {
@@ -165,6 +166,35 @@ function deleteList() {
 				console.error(xhr, status, error);
 		}
 	});
+}
+
+function listUsersAJAX(data)
+{
+	if (data == null)
+		return;
+	var dom = document.getElementById('listUsers');
+	$( "#listUsers" ).empty();
+	dom.insertAdjacentHTML('beforeend', '<table id ="box" style="table-layout:fixed;color:white;" border="0px"><col width="230px" /><col width="130px" />');
+	for (i = 0; i < data.length; ++i)
+	{
+		dom.insertAdjacentHTML('beforeend','<tr><td>'+data[i][0]+'</td> <td>'+data[i][1]+'</td></br></tr>');
+	}
+	$( "#userToAdd" ).val("");
+	return;
+}
+
+function drpListUsersAJAX(data)
+{
+	if (data == null)
+		return;
+	$( "#userSelect" ).empty();
+	var dom2 = document.getElementById('userSelect');
+	dom2.insertAdjacentHTML('beforeend','<option>Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
+	for (i = 0; i < data.length; ++i)
+	{
+		dom2.insertAdjacentHTML('beforeend','<option value='+data[i][0]+'>'+data[i][0]+'</option>');
+	}
+	return;
 }
 
 

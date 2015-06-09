@@ -54,6 +54,8 @@ class ManageListHandler(webapp2.RequestHandler):
 			users = List.getAllListUsersByID(list_id)
 			if users:
 				self.response.write(json.dumps(users))
+			else:
+				self.response.write(json.dumps({"status":"empty"}))
 			return
 				
 		#add user to a list

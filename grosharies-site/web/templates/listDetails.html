@@ -122,9 +122,9 @@
 								<td width="400">
 									<h2><u><i>Add User</i></u></h2>
 									
-									<input id="userToAdd" width="180px" height="20px">
-									<button type="button" id="addUserToList">Add User</button>
-									
+									<input id="userToAdd" size="22" placeholder="Search user..." width="190px" height="20px">
+									&nbsp;&nbsp;
+									<img src="../static/images/addUserButton.png" id="addUserToList" valign="bottom">
 									<p><p>
 										<select id="userPermit">
 										<option value="Viewer">Viewer</option>
@@ -137,28 +137,27 @@
 								<td>
 									<h2><u><i>Remove User</i></u></h2>
 									<select id="userSelect">
-										<option value="">Select user...</option>
+										<option>Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 										{% for i in listUsers %} 
 											<option value={{i.0}}>{{i.0}}</option>
 										{% endfor %} 
 									</select>
 									&nbsp;&nbsp;
-									<button type="button" id="removeUserFromList">Remove User</button>
+									<img src="../static/images/removeUserButton.png" id="removeUserFromList" valign="bottom">
 									<p><p>
 								</td> 
 							</tr>
 							<tr>
 								<td>
 									<h2><u><i>Change List Name</i></u></h2>
-									<input type="text" id="newNameForList" name="txtSearch" placeholder="Enter a Name" size="15" height="20px"> &nbsp;&nbsp;
-									<button type="button" id="changeListName">Change Name</button>
+									<input type="text" id="newNameForList" name="txtSearch" placeholder="Enter a Name" size="22" height="20px"> &nbsp;&nbsp;
+									<img src="../static/images/changeNameButton.png" id="changeListName" valign="bottom">
 									<p><p>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<h2><u><i>Delete List</i></u></h2>
-									<button type="button" id="deleteListButton">Delete List</button>
+									<img src="../static/images/deleteListButton.png" id="deleteListButton">
 								</td>
 							</tr>
 						</table>
