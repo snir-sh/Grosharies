@@ -15,93 +15,79 @@
 </head>
 
 <body>
-  <div id="main">
-    <div id="header">
-	  <div id="banner">
-	    <div id="welcome">
-	      <h1></h1>
-	    </div><!--close welcome-->
-	    <div id="welcome_slogan">
-	      <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
-	    </div><!--close welcome_slogan-->
-	  </div><!--close banner-->
-    </div><!--close header-->
+	<div id="main">
+		<div id="header">
+			<div id="banner">
+				<div id="welcome">
+					<h1></h1>
+				</div><!--close welcome-->
+				<div id="welcome_slogan">
+				  <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
+				</div><!--close welcome_slogan-->
+			</div><!--close banner-->
+		</div><!--close header-->
 
-	<div id="menubar">
-      <ul id="menu">
-        <li><a href="index">Home</a></li>
-        <li><a href="FAQ">FAQ</a></li>
-		<li><a href="about">About</a></li>
-        <li><a href="logout">Logout</a></li>
-		<li>
-		<a href="search" style="float:right;"><img width="20" height="20" src="../static/images/magnifier.png"></a>
-		</li></p></p>
-		<input type="text" name="txtSearch" placeholder="Group Search" style="float:right;" size="15" height="20px">
+		<div id="menubar">
+			<ul id="menu">
+				<li><a href="index">Home</a></li>
+				<li><a href="FAQ">FAQ</a></li>
+				<li><a href="about">About</a></li>
+				<li ><a href="logout" style="float:right;">Logout</a></li>
+			</ul>
+		</div><!--close menubar-->
 		
-      </ul>
-    </div><!--close menubar-->
-	
-	<div id="site_content">	
-
-	  <div class="sidebar_container">       
-		<div class="sidebar">
-          <div class="sidebar_item">
-            <h2>Groups</h2>
-			 <a href="createGroup" ><h3>Create Group</h3></a>
-            <div id = "allGroups">
-			{% for i in userGroups %}
-			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
-			{% endfor %}
-			 </div>
-          </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->     		
-		<div class="sidebar" style="visibility: hidden">
-          <div class="sidebar_item">
-            <h2>Lists</h2>
-			<a href="createList"><h3>Create List</h3></a>
-			<p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->
-		<div class="sidebar">
-          <div class="sidebar_item">      
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar--> 
-       </div><!--close sidebar_container-->
-	
-      <div id="content">
-        <div class="content_item">
-		<h1><u><i>Create New Group</u></i></h1>
-			<form action="form.asp">
-			<table style="width:60%" >
-				<tr>
-					<td><input type="text" id ="GroupName_id" placeholder="Group Name" size="15">
-				</tr>
-				<tr>
-					<td></p>
-						<input id="selectUser" placeholder="Select User" size="20">&nbsp;
-						<button type="button" id="addUserToList" onclick ="">Add</button>
-					</td>
-				</tr>
-			</table>
-			</br>
-				<p><h2><u><i>Group users</u></i></h2></p>
-				<table id ="users_list" style="table-layout:fixed;color:white;font-size:110%" border="0px">
-					<col width="300px" />
-					<col width="30px" />
-				</table>
-				<p><button type="button" id="submit_group">Submit</button></p>
-	    </div><!--close content_item-->
-      </div><!--close content-->   
-	</div><!--close site_content-->  
- 
-  </div><!--close main-->
+		<div id="site_content">	
+			<div class="sidebar_container">       
+				<div class="sidebar">
+					<div class="sidebar_item">
+						<h2>Groups</h2>
+						<a href="createGroup" ><h3>Create Group</h3></a>
+						<div id = "allGroups">
+							{% for i in userGroups %}
+							<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+							{% endfor %}
+						</div>
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar-->     		
+			</div><!--close sidebar_container-->
+			
+			<div id="content">
+				<div class="content_item">
+					<h1><u><i>Create New Group</u></i></h1>
+					<form action="form.asp">
+					<table style="width:60%" >
+						<tr>
+							<td>
+								<input type="text" id ="GroupName_id" placeholder="Group Name" size="15">
+							</td>
+						</tr>
+						<tr>
+							<td></p>
+								<input id="selectUser" placeholder="Select User" size="20">&nbsp;&nbsp;&nbsp;
+								<img src="../static/images/addUserButton.png" id="addUserToList" valign="bottom">
+							</td>
+						</tr>
+					</table>
+					</br>
+						<p>
+							<h2><u><i>Group users</u></i></h2>
+						</p>
+						<table id ="users_list" style="table-layout:fixed;color:white;font-size:110%" border="0px">
+							<col width="300px" />
+							<col width="30px" />
+						</table>
+						<p>
+							<img src="../static/images/submitButton.png" id="submit_group">
+						</p>
+						
+				</div><!--close content_item-->
+			</div><!--close content-->   
+		</div><!--close site_content-->  
+	</div><!--close main-->
   
-  <div id="footer">
-	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
-	  <br/> © Copyright 2015 Grosharies
-  </div><!--close footer--> 	
-  
+	<div id="footer">
+		<a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
+		<br/> © Copyright 2015 Grosharies
+	</div><!--close footer--> 	
 </body>
 </html>

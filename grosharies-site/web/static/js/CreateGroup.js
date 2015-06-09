@@ -47,25 +47,23 @@ function createGroup() {
 		});							
 	}
 	
-function addUser(){
-	var exist = 0;
+function addUser()
+{
 	var user_name = $('#selectUser').val();
 	var i;
 	for (i=0; i<users.length; i++)
 		if (user_name == users[i])
 		{
 			alert("User already exist");
-			exist = 1;
+			$( "#selectUser" ).val("");
+			return;
 		}
-	if (exist == 0)
-	{
-		//$('#users_list').val($('#users_list').val()+addUser+'\n');
-		users.push(user_name);
-		var dom = document.getElementById('users_list');
-		i = users.length-1;
-		dom.insertAdjacentHTML('beforeend','<td>'+ users[i] + '</td>'
-			+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
-	}
+	users.push(user_name);
+	var dom = document.getElementById('users_list');
+	i = users.length-1;
+	dom.insertAdjacentHTML('beforeend','<td>'+ users[i] + '</td>'
+		+'<td><button onclick=deleteFromList('+i+')>delete</button></td></p>');
+	$( "#selectUser" ).val("");
 }
 
 function deleteFromList(index) {
