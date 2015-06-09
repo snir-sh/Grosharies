@@ -29,30 +29,53 @@ class ManageListHandler(webapp2.RequestHandler):
 		if fill:
 			users = Group.getAllUsersFromGroupByID(group_id)
 			self.response.write(json.dumps(users))
-			return
 			
-		
-		
-		#create new list
-		new_list_name = self.request.get('new_list_name')
-		if new_list_name:
-			if List.checkIfTheNameExists(new_list_name,group_id):
-				self.response.write(json.dumps({"status":"exist", "name":new_list_name}))
+		# changing a list name
+		list_id = int(self.request.cookies.get('list_id_cookie'))
+		if list_id:
+			newListName = self.request.get('newListName')
+			if newListName:
+				if List.checkIfTheNameExists(newListName,group_id):
+					self.response.write(json.dumps({"status":"exist", "name":newListName}))
+					return
+				data = []
+				List.changeListName(list_id, newListName)
+				listNames = List.getAllListsName(group_id)
+				data.append(listNames)
+				data.append(newListName)
+				self.response.write(json.dumps(data))
+				return
+				
+		#delete user from a list
+		removeUser = self.request.get('removeUser')
+		if removeUser:
+			List.deleteUserFromList(removeUser,list_id)
+			time.sleep(0.3)
+			users = List.getAllListUsersByID(list_id)
+			if users:
+				self.response.write(json.dumps(users))
+			return
+				
+		#add user to a list
+		addUser = self.request.get('addUser')
+		permit = self.request.get('permit')
+		if addUser:
+			userToAdd = List.checkIfUserInList(list_id,addUser)
+			if userToAdd == True:
+				self.response.write(json.dumps({"status":"exist", "name":addUser}))
+				return
+			checkIfUser = User.checkIfUserExists(addUser)
+			if checkIfUser:
+				list = List.getListByID(list_id)
+				list_name = list.ListName
+				List.addUserToList(list_name,user.email,addUser,permit,list_id)
+				time.sleep(0.3)
+				users = List.getAllListUsersByID(list_id)
+				self.response.write(json.dumps(users))
 				return
 			else:
-				list_usersToAdd = json.loads(self.request.get('list_usersToAdd'))
-				newList = List.createList(new_list_name,user.email,group_id)
-				if newList:
-					if list_usersToAdd:
-						for listUser in list_usersToAdd:
-							List.addUserToList(new_list_name,user.email,listUser[0],listUser[1],newList.ListID)
-				time.sleep(0.3);
-				allData = []
-				listNames = List.getAllListsName(group_id)
-				if listNames:
-					allData.append(listNames)
-					allData.append(newList.ListID)
-					self.response.write(json.dumps(allData))
+				self.response.write(json.dumps({"status":"notUser", "name":addUser}))
+				return
 		
 		
 

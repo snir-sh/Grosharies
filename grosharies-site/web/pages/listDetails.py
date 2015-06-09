@@ -30,12 +30,13 @@ class ListDetailsHandler(webapp2.RequestHandler):
 		list_id = int(self.request.cookies.get('list_id_cookie'))
 		if list_id:
 			list = List.getListByID(list_id)
-			users = List.getAllListUsersByID(list_id)
-			template_params['listUsers'] = users
-			template_params['listName'] = list.ListName
-			template_params['listAdmin'] = list.ListAdmin
-			if (list.ListAdmin==user.email):
-				template_params['isListAdmin'] = user.email
+			if list:
+				users = List.getAllListUsersByID(list_id)
+				template_params['listUsers'] = users
+				template_params['listName'] = list.ListName
+				template_params['listAdmin'] = list.ListAdmin
+				if (list.ListAdmin==user.email):
+					template_params['isListAdmin'] = user.email
 		
 		# Retrieving all the groups names for showing on left side.
 		groupsNames = Group.getAllGroupsNames(user.email) 		
@@ -47,10 +48,10 @@ class ListDetailsHandler(webapp2.RequestHandler):
 		deleteUser = self.request.get('deleteUser')
 		if deleteUser:
 			List.deleteUserFromList(deleteUser,list_id)
-			return
 		
 		#add user to a list
 		addUser = self.request.get('addUser')
+		permit = self.request.get('permit')
 		if addUser:
 			userToAdd = List.checkIfUserInList(addUser)
 			if userToAdd == True:

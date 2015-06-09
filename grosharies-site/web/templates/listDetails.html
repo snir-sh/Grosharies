@@ -61,9 +61,11 @@
           <div class="sidebar_item">
             <h2>Lists</h2>
 			 <a href="createList"><h3>Create List</h3></a>
+			 <div id="allLists">
 			 {% for i in groupLists %} 
 			<p><a href="list?lid={{i.0}}">{{i.1}}<br/> </a></p> 
 		{% endfor %} 
+			</div>
 		  </div><!--close sidebar_item--> 
         </div><!--close sidebar-->		
        </div><!--close sidebar_container-->
@@ -78,20 +80,38 @@
 								<td width="400">
 									<h2><u><i>List Details</i></u></h2>
 									<ul>
+									<div id="listName">
 										<li>Name:  {{listName}}</li>
+									</div>
 										<li>Admin: {{listAdmin}}</li>
 									</ul>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<h2><u><i>List Members</i></u></h2>
-									<ul>
-										{% for user in listUsers %} 
-											<li>{{user}}</li>
-										{% endfor %} 
-									</ul>
-								</td> 
+									
+										<h2><u><i>List Members</i></u></h2>
+										<div id="listUsers">
+										<table id ="box" style="table-layout:fixed;color:white;" border="0px">
+											<col width="230px" />
+											<col width="130px" />
+											
+												{% for user in listUsers %}
+												<tr>
+													<td>
+															{{user.0}}
+													</td> 
+													<td>
+															{{user.1}}
+													</td>
+												</tr>
+												{% endfor %}
+											
+										</table>
+										</div>
+						
+								</td>
+								
 							</tr>
 						</table>
 					</td>
@@ -107,14 +127,24 @@
 									
 									<p><p>
 								</td>
-							</tr>	
+							</tr>
+							<tr >	
+								<td width="400">
+									<h2><u><i>User Permit</i></u></h2>
+										<select id="userPermit">
+										<option value="Viewer">Viewer</option>
+										<option value="Partner">Partner</option>
+										</select>
+									<p><p>
+								</td>
+							</tr>							
 							<tr>
 								<td>
 									<h2><u><i>Remove User</i></u></h2>
 									<select id="userSelect">
 										<option value="">Select user...</option>
 										{% for i in listUsers %} 
-											<option value={{i}}>{{i}}</option>
+											<option value={{i.0}}>{{i.0}}</option>
 										{% endfor %} 
 									</select>
 									&nbsp;&nbsp;

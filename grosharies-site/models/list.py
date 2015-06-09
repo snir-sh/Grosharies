@@ -92,8 +92,13 @@ class List(ndb.Model):
 		if query:
 			for user in query:
 				if user.ListUser != None:
-					users.append(user.ListUser)
-		return users
+					usersAndPermit = []
+					usersAndPermit.append(user.ListUser)
+					usersAndPermit.append(user.userPermit)
+					users.append(usersAndPermit)
+		if users:
+			return users
+		return None
 			
 	@classmethod
 	def getAllProductsOfTheList(self, list_id):
