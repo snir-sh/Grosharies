@@ -62,9 +62,6 @@ handlers:
 
 - url: /productsList
   script: api.productsList.app
- 
-- url: /search
-  script: web.pages.search.app
 
 - url: /googleLogin
   script: web.pages.googleLogin.app
