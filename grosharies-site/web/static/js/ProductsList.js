@@ -172,6 +172,12 @@ function editProduct(index) {
 
 function showProducts(listProducts,user_permit,add)
 {
+	   // Create new img element
+	//img.src = './web/static/images/delete_image.jpg'; // Set source path
+	//var img = document.createElement("img");
+	var img = new Image();
+	img.src = "";
+	
 	var str ='<select id="New_Product_quantity">';
 	var color= "#666562";
 	var colorType =1;
@@ -180,14 +186,14 @@ function showProducts(listProducts,user_permit,add)
 		str+='<option value="'+(i/2)+'">'+i/2+'</option>'
 	}
 	str +="</select>";
-	var title ='<tr><th>Product</th><th>Quantity</th><th>Units</th>'
-					+'<td><button onclick=AddRow()>Add</td><td></td>';
+	var title ='<tr><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
+					+'<td><center><img src="../static/images/plus.png" width="35" height="35" onclick=AddRow()></img></center></td><td></td>';
 	var addLine ='<tr><th><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></th>'
 	+'<th>'+str+'</th>'
 	+'<th><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></th><td><button onclick=showProducts(listProducts,user_permit,add=false)>cancel</td>'
 		+'<td><button onclick=AddNewProduct()>save</td></td>';
 		
-	var viewerTitle ='<tr><th>Product</th><th>Quantity</th><th>Units</th>';
+	var viewerTitle ='<tr><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>';
 	
 	var dom = document.getElementById('product_table');
 	$("#product_table").empty();
@@ -204,10 +210,10 @@ function showProducts(listProducts,user_permit,add)
 		for (i = 0; i < listProducts.length; ++i)
 		{
 			if(user_permit!='Viewer')
-				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'">'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th><td><button onclick=deleteProduct('+i+')>delete</button></td>'
-						+'<td><button onclick=editProduct('+i+')>edit</td></tr>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'" id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
+						+'<td><center><img src="../static/images/edit.png" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
 			else
-				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th>'+ listProducts[i][0] +'</th><th>'+ listProducts[i][1] +'</th><th>'+ listProducts[i][2] +'</th></tr>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th></tr>');
 			
 			if(colorType ==1)
 			{
@@ -222,6 +228,7 @@ function showProducts(listProducts,user_permit,add)
 			}
 		}
 	}
+	
 	
 	
 }
