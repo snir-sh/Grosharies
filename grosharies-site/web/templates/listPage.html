@@ -101,8 +101,8 @@
 							<tr>	
 								<td width="400">
 									<h2><u><i>Add User</i></u></h2>
-									<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="15" height="20px"> &nbsp;&nbsp;
-									<button type="button" id="addUserToGroup" onclick="">Add User</button>
+									<input type="text" id="userToAdd" name="txtSearch" placeholder="Username" size="17" height="20px"> &nbsp;&nbsp;
+									<img src="../static/images/addUserButton.png" onclick="" id="addUserToGroup" valign="bottom">
 									<p><p>
 								</td>
 							</tr>	
@@ -110,28 +110,28 @@
 								<td>
 									<h2><u><i>Remove User</i></u></h2>
 									<select id="userSelect">
-										<option value="">Select user...</option>
+										<option value="">Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 										{% for i in groupUsers %} 
 											<option value={{i}}>{{i}}</option>
 										{% endfor %} 
 									</select>
 									&nbsp;&nbsp;
-									<button type="button" id="removeUserFromGroup" onclick="">Remove User</button>
+									
+									<img src="../static/images/removeUserButton.png" onclick="" id="removeUserFromGroup" valign="bottom">
 									<p><p>
 								</td> 
 							</tr>
 							<tr>
 								<td>
 									<h2><u><i>Change Group Name</i></u></h2>
-									<input type="text" id="newNameForGroup" name="txtSearch" placeholder="Enter a Name" size="15" height="20px"> &nbsp;&nbsp;
-									<button type="button" id="changeGroupName" onclick="">Change Name</button>
+									<input type="text" id="newNameForGroup" name="txtSearch" placeholder="Enter a Name" size="17" height="20px"> &nbsp;&nbsp;
+									<img src="../static/images/changeNameButton.png" onclick="" id="changeGroupName" valign="bottom">
 									<p><p>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<h2><u><i>Delete Group</i></u></h2>
-									<button type="button" id="deleteGroupButton" onclick="">Delete Group</button>
+									<img src="../static/images/deleteGroupButton.png" onclick="" id="deleteGroupButton">
 								</td>
 							</tr>
 						</table>
