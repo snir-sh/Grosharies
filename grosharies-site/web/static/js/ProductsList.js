@@ -175,9 +175,9 @@ function showProducts(listProducts,user_permit,add)
 	var str ='<select id="New_Product_quantity">';
 	var color= "#666562";
 	var colorType =1;
-	for (i=1;i<20;++i)
+	for (i=1;i<40;++i)
 	{
-		str+='<option value="'+i+'">'+i+'</option>'
+		str+='<option value="'+(i/2)+'">'+i/2+'</option>'
 	}
 	str +="</select>";
 	var title ='<tr><th>Product</th><th>Quantity</th><th>Units</th>'

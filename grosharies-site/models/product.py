@@ -7,7 +7,7 @@ from models.listOfProducts 	import ListOfProducts
 class Product(ndb.Model):
 	ProductName = ndb.StringProperty(required =True)
 	ProductUnits = ndb.StringProperty()
-	ProductQuantity = ndb.IntegerProperty()
+	ProductQuantity = ndb.StringProperty()
 	ProductID = ndb.IntegerProperty()
 	
 	@classmethod

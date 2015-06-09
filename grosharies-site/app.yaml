@@ -22,19 +22,19 @@ handlers:
   script: web.pages.createList.app
  
 - url: /newList
-  script: web.pages.newList.app
+  script: api.newList.app
   
 - url: /listDetails
   script: web.pages.listDetails.app
   
 - url: /manageList
-  script: web.pages.manageList.app
+  script: api.manageList.app
   
 - url: /getAllGroups
   script: web.pages.getAllGroups.app
 
 - url: /newGroup
-  script: web.pages.newGroup.app
+  script: api.newGroup.app
 
 - url: /logout
   script: web.pages.logout.app
@@ -61,7 +61,7 @@ handlers:
   script: web.pages.listPage.app
 
 - url: /productsList
-  script: web.pages.productsList.app
+  script: api.productsList.app
  
 - url: /search
   script: web.pages.search.app
@@ -73,7 +73,7 @@ handlers:
   static_dir: web/static
   
 - url: /showUsers
-  script: web.pages.showUsers.app 
+  script: api.showUsers.app 
   
 - url: /
   script: web.pages.default.app

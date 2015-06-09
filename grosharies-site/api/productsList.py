@@ -31,7 +31,7 @@ class ProductsList(webapp2.RequestHandler):
 					if Product.checkIfProductExists(p_name,list_id):
 						self.response.write(json.dumps({'status':'exists'}))
 						return
-					Product.addProduct(p_name,int(p_quantity),p_units,list_id)
+					Product.addProduct(p_name,p_quantity,p_units,list_id)
 					time.sleep(0.5)
 			new_Product_name = self.request.get('new_Product_name')
 			new_Product_quantity = self.request.get('new_Product_quantity')
@@ -40,7 +40,7 @@ class ProductsList(webapp2.RequestHandler):
 				if Product.checkIfProductExists(new_Product_name,list_id):
 					self.response.write(json.dumps({'status':'exists'}))
 					return
-				Product.addProduct(new_Product_name,int(new_Product_quantity),new_Product_units,list_id)
+				Product.addProduct(new_Product_name,new_Product_quantity,new_Product_units,list_id)
 				time.sleep(0.5)
 			listProducts = List.getAllProductsOfTheList(list_id)
 			list_name = List.getListByID(list_id).ListName
