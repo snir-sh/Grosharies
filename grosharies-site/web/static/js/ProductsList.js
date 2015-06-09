@@ -115,11 +115,11 @@ function editProduct(index) {
 	}
 	str +="</select>"
 	var title ='<tr bgColor="'+color1+'"><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
-					+'<td><center><img src="../static/images/plus.png" width="35" height="35" onclick=AddRow()></center></td><td></td>';
+					+'<td><center><img src="../static/images/plus.png" title="add product" width="35" height="35" onclick=AddRow()></center></td><td></td>';
 	var addLine ='<tr><th><center><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></center></th>'
 	+'<th><center>'+str+'</center></th>'
-	+'<th><center><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></center></th><td><img src="../static/images/cancel.png" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></center></img></td>'
-		+'<td><center><img src="../static/images/save.png" width="35" height="35" onclick=AddNewProduct()></center></img></td></td>';
+	+'<th><center><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></center></th><td><img src="../static/images/cancel.png" title="cancel" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></center></img></td>'
+		+'<td><center><img src="../static/images/save.png" title="save" width="35" height="35" onclick=AddNewProduct()></center></img></td></td>';
 		
 	
 	var dom = document.getElementById('product_table');
@@ -134,13 +134,13 @@ function editProduct(index) {
 			{
 				if(i==index)
 				{
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></center></th><th><center><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></center></th><th><center><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></center></th><td><center><img src="../static/images/cancel.png" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></img></center></td>'
-						+'<td><center><img src="../static/images/save.png" width="35" height="35" onclick=changeProduct('+i+')></center></img></td></tr>');
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center><input type="text" size="15" id ="Pname" value ="'+ listProducts[i][0] +'"></center></th><th><center><input type="text" size="5" id ="Pquantity" value ="'+listProducts[i][1]+'"></center></th><th><center><input type="text" size="10" id ="Punits" value ="'+ listProducts[i][2] +'"></center></th><td><center><img src="../static/images/cancel.png" title="cancel" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></img></center></td>'
+						+'<td><center><img src="../static/images/save.png" title="save" width="35" height="35" onclick=changeProduct('+i+')></center></img></td></tr>');
 						
 				}
 				else
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
-						+'<td><center><img src="../static/images/edit.png" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" title="delete product" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
+						+'<td><center><img src="../static/images/edit.png" title="edit" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
 			}
 			else
 				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th></tr>');
@@ -184,11 +184,11 @@ function showProducts(listProducts,user_permit,add)
 	}
 	str +="</select>";
 	var title ='<tr bgcolor ="'+color1+'"><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>'
-					+'<td><center><img src="../static/images/plus.png" width="35" height="35" onclick=AddRow()></img></center></td><td></td>';
+					+'<td><center><img src="../static/images/plus.png" title="add product" width="35" height="35" onclick=AddRow()></img></center></td><td></td>';
 	var addLine ='<tr><th><center><input id="New_Product_name" type="text" name="txtSearch" placeholder="Product Name" size="15"></center></th>'
 	+'<th><center>'+str+'</center></th>'
-	+'<th><center><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></center></th><td><center><img src="../static/images/cancel.png" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></img></center></td>'
-		+'<td><center><img src="../static/images/save.png" width="35" height="35" onclick=AddNewProduct()></center></img></td></td>';
+	+'<th><center><input id="New_Product_units" type="text" name="txtSearch" placeholder="Units" size="15"></center></th><td><center><img src="../static/images/cancel.png" title="cancel" width="35" height="35" onclick=showProducts(listProducts,user_permit,add=false)></img></center></td>'
+		+'<td><center><img src="../static/images/save.png" title="save" width="35" height="35" onclick=AddNewProduct()></center></img></td></td>';
 		
 	var viewerTitle ='<tr><th><center>Product</center></th><th><center>Quantity</center></th><th><center>Units</center></th>';
 	
@@ -207,8 +207,8 @@ function showProducts(listProducts,user_permit,add)
 		for (i = 0; i < listProducts.length; ++i)
 		{
 			if(user_permit!='Viewer')
-				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
-						+'<td><center><img src="../static/images/edit.png" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
+				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'"><th id ="Pname'+i+'"><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th><td><center><img src="../static/images/del.png" title="delete product" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></td>'
+						+'<td><center><img src="../static/images/edit.png" title="edit" width="32" height="32" onclick=editProduct('+i+')></img></center></td></tr>');
 			else
 				dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color +'"><th><center>'+ listProducts[i][0] +'</center></th><th><center>'+ listProducts[i][1] +'</center></th><th><center>'+ listProducts[i][2] +'</center></th></tr>');
 			
