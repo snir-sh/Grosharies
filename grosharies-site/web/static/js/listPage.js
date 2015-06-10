@@ -4,6 +4,7 @@ $(document).ready(function(){
 	$('#addUserToGroup').on('click', addUserToGroup);
 	$('#changeGroupName').on('click', changeGroupName);
 	$('#deleteGroupButton').on('click', deleteGroup);
+	$('#leaveGroupButton').on('click', leaveGroup);
 	fillUsers();
 });
 
@@ -168,7 +169,6 @@ function deleteGroup() {
 		data:{confirmDeletion:confirmDeletion},
 		success:function(data, status, xhr) {
 			if (data == "statusDeleted")
-				alert('dsds');
 				window.location = "/index";
 		},
 		error:function(xhr, status, error) {
@@ -208,6 +208,21 @@ function fillUsers() {
 }
 
 
+function leaveGroup() {
+	$.ajax({
+		url:'/manageGroup',
+		type:'GET',
+		dataType:'json',
+		data:{'leaveGroup':'leaveGroup'},
+		success:function(data, status, xhr) {
+			window.location = "/index";
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}	
+	});					
+}
 
 
 

@@ -88,9 +88,16 @@
 									</div>
 								</td> 
 							</tr>
+							{% if isNotAdmin %}
+							<tr>
+								<td>
+									<img src="../static/images/leaveGroupButton.png" id="leaveGroupButton">
+								</td>
+							</tr>
+							{% endif %}
 						</table>
 					</td>
-					<td  valign="top">
+					<td  valign="top">		
 						{% if isAdmin %}
 						<table>
 							<tr>	

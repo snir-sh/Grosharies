@@ -88,7 +88,12 @@ class MangeGroupHandler(webapp2.RequestHandler):
 				data.append(userGroups)
 				self.response.write(json.dumps(data))
 		
-			
+		leaveGroup = self.request.get('leaveGroup')
+		if leaveGroup:
+			Group.deleteUserFromGroup(group_id, user.email)
+			self.response.write(json.dumps({"status":"ok"}))
+			time.sleep(0.3)
+		
 app = webapp2.WSGIApplication([
 	('/manageGroup', MangeGroupHandler)
 ], debug=True)

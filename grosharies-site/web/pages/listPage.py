@@ -38,6 +38,8 @@ class ListPageHandler(webapp2.RequestHandler):
 			template_params['groupAdmin'] = group.GroupAdmin		
 			if (group.GroupAdmin==user.email):
 				template_params['isAdmin'] = user.email
+			else:
+				template_params['isNotAdmin'] = user.email
 		
 		# Retrieving all the users of a group without the admin
 		group = Group.getGroupNameByID(group_id)
