@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('#addUserToList').on('click', addUserToList);
 	$('#changeListName').on('click', changeListName);
 	$('#deleteListButton').on('click', deleteList);
+	$('#leaveListButton').on('click', leaveList);
 	fillUsers();
 });
 
@@ -232,6 +233,21 @@ function drpListUsersAJAX(data)
 	return;
 }
 
+function leaveList() {
+	$.ajax({
+		url:'/manageList',
+		type:'GET',
+		dataType:'json',
+		data:{'leaveList':'leaveList'},
+		success:function(data, status, xhr) {
+			window.location = "/index";
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}	
+	});					
+}
 
 
 

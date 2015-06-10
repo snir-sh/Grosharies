@@ -69,8 +69,8 @@
 	
       <div id="content">
         <div class="content_item" style="color:white">
-			<table >
-				<tr >
+			<table>
+				<tr>
 					<td valign="top">
 						<table>
 							<tr>	
@@ -86,30 +86,34 @@
 							</tr>	
 							<tr>
 								<td>
-									
-										<h2><u><i>List Members</i></u></h2>
-										<div id="listUsers">
+									<h2><u><i>List Members</i></u></h2>
+									<div id="listUsers">
 										<table id ="box" style="table-layout:fixed;color:white;" border="0px">
 											<col width="230px" />
 											<col width="130px" />
-											
-												{% for user in listUsers %}
-												<tr>
-													<td>
-															{{user.0}}
-													</td> 
-													<td>
-															{{user.1}}
-													</td>
-												</tr>
-												{% endfor %}
-											
+											{% for user in listUsers %}
+											<tr>
+												<td>
+													{{user.0}}
+												</td> 
+												<td>
+													{{user.1}}
+												</td>
+											</tr>
+											{% endfor %}
 										</table>
-										</div>
-						
+									</div>
 								</td>
-								
 							</tr>
+							{% if isNotListAdmin %}
+							
+							<tr>
+								<td>
+								<p><p>
+									<img src="../static/images/leaveListButton.png" id="leaveListButton">
+								</td>
+							</tr>
+							{% endif %}
 						</table>
 					</td>
 					<td  valign="top">
@@ -118,15 +122,14 @@
 							<tr >	
 								<td width="400">
 									<h2><u><i>Add User</i></u></h2>
-									
 									<input id="userToAdd" size="22" placeholder="Search user..." width="190px" height="20px">
 									&nbsp;&nbsp;
 									<img src="../static/images/addUserButton.png" id="addUserToList" valign="bottom">
 									<p><p>
-										<select id="userPermit">
+									<select id="userPermit">
 										<option value="Viewer">Viewer</option>
 										<option value="Partner">Partner</option>
-										</select>
+									</select>
 									<p><p>
 								</td>
 							</tr>						

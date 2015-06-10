@@ -37,6 +37,8 @@ class ListDetailsHandler(webapp2.RequestHandler):
 				template_params['listAdmin'] = list.ListAdmin
 				if (list.ListAdmin==user.email):
 					template_params['isListAdmin'] = user.email
+				else:
+					template_params['isNotListAdmin'] = user.email
 		
 		# Retrieving all the groups names for showing on left side.
 		groupsNames = Group.getAllGroupsNames(user.email) 		

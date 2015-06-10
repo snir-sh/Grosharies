@@ -79,7 +79,12 @@ class ManageListHandler(webapp2.RequestHandler):
 				self.response.write(json.dumps({"status":"notUser", "name":addUser}))
 				return
 		
-		
+		# leaving a list
+		leaveList = self.request.get('leaveList')
+		if leaveList:
+			List.deleteUserFromList(user.email, list_id)
+			self.response.write(json.dumps({"status":"ok"}))
+			time.sleep(0.3)
 
 app = webapp2.WSGIApplication([
 	('/manageList', ManageListHandler)
