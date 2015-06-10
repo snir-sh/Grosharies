@@ -26,7 +26,12 @@ class MangeGroupHandler(webapp2.RequestHandler):
 		else:
 			group_id = int(self.request.cookies.get('group_id_cookie'))
 								
-	
+		#Fill User Input
+		fill = self.request.get('fillUsers')
+		if fill:
+			users = User.getAllUsers()
+			self.response.write(json.dumps(users))
+			
 		#add user to a group
 		addUser = self.request.get('addUser')
 		if addUser:
@@ -45,9 +50,8 @@ class MangeGroupHandler(webapp2.RequestHandler):
 					if users:
 						for gUser in users:
 							groupMembers.append(gUser)
-						self.response.write(json.dumps(groupMembers))
-						return
-		
+					self.response.write(json.dumps(groupMembers))
+					return
 			else:
 				self.response.write(json.dumps('userNotExist'))
 				return
@@ -62,12 +66,11 @@ class MangeGroupHandler(webapp2.RequestHandler):
 			group = Group.getGroupNameByID(group_id)
 			if group:
 				users = Group.getAllUsersFromGroupByIDWithoutListAdmin(group_id, group.GroupAdmin)
-				groupMembers = []
 				if users:
-					for gUser in users:
-						groupMembers.append(gUser)
-					self.response.write(json.dumps(groupMembers))
-					return
+					self.response.write(json.dumps(users))
+				else:
+					self.response.write(json.dumps({"status":"empty"}))
+				return
 		
 		
 		# changing a group name
@@ -85,6 +88,7 @@ class MangeGroupHandler(webapp2.RequestHandler):
 				data.append(userGroups)
 				self.response.write(json.dumps(data))
 		
+			
 app = webapp2.WSGIApplication([
 	('/manageGroup', MangeGroupHandler)
 ], debug=True)

@@ -4,6 +4,7 @@ $(document).ready(function(){
 	$('#addUserToGroup').on('click', addUserToGroup);
 	$('#changeGroupName').on('click', changeGroupName);
 	$('#deleteGroupButton').on('click', deleteGroup);
+	fillUsers();
 });
 
 function ShowLists(gid) {
@@ -40,20 +41,19 @@ function removeUserFromGroup()
 		data:{deleteUser:userName},
 		success:function(data, status, xhr) 
 		{
-			alert('User removed successfully');
-			var gMembers = data;
-			
 			$("#group_members").empty();
 			var dom = document.getElementById('group_members');
-			for (i=0 ; i<gMembers.length ; i++) {
-				dom.insertAdjacentHTML('beforeend','<li>'+gMembers[i]+'</li>');
+			for (i=0 ; i<data.length ; i++) 
+			{
+				dom.insertAdjacentHTML('beforeend','<li>'+data[i]+'</li>');
 			}
 			
 			$("#userSelect").empty();
 			var dom1 = document.getElementById('userSelect');
 			dom1.insertAdjacentHTML('beforeend','<option value="">Select user...</option>');
-			for (i=0 ; i<gMembers.length ; i++) {
-				dom1.insertAdjacentHTML('beforeend','<option value="">'+gMembers[i]+'</option>');
+			for (i=0 ; i<data.length ; i++) 
+			{
+				dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
 			}
 		},
 		error:function(xhr, status, error) {
@@ -76,6 +76,7 @@ function addUserToGroup() {
 		dataType:'json',
 		data:{addUser:userName},
 		success:function(data, status, xhr) {
+			$("#userToAdd").val("");
 			if (data == 'userNotExist')
 			{
 				alert('User doesn\'t exist');
@@ -86,21 +87,24 @@ function addUserToGroup() {
 				alert('User already in group');
 				return;
 			}
-			else {
-				alert('User added successfully');
-				var gMembers = data;
-				
+			else 
+			{
 				$("#group_members").empty();
 				var dom = document.getElementById('group_members');
-				for (i=0 ; i<gMembers.length ; i++) {
-					dom.insertAdjacentHTML('beforeend','<li>'+gMembers[i]+'</li>');
+				dom.insertAdjacentHTML('beforeend','<ul>');
+				for (i=0 ; i<data.length ; i++) 
+				{
+					dom.insertAdjacentHTML('beforeend','<li>'+data[i]+'</li>');
 				}
+				dom.insertAdjacentHTML('beforeend','</ul>');
 				
 				$("#userSelect").empty();
 				var dom1 = document.getElementById('userSelect');
 				dom1.insertAdjacentHTML('beforeend','<option value="">Select user...</option>');
-				for (i=0 ; i<gMembers.length ; i++)
-					dom1.insertAdjacentHTML('beforeend','<option value="">'+gMembers[i]+'</option>');
+				for (i=0 ; i<data.length ; i++)
+				{
+					dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
+				}
 			}
 		},
 		error:function(xhr, status, error) {
@@ -130,7 +134,7 @@ function changeGroupName()
 			var groupID = data[2];
 			var groupsNames = data[3];
 			
-			alert('Name changed successfully');
+			$("#newNameForGroup").val("");
 			$("#group_details").empty();
 			var dom = document.getElementById('group_details');
 			dom.insertAdjacentHTML('beforeend','<li>Name: '+groupName+'</li>')
@@ -175,6 +179,33 @@ function deleteGroup() {
 }
 
 
+function fillUsers() {
+	$.ajax({
+		url:'/manageGroup',
+		type:'GET',
+		dataType:'json',
+		data:{'fillUsers':'true'},
+		success:function(data, status, xhr) 
+		{
+			var users = [];
+			for (i = 0; i < data.length; ++i)
+				users.push(data[i]);
+			$("#userToAdd").autocomplete({
+				source: users,
+				minLength: 2,
+				autoFocus: true,
+				messages: {
+					noResults: '',
+					results: function() {}
+				}
+			});
+		},
+		error:function(xhr, status, error) {
+				alert(status);
+				console.error(xhr, status, error);
+		}
+	});
+}
 
 
 
