@@ -24,8 +24,7 @@ img
 h1, h2, h3, h4, h5, h6 
 { font: normal 175% Arial, Helvetica, sans-serif;
   color: #FFF;
-  text-shadow: 1px 1px #1D1D1D;
-  letter-spacing: -1px;
+  letter-spacing: -0.3px;
   margin: 0 0 10px 0;}
 
 h2

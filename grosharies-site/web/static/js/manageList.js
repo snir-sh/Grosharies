@@ -27,7 +27,12 @@ function fillUsers() {
 			});
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
 				console.error(xhr, status, error);
 		}
 	});
@@ -36,7 +41,7 @@ function fillUsers() {
 function removeUserFromList() {
 	var username = $('#userSelect').val();
 	if (username=="") {
-		alert('Select a user to remove');
+		swal("Choose User!", "please select the user you want to remove from the list", "info");
 		return;
 	}
 	$.ajax({
@@ -59,7 +64,12 @@ function removeUserFromList() {
 			}
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
@@ -70,7 +80,7 @@ function addUserToList() {
 	var permit = $('#userPermit').val();
 	if (userName==null || userName=="")
 	{
-		alert('Enter username to add');
+		swal("Missing Username!", "please enter a valid user email", "info");
 		return;
 	}
 	$.ajax({
@@ -81,12 +91,12 @@ function addUserToList() {
 		success:function(data, status, xhr) {
 			if (data.status == "exist")
 			{
-				alert(data.name + ' Already Exists in List!');
+				swal("User Exists!", data.name + " is already exists in list", "info");
 				return;
 			}
 			else if (data.status == "notUser")
 			{
-				alert(data.name + ' Not a Valid User!');
+				swal("User Don't Exists!", data.name + " is not a vaild user in this group", "info");
 				return;
 			}
 			else
@@ -96,7 +106,12 @@ function addUserToList() {
 			}
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
@@ -106,7 +121,7 @@ function changeListName() {
 	var newListName = $('#newNameForList').val();
 	if (newListName==null || newListName=="")
 	{
-		alert('Enter a name');
+		swal("Missing List Name!", "please enter a new name for your list", "info");
 		return;
 	}
 	$.ajax({
@@ -117,7 +132,7 @@ function changeListName() {
 		success:function(data, status, xhr) {
 			if (data.status == "exist")
 			{
-				alert(data.name + ' Already Exists in Group!');
+				swal("List Exists!", data.name + " is already exists in this group", "info");
 				return;
 			}
 			else
@@ -139,33 +154,53 @@ function changeListName() {
 			}
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
 }
 
 function deleteList() {
-		if (confirm('Are you sure you want to delete this list?')) {
-			confirmDeletion="yes";
-		} 
-		else {
-			return;
-		}
-		$.ajax({
-		url:'/manageList',
-		type:'GET',
-		dataType:'text',
-		data:{confirmDeletion:confirmDeletion},
-		success:function(data, status, xhr) {
-			if (data == "statusDeleted")
-				window.location.replace("/index");
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to recover this list!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel!",
 		},
-		error:function(xhr, status, error) {
-				alert(status);
-				console.error(xhr, status, error);
-		}
-	});
+		function(isConfirm){
+			if (isConfirm) {
+				var confirmDeletion = "yes";
+				$.ajax({
+				url:'/listDetails',
+				type:'GET',
+				dataType:'text',
+				data:{confirmDeletion:confirmDeletion},
+				success:function(data, status, xhr) {
+					window.location.replace("/index");
+				},
+				error:function(xhr, status, error) {
+						swal({
+							title: "Error!",
+							text: "Something Went Wrong!",
+							type: "error",
+							confirmButtonText: "OK"
+						});
+						console.error(xhr, status, error);
+				}
+			});
+			} 
+			else {
+				return;
+			}
+		});
 }
 
 function listUsersAJAX(data)
