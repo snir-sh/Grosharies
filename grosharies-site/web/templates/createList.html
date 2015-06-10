@@ -70,18 +70,17 @@
 					<form action="form.asp">
 						<table style="width:60%;color:white">
 							<tr>
-								<td>List Name:</p></td>
-								<td><input type="text" placeholder="List Name" id="listName" size="17"></p></td>		
-								<td></td>
+								<td><input type="text" placeholder="List Name" id="listName" size="17"></p></td>
 							</tr>
 							<tr>
-								<td></td>
+								
 								<td>
 									<select id="drop_usersList">
-									<option value="">Choose user...</option>
+									<option value="" style="display:none;">Choose user...</option>
 									{% for i in groupUsers %} 
 										<option>{{i}}</option>
 									{% endfor %} 
+									</br>
 									</select>
 									&nbsp;&nbsp;&nbsp;
 									<select id="userPermit">
@@ -91,6 +90,11 @@
 									&nbsp;&nbsp;&nbsp;
 									<img src="../static/images/addUserButtonSmall.png" id="addUserToList" valign="bottom">
 								</td>
+							
+							
+								
+								`	
+								
 							</tr>
 						</table>
 						</br>

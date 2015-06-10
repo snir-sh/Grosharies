@@ -1,12 +1,18 @@
 $(document).ready(function(){		
-	$('#addUserToList').on('click', createList);
+	$('#addUserToList').on('click', addUserToList);
 	$('#submit_list').on('click',submitList);
 });
 
 var list = [];
-function createList() {
+function addUserToList() {
 	var user_name = $('#drop_usersList').val();
 	var user_permit = $('#userPermit').val();
+	
+	if (user_name == "")
+	{
+		alert('Please select user');
+		return;
+	}
 	
 	nameAndPermit = [];
 	for(i=0;i<list.length;i++)
@@ -25,7 +31,8 @@ function createList() {
 	dom.insertAdjacentHTML('beforeend','<td>'+ list[i][0] + '</td>' + '<td>' +list[i][1] + '</td>'
 	+'<td><img src="../static/images/deleteButton.png" onclick=deleteFromList('+i+') valign="bottom"></td></p>')
 	
-	
+	$( "#drop_usersList" ).val("");
+	$( "#userPermit" ).val("Viewer");
 	//$('#box').val($('#box').val()+user_name +"\t" +user_permit + "\n");
 	
 }

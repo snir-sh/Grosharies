@@ -35,7 +35,7 @@ function fillUsers() {
 	
 function removeUserFromList() {
 	var username = $('#userSelect').val();
-	if (username==null || username=="") {
+	if (username=="") {
 		alert('Select a user to remove');
 		return;
 	}
@@ -49,7 +49,7 @@ function removeUserFromList() {
 			if (data.status == 'empty')
 			{
 				$( "#userSelect" ).empty();
-				dom.insertAdjacentHTML('beforeend','<option>Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
+				dom.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
 				listUsersAJAX(data);
 			}
 			else
@@ -189,7 +189,7 @@ function drpListUsersAJAX(data)
 		return;
 	$( "#userSelect" ).empty();
 	var dom2 = document.getElementById('userSelect');
-	dom2.insertAdjacentHTML('beforeend','<option>Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
+	dom2.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>');
 	for (i = 0; i < data.length; ++i)
 	{
 		dom2.insertAdjacentHTML('beforeend','<option value='+data[i][0]+'>'+data[i][0]+'</option>');

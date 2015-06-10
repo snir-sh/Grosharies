@@ -51,6 +51,11 @@ function addUser()
 {
 	var user_name = $('#selectUser').val();
 	var i;
+	if (user_name == "")
+	{
+		alert("Please select user");
+		return;
+	}
 	for (i=0; i<users.length; i++)
 		if (user_name == users[i])
 		{
