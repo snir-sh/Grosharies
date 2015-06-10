@@ -50,7 +50,7 @@ function removeUserFromGroup()
 			
 			$("#userSelect").empty();
 			var dom1 = document.getElementById('userSelect');
-			dom1.insertAdjacentHTML('beforeend','<option value="">Select user...</option>');
+			dom1.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...</option>');
 			for (i=0 ; i<data.length ; i++) 
 			{
 				dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
@@ -100,7 +100,7 @@ function addUserToGroup() {
 				
 				$("#userSelect").empty();
 				var dom1 = document.getElementById('userSelect');
-				dom1.insertAdjacentHTML('beforeend','<option value="">Select user...</option>');
+				dom1.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...</option>');
 				for (i=0 ; i<data.length ; i++)
 				{
 					dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
