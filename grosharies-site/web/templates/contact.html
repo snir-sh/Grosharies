@@ -7,9 +7,9 @@
   <meta name="keywords" content="enter your keywords here" />-->
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=9" />
-  <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
-  <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
-  <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+  <script type="text/javascript" src="../static/js/sendEmail.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -82,7 +82,7 @@
 	  
         <div class="content_item">
 				<h1>Contact Us</h1>
-				<form action="form.asp">
+				<form>
 					<p> Your comment is important to us! </p>
 					<p> We're dedicated to the success of Grosharies and happy to hear of any issues or suggestions
 							for our site. </p>
@@ -105,8 +105,8 @@
 							<td> Content: </p></td>
 						</tr>
 					</table>
-					<textarea id="content" rows="10" cols="1"></textarea> </td>
-					<button type="button" onclick="alert('Thank you for your comment! We will do our best to take care of it as soon as possible!');location.reload();">Submit</button>
+					<textarea id="content" rows="10" cols="1"></textarea></td>
+					<button onclick="send()">Submit</button>
 				</form>
           
 	    </div><!--close content_item-->
