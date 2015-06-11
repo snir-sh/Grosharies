@@ -7,17 +7,17 @@ function send() {
 	  data: {
 		'key': 'ELifZve5ZJbKw3Sc2Pik7Q',
 		'message': {
-		  'from_email': 'sshilderman@gmail.com',
+		  'from_email': 'contactus',
 		  'to': [
 			  {
 				'email': 'sshilderman@gmail.com',
-				'name': 'from web',
+				'name': '',
 				'type': 'to'
 			  }
 			],
 		  'autotext': 'true',
-		  'subject': 'YOUR SUBJECT HERE!',
-		  'html': 'YOUR EMAIL CONTENT HERE! YOU CAN USE HTML!'
+		  'subject': 'Grosharies: Contact Us',
+		  'html': 'Hello, this is my message body'
 		}
 	  }
 	}).done(function(response) {
