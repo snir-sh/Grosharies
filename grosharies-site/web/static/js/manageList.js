@@ -107,13 +107,13 @@ function addUserToList() {
 			}
 		},
 		error:function(xhr, status, error) {
-				swal({
-					title: "Error!",
-					text: "Something Went Wrong!",
-					type: "error",
-					confirmButtonText: "OK"
-				});
-				console.error(xhr, status, error);
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
 		}
 	});
 }
@@ -188,13 +188,13 @@ function deleteList() {
 					window.location.replace("/index");
 				},
 				error:function(xhr, status, error) {
-						swal({
-							title: "Error!",
-							text: "Something Went Wrong!",
-							type: "error",
-							confirmButtonText: "OK"
-						});
-						console.error(xhr, status, error);
+					swal({
+						title: "Error!",
+						text: "Something Went Wrong!",
+						type: "error",
+						confirmButtonText: "OK"
+					});
+					console.error(xhr, status, error);
 				}
 			});
 			} 
@@ -243,8 +243,13 @@ function leaveList() {
 			window.location = "/index";
 		},
 		error:function(xhr, status, error) {
-				alert(status);
-				console.error(xhr, status, error);
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
 		}	
 	});					
 }

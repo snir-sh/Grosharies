@@ -10,7 +10,7 @@ function addUserToList() {
 	
 	if (user_name == "")
 	{
-		alert('Please select user');
+		swal("Missing User!", "please enter the user you want to add to the list", "info");
 		return;
 	}
 	
@@ -19,7 +19,7 @@ function addUserToList() {
 	{
 		if(list[i][0]==user_name)
 		{
-			alert('User Already Selected!');
+			swal("User Exists!", user_name + " is already exists in list", "info");
 			return;
 		}
 	}
@@ -53,7 +53,7 @@ function submitList() {
 	var list_name = $('#listName').val();
 	if(list_name=="")
 	{
-		alert('Please enter list name');
+		swal("Missing List Name!", "please enter a name for your list", "info");
 		return;
 	}
 	
@@ -66,7 +66,7 @@ function submitList() {
 			success:function(data, status, xhr) {
 				if (data.status == "exist")
 				{
-					alert(data.name + ' Already Exists in Group!');
+					swal("List Exists!", data.name + " is already exists in this group", "info");
 					return;
 				}
 				else
@@ -88,6 +88,12 @@ function submitList() {
 				}
 			},
 			error:function(xhr, status, error) {
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 			}
 			

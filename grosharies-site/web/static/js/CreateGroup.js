@@ -9,7 +9,7 @@ function createGroup() {
 	var usersToAdd = JSON.stringify(users);
 	if (group_name =="")
 	{
-		alert("Please enter group name");
+		swal("Missing Group Name!", "please enter a name for your group", "info");
 		return;
 	}
 	
@@ -21,7 +21,7 @@ function createGroup() {
 			success:function(data, status, xhr) {
 				if (data.status == 'exists')
 				{
-					alert('Exist!');
+					swal("Group Exists!", "you already has a group with this name", "info");
 					return;
 				}
 				else
@@ -41,7 +41,12 @@ function createGroup() {
 				}
 			},
 			error:function(xhr, status, error) {
-				alert(xhr);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 			}			
 		});							
@@ -53,14 +58,13 @@ function addUser()
 	var i;
 	if (user_name == "")
 	{
-		alert("Please select user");
+		swal("Missing User!", "please enter the user you want to add to the group", "info");
 		return;
 	}
 	for (i=0; i<users.length; i++)
 		if (user_name == users[i])
 		{
-			alert("User already exist");
-			$( "#selectUser" ).val("");
+			swal("User Exists!", "user is already exists in group", "info");
 			return;
 		}
 	users.push(user_name);

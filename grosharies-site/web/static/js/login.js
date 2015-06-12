@@ -48,7 +48,12 @@ function signinCallback(authResult) {
 					window.location.replace("/index");
 				},
 				error:function(xhr, status, error) {
-				alert(xhr.responseText);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 				}
 				});
@@ -97,7 +102,12 @@ function connected() {
             window.location.replace("/index");
 		},
 		error:function(xhr, status, error) {
-            alert(xhr.responseText);
+            swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
 			console.error(xhr, status, error);
 		}
 	});

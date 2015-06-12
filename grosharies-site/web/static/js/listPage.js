@@ -32,7 +32,7 @@ function removeUserFromGroup()
 	var userName = $('#userSelect').val();
 	if (userName==null || userName=="") 
 	{
-		alert('Select a user to remove');
+		swal("Choose User!", "please select the user you want to remove from the group", "info");
 		return;
 	}
 	$.ajax({
@@ -58,7 +58,12 @@ function removeUserFromGroup()
 			}
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
@@ -68,7 +73,7 @@ function addUserToGroup() {
 	var userName = $('#userToAdd').val();
 	if (userName==null || userName=="")
 	{
-		alert('Enter username to add');
+		swal("Missing Username!", "please enter a valid user email", "info");
 		return;
 	}
 	$.ajax({
@@ -80,12 +85,12 @@ function addUserToGroup() {
 			$("#userToAdd").val("");
 			if (data == 'userNotExist')
 			{
-				alert('User doesn\'t exist');
+				swal("User Don't Exists!", "please enter user email that is registered", "info");
 				return;
 			}
 			else if (data == 'userExist')
 			{
-				alert('User already in group');
+				swal("User Exists!", "user is already exists in group", "info");
 				return;
 			}
 			else 
@@ -109,7 +114,12 @@ function addUserToGroup() {
 			}
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
@@ -120,7 +130,7 @@ function changeGroupName()
 	var newGroupName = $('#newNameForGroup').val();
 	if (newGroupName==null || newGroupName=="")
 	{
-		alert('Enter a name');
+		swal("Missing Group Name!", "please enter a new name for your group", "info");
 		return;
 	}
 	$.ajax({
@@ -149,33 +159,53 @@ function changeGroupName()
 				dom1.insertAdjacentHTML('beforeend','<p><a href="listPage?gid='+groupsNames[i][0] + '" id ='+groupsNames[i][0]+'>'+groupsNames[i][1]+'<br/> </a></p>')
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
 }
 
 function deleteGroup() {
-		if (confirm('Are you sure you want to delete this group?')) {
-			confirmDeletion="yes";
-		} 
-		else {
-			return;
-		}
-		$.ajax({
-		url:'/listPage',
-		type:'GET',
-		dataType:'text',
-		data:{confirmDeletion:confirmDeletion},
-		success:function(data, status, xhr) {
-			if (data == "statusDeleted")
-				window.location = "/index";
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to recover this list!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel!",
 		},
-		error:function(xhr, status, error) {
-				alert(status);
-				console.error(xhr, status, error);
-		}
-	});
+		function(isConfirm){
+			if (isConfirm) {
+				var confirmDeletion = "yes";
+				$.ajax({
+					url:'/listPage',
+					type:'GET',
+					dataType:'text',
+					data:{confirmDeletion:confirmDeletion},
+					success:function(data, status, xhr) {
+						window.location.replace("/index");
+					},
+					error:function(xhr, status, error) {
+							swal({
+								title: "Error!",
+								text: "Something Went Wrong!",
+								type: "error",
+								confirmButtonText: "OK"
+							});
+							console.error(xhr, status, error);
+					}
+				});
+			} 
+			else {
+				return;
+			}
+		});
 }
 
 
@@ -201,7 +231,12 @@ function fillUsers() {
 			});
 		},
 		error:function(xhr, status, error) {
-				alert(status);
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
 				console.error(xhr, status, error);
 		}
 	});
@@ -218,8 +253,13 @@ function leaveGroup() {
 			window.location = "/index";
 		},
 		error:function(xhr, status, error) {
-				alert(status);
-				console.error(xhr, status, error);
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
 		}	
 	});					
 }
