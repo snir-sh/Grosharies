@@ -502,3 +502,12 @@ ul img {
 .ui-menu-item:last-child { border-bottom:none; }
 .ui-menu-item  strong{ color: #003b63; }
 .ui-state-focus { background-color: #aad9fb; color:#000; display: block; }
+
+#feedback { 
+  height: 100px; 
+  width: 100px; 
+  position: fixed; 
+  top: 40%;
+  z-index: 999;
+
+}
