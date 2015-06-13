@@ -208,12 +208,17 @@ function listUsersAJAX(data)
 {
 	if (data == null)
 		return;
-	var dom = document.getElementById('listUsers');
-	$( "#listUsers" ).empty();
-	dom.insertAdjacentHTML('beforeend', '<table id ="box" style="table-layout:fixed;color:white;" border="0px"><col width="230px" /><col width="130px" />');
+	var table = document.getElementById('userTable');
+	var rowCount = table.rows.length;
+	while(table.rows.length > 0) 
+		table.deleteRow(0);
 	for (i = 0; i < data.length; ++i)
 	{
-		dom.insertAdjacentHTML('beforeend','<tr><td>'+data[i][0]+'</td> <td>'+data[i][1]+'</td></br></tr>');
+		var row = table.insertRow(i);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = data[i][0];
+		cell2.innerHTML = data[i][1];
 	}
 	$( "#userToAdd" ).val("");
 	return;

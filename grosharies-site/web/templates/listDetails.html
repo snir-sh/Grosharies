@@ -86,23 +86,21 @@
 							</tr>	
 							<tr>
 								<td>
-									<h2><u><i>List Members</i></u></h2>
-									<div id="listUsers">
-										<table id ="box" style="table-layout:fixed;color:white;" border="0px">
-											<col width="230px" />
-											<col width="130px" />
-											{% for user in listUsers %}
-											<tr>
-												<td>
-													{{user.0}}
-												</td> 
-												<td>
-													{{user.1}}
-												</td>
-											</tr>
-											{% endfor %}
-										</table>
-									</div>
+								<h2><u><i>List Members</i></u></h2>
+									<table id ="userTable" style="table-layout:fixed;color:white;" border="0px">
+										<col width="230px" />
+										<col width="130px" />
+										{% for user in listUsers %}
+										<tr>
+											<td>
+												{{user.0}}
+											</td> 
+											<td>
+												{{user.1}}
+											</td>
+										</tr>
+										{% endfor %}
+									</table>
 								</td>
 							</tr>
 							{% if isNotListAdmin %}
