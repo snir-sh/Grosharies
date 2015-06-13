@@ -81,13 +81,15 @@
 							<tr>
 								<td>
 									<h2><u><i>Group Members</i></u></h2>
-									<div id="group_members">
-										<ul>
-											{% for user in groupUsers %} 
-												<li>{{user}}</li>
-											{% endfor %}
-										</ul>
-									</div>
+									<table id="group_members" style="table-layout:fixed;color:white;" border="0px">
+										{% for user in groupUsers %}
+										<tr>
+											<td>
+												{{user}}
+											</td>
+										</tr>
+										{% endfor %}
+									</table>
 								</td> 
 							</tr>
 							{% if isNotAdmin %}

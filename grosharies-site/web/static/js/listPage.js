@@ -42,20 +42,8 @@ function removeUserFromGroup()
 		data:{deleteUser:userName},
 		success:function(data, status, xhr) 
 		{
-			$("#group_members").empty();
-			var dom = document.getElementById('group_members');
-			for (i=0 ; i<data.length ; i++) 
-			{
-				dom.insertAdjacentHTML('beforeend','<li>'+data[i]+'</li>');
-			}
-			
-			$("#userSelect").empty();
-			var dom1 = document.getElementById('userSelect');
-			dom1.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...</option>');
-			for (i=0 ; i<data.length ; i++) 
-			{
-				dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
-			}
+			getGroupMembers(data)
+			updateUsersDropdownMenu(data);
 		},
 		error:function(xhr, status, error) {
 				swal({
@@ -95,22 +83,8 @@ function addUserToGroup() {
 			}
 			else 
 			{
-				$("#group_members").empty();
-				var dom = document.getElementById('group_members');
-				dom.insertAdjacentHTML('beforeend','<ul>');
-				for (i=0 ; i<data.length ; i++) 
-				{
-					dom.insertAdjacentHTML('beforeend','<li>'+data[i]+'</li>');
-				}
-				dom.insertAdjacentHTML('beforeend','</ul>');
-				
-				$("#userSelect").empty();
-				var dom1 = document.getElementById('userSelect');
-				dom1.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...</option>');
-				for (i=0 ; i<data.length ; i++)
-				{
-					dom1.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
-				}
+				getGroupMembers(data);
+				updateUsersDropdownMenu(data);
 			}
 		},
 		error:function(xhr, status, error) {
@@ -264,5 +238,31 @@ function leaveGroup() {
 	});					
 }
 
+function getGroupMembers(data)
+{
+	if (data==null)
+		return;
+	var table = document.getElementById('group_members');
+	var rowCount = table.rows.length;
+	while(table.rows.length > 0) 
+		table.deleteRow(0);
+	for (i=0 ; i<data.length ; ++i) 
+	{
+		var row = table.insertRow(i);
+		var cell = row.insertCell(0);
+		cell.innerHTML = data[i];
+	}
+}
 
-
+function updateUsersDropdownMenu(data)
+{
+	if (data==null)
+		return;
+	$("#userSelect").empty();
+	var dom = document.getElementById('userSelect');
+	dom.insertAdjacentHTML('beforeend','<option value="" style="display:none;">Select user...</option>');
+	for (i=0 ; i<data.length ; i++)
+	{
+		dom.insertAdjacentHTML('beforeend','<option value="'+data[i]+'">'+data[i]+'</option>');
+	}
+}
