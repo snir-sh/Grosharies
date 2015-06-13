@@ -9,6 +9,7 @@ class Product(ndb.Model):
 	ProductUnits = ndb.StringProperty()
 	ProductQuantity = ndb.StringProperty()
 	ProductID = ndb.IntegerProperty()
+	isChecked =ndb.BooleanProperty()
 	
 	@classmethod
 	def checkIfProductExists(self,product_name, list_id):
@@ -38,6 +39,7 @@ class Product(ndb.Model):
 		product.ProductName = product_name
 		product.ProductQuantity = product_quantity
 		product.ProductUnits =product_units
+		product.isChecked = False
 		product.put()
 		product.ProductID = product.key.id()
 		product.put()
@@ -63,4 +65,16 @@ class Product(ndb.Model):
 		if query:
 			return query
 		return None
+	
+	@classmethod
+	def markProduct(self,pid):
+		product = Product.query(Product.ProductID == pid).get()
+		if product:
+			if product.isChecked == True:
+				product.isChecked = False
+			else:
+				product.isChecked = True
+			product.put()
+		
+		
 	

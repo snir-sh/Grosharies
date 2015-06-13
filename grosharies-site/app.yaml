@@ -60,8 +60,11 @@ handlers:
 - url: /listPage
   script: web.pages.listPage.app
 
-- url: /productsList
+- url: /productCheck
   script: api.productsList.app
+  
+- url: /productsCheck
+  script: api.productsCheck.app
 
 - url: /googleLogin
   script: web.pages.googleLogin.app

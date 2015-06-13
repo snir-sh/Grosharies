@@ -109,12 +109,14 @@ class List(ndb.Model):
 			for productid in productsIds:
 				p = Product.getProductByID(productsIds[i])
 				pData = []
-				pData.append(p.ProductName)
-				pData.append(p.ProductQuantity)
-				pData.append(p.ProductUnits)
-				pData.append(p.ProductID)
-				products.append(pData)
-				i+=1
+				if p:
+					pData.append(p.ProductName)
+					pData.append(p.ProductQuantity)
+					pData.append(p.ProductUnits)
+					pData.append(p.ProductID)
+					pData.append(p.isChecked)
+					products.append(pData)
+					i+=1
 			if products:
 				return products
 		else:

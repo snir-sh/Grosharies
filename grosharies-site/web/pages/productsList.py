@@ -16,14 +16,15 @@ class ProductsList(webapp2.RequestHandler):
 			user = User.checkToken(self.request.cookies.get('session'))
 		if not user:
 			self.redirect('/')
-			return			
+			return		
+			
 		#show the all the products of the list
-		
 		list_id = int(self.request.cookies.get('list_id_cookie'))
 		if list_id:
 			pid = self.request.get('pid')
 			if pid:
 				List.deleteProductFromList(list_id,int(pid))
+				self.response.write(json.dumps({'status':'ok1'}))
 				p_name = self.request.get('p_name')
 				p_quantity = self.request.get('p_quantity')
 				p_units = self.request.get('p_units')
@@ -53,7 +54,8 @@ class ProductsList(webapp2.RequestHandler):
 				self.response.write(json.dumps(data))
 		else:
 			self.response.write(json.dumps({'status':'error'}))
-			
+			return
+	
 app = webapp2.WSGIApplication([
 	('/productsList', ProductsList)
 ], debug=True)
