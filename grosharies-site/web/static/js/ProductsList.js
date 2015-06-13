@@ -172,6 +172,8 @@ function showProducts(listProducts,user_permit,add)
 	var color = "#123033";
 	var colorType =1;
 	var line ="";
+	var checkLine="";
+	var unCheckLine ="";
 	var title ='<tr bgcolor ="'+color1+'">'
 		+'<th><center>Product</center></th>'
 		+'<th><center>Quantity</center></th>'
@@ -212,13 +214,13 @@ function showProducts(listProducts,user_permit,add)
 					+'<td><center>'+ listProducts[i][1] +'</center></td>'
 					+'<td><center>'+ listProducts[i][2] +'</center></td>'
 					+'<th><center><img src="../static/images/del.png" title="Delete" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></th>'
-					+'<th><center><img src="../static/images/edit.png" title="Edit" width="32" height="32" onclick=editProduct('+i+')></img></center></th>'
-					+'<th><center><img src="../static/images/check.png" title="Check" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
-					
+					+'<th><center><img src="../static/images/edit.png" title="Edit" width="32" height="32" onclick=editProduct('+i+')></img></center></th>';
+				checkLine =	'<th><center><img src="../static/images/uncheck.png" title="Check" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
+				unCheckLine	='<th><center><img src="../static/images/check.png" title="Check" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
 				if(listProducts[i][4]!=true)
-					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'">'+line);
+					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'">'+line+unCheckLine);
 				else
-					dom.insertAdjacentHTML('beforeend','<tr class="strikeout" bgcolor ="'+color+'"id="tr'+i+'">'+line);
+					dom.insertAdjacentHTML('beforeend','<tr class="strikeout" bgcolor ="'+color+'"id="tr'+i+'">'+line+checkLine);
 			}
 			else
 			{
