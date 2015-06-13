@@ -72,7 +72,10 @@ function changeProduct(index)
 			data:{p_name:p_name,p_quantity:p_quantity,p_units:p_units,pid:pid},
 			success:function(data, status, xhr) {
 				if (data.status == "error")
+				{
+					alert("error");
 					return;
+				}
 				if(data.status == "exists")
 				{
 					alert(p_name + ' Already Exists in the List!');
@@ -86,8 +89,9 @@ function changeProduct(index)
 						var list_name = data[0];
 						listProducts = data[1];
 						user_permit =data[2];
+						showProducts(listProducts,user_permit);
 					}
-					showProducts(listProducts,user_permit);
+					
 				}
 			},
 			error:function(xhr, status, error) {
@@ -215,7 +219,8 @@ function showProducts(listProducts,user_permit,add)
 					+'<td><center>'+ listProducts[i][2] +'</center></td>'
 					+'<th><center><img src="../static/images/del.png" title="Delete" width="35" height="35" onclick=deleteProduct('+i+')>'+'</img></center></th>'
 					+'<th><center><img src="../static/images/edit.png" title="Edit" width="32" height="32" onclick=editProduct('+i+')></img></center></th>';
-				checkLine =	'<th><center><img src="../static/images/uncheck.png" title="Check" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
+					
+				checkLine =	'<th><center><img src="../static/images/uncheck.png" title="UnCheck" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
 				unCheckLine	='<th><center><img src="../static/images/check.png" title="Check" width="32" height="32" onclick=StrikeRow('+i+')></img></center></th></tr>';
 				if(listProducts[i][4]!=true)
 					dom.insertAdjacentHTML('beforeend','<tr bgcolor ="'+color+'"id="tr'+i+'">'+line+unCheckLine);
@@ -333,7 +338,6 @@ function StrikeRow(index)
 	
 	
 }
-
 
 
 

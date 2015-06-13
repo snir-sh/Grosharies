@@ -24,7 +24,6 @@ class ProductsList(webapp2.RequestHandler):
 			pid = self.request.get('pid')
 			if pid:
 				List.deleteProductFromList(list_id,int(pid))
-				self.response.write(json.dumps({'status':'ok1'}))
 				p_name = self.request.get('p_name')
 				p_quantity = self.request.get('p_quantity')
 				p_units = self.request.get('p_units')
