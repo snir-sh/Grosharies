@@ -1,9 +1,10 @@
-$(document).ready(function(){	
+$(document).ready(function(){
 	$('#homeHelp').on('click', homeHelp);
 	$('#createGroupHelp').on('click', createGroupHelp);
 	$('#listPageHelp').on('click', listPageHelp);
 	$('#createListHelp').on('click', createListHelp);
 	$('#listDetailsHelp').on('click', listDetailsHelp);
+	$('#productListHelp').on('click', productListHelp);
 });
 
 function homeHelp() 
@@ -67,6 +68,22 @@ function listDetailsHelp()
 		"If you are the list's admin, you can edit the list's name, add/remove users from the list, " + 
 		"changing their permission and you can delete the whole list. " + 
 		"If you are a user in the list, you can leave the list by simple clicking the 'Leave List' button. ",
+		confirmButtonText: "OK"
+	});
+}
+
+function productListHelp() 
+{
+	swal({
+		title: "Products List!",
+		text: "Here you can view the shared products list - those product are shared between all the list's users. " +
+		"At the upper right corner of the screen you can view the list details and manage the list if you are the list's admin. " +
+		"If you have the permission to edit the products list, you can modify the list they way you want, " + 
+		"you can add products - by simply clicking the '+' icon and add the product's quantity and description, " +
+		"check products that are bought - by clicking the 'check' icon, remove products from the list - " +
+		"by clicking the 'remove' icon and edit each product of the list." + 
+		"If you have edited/added a product, click on the 'save' icon to save it to the products list. " +
+		"Everyone in the joint list will be able to see the changed you made! ",
 		confirmButtonText: "OK"
 	});
 }

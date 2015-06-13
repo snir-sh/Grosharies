@@ -328,7 +328,7 @@ function StrikeRow(index)
 				showProducts(listProducts,user_permit);
 			},
 			error:function(xhr, status, error) {
-				alert(xhr)
+				alert(xhr);
 				console.error(xhr, status, error);
 			}
 			
