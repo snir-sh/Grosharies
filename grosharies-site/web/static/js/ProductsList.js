@@ -1,49 +1,61 @@
-$(document).ready(function(){		
+$(document).ready(function()
+{		
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
 		dataType:'json',
-			success:function(data, status, xhr) {
-				if (data.status == "error")
-					return;
-				var list_name = data[0];
-				listProducts = data[1];
-				user_permit =data[2];
-				showProducts(listProducts,user_permit);			
-			},
-			error:function(xhr, status, error) {
-				console.error(xhr, status, error);
-			}
-			
-		});				
-	
-	
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+				return;
+			var list_name = data[0];
+			listProducts = data[1];
+			user_permit =data[2];
+			showProducts(listProducts,user_permit);			
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}
+	});				
 });
+
 var listProducts;
 var user_permit;
-function deleteProduct(index) {
+function deleteProduct(index) 
+{
 	pid = listProducts[index][3];
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
 		dataType:'json',
-			data:{pid:pid},
-			success:function(data, status, xhr) {
-				if (data.status == "error")
-					return;
-				else
-				{
-					listProducts.splice(index,1);
-					showProducts(listProducts,user_permit);
-				}
-			},
-			error:function(xhr, status, error) {
-				console.error(xhr, status, error);
+		data:{pid:pid},
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+				return;
+			else
+			{
+				listProducts.splice(index,1);
+				showProducts(listProducts,user_permit);
 			}
-			
-		});	
-	
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}
+		
+	});	
 }
+
 function changeProduct(index)
 {
 	pid = listProducts[index][3];
@@ -52,61 +64,66 @@ function changeProduct(index)
 	var p_units = $("#Punits").val();
 	if(p_name== "") 
 	{
-		alert("please enter product name");
+		swal("Missing Product Name!", "please enter a name for the product", "info");
 		return;
 	}
 	if(p_quantity=="")
 	{
-		alert("please enter quantity");
+		swal("Missing Quantity!", "please enter a quantity number of the product", "info");
 		return;
 	}
 	if(p_units=="")
 	{
-		alert("please enter units");
+		swal("Missing Units!", "please enter the product's unit", "info");
 		return;
 	}
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
 		dataType:'json',
-			data:{p_name:p_name,p_quantity:p_quantity,p_units:p_units,pid:pid},
-			success:function(data, status, xhr) {
-				if (data.status == "error")
-				{
-					alert("error");
-					return;
-				}
-				if(data.status == "exists")
-				{
-					alert(p_name + ' Already Exists in the List!');
-					return;
-				}
-				else
-				{
-					listProducts.splice(index,1);
-					if(data !=null)
-					{	
-						var list_name = data[0];
-						listProducts = data[1];
-						user_permit =data[2];
-						showProducts(listProducts,user_permit);
-					}
-					
-				}
-			},
-			error:function(xhr, status, error) {
-				console.error(xhr, status, error);
+		data:{p_name:p_name,p_quantity:p_quantity,p_units:p_units,pid:pid},
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+			{
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
+				return;
 			}
-			
-		});	
-	
-	
+			if(data.status == "exists")
+			{
+				swal("Product Exists!", p_name + " is already exists in list", "info");
+				return;
+			}
+			else
+			{
+				listProducts.splice(index,1);
+				if(data !=null)
+				{	
+					var list_name = data[0];
+					listProducts = data[1];
+					user_permit =data[2];
+					showProducts(listProducts,user_permit);
+				}		
+			}
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}		
+	});	
 }
 
-
-
-
-function editProduct(index) {
+function editProduct(index) 
+{
 	var id = "#Panme" +index;
 	var id ="tr" + index;
 	var color1= "#666562";
@@ -125,7 +142,6 @@ function editProduct(index) {
 	dom.insertAdjacentHTML('beforeend',title);
 	if(listProducts!=null)
 	{
-		
 		for (i = 0; i < listProducts.length; ++i)
 		{
 			if(user_permit!='Viewer')
@@ -150,7 +166,6 @@ function editProduct(index) {
 			}
 			else if(colorType ==0)
 			{
-				
 				color= "#123033";
 				colorType =1;
 			}
@@ -158,20 +173,8 @@ function editProduct(index) {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function showProducts(listProducts,user_permit,add)
 {
-	
 	var color1= "#666562";
 	var color = "#123033";
 	var colorType =1;
@@ -249,10 +252,8 @@ function showProducts(listProducts,user_permit,add)
 			
 		}
 	}
-	
-	
-	
 }
+
 function AddNewProduct()
 {
 	var productName = $("#New_Product_name").val();
@@ -260,47 +261,59 @@ function AddNewProduct()
 	var productUnits = $("#New_Product_units").val();
 	if(productUnits=="")
 	{
-		alert("Please enter your units");
+		swal("Missing Units!", "please enter the product's unit", "info");
 		return;
 	}
 	if(productQuantity =="")
 	{
-		alert("Please enter your units");
+		swal("Missing Quantity!", "please enter a quantity number of the product", "info");
 		return;
 	}
 	if(productName=="")
 	{
-		alert("Please enter your units");
+		swal("Missing Product Name!", "please enter a name for the product", "info");
 		return;
 	}
 	$.ajax({
 		url:'/productsList',
 		type:'GET',
 		dataType:'json',
-			data:{new_Product_name:productName,new_Product_quantity:productQuantity,new_Product_units:productUnits},
-			success:function(data, status, xhr) {
-				if (data.status == "error")
-					return;
-				if(data.status == "exists")
-				{
-					alert(productName + ' Already Exists in the List!');
-					return;
-				}
-				if(data !=null)
-				{	
-					var list_name = data[0];
-					listProducts = data[1];
-					user_permit =data[2];
-				}
-				
-				showProducts(listProducts,user_permit);
-			},
-			error:function(xhr, status, error) {
-				console.error(xhr, status, error);
+		data:{new_Product_name:productName,new_Product_quantity:productQuantity,new_Product_units:productUnits},
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+			{
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
+				return;
+			}
+			if(data.status == "exists")
+			{
+				swal("Product Exists!", productName + " is already exists in list", "info");
+				return;
+			}
+			if(data !=null)
+			{	
+				var list_name = data[0];
+				listProducts = data[1];
+				user_permit =data[2];
 			}
 			
-		});	
-	
+			showProducts(listProducts,user_permit);
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}		
+	});	
 }
 
 function AddRow()
@@ -320,23 +333,31 @@ function StrikeRow(index)
 		url:'/productsCheck',
 		type:'GET',
 		dataType:'json',
-			data:{pid:pid,pCheck:"lslslslls"},
-			success:function(data, status, xhr) {
-				if (data.status == "error")
-					return;
-				listProducts[index][4] =check;
-				showProducts(listProducts,user_permit);
-			},
-			error:function(xhr, status, error) {
-				alert(xhr);
-				console.error(xhr, status, error);
+		data:{pid:pid,pCheck:"lslslslls"},
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+			{
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
+				return;
 			}
-			
-		});	
-	
-	
-	
-	
+			listProducts[index][4] =check;
+			showProducts(listProducts,user_permit);
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}
+	});	
 }
 
 
