@@ -2,93 +2,108 @@
 <html>
 
 <head>
-    <title>Grosharies</title>
-  <!--<meta name="description" content="free website template" />
-  <meta name="keywords" content="enter your keywords here" />-->
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=9" />
-  <link rel="stylesheet" type="text/css" href="../static/css/sweetalert.css">
-  <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
-  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script type="text/javascript" src="../static/js/sweetalert.min.js"></script>
-  <script type="text/javascript" src="../static/js/help.js"></script>
-  <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
-  <!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
+	<title>Grosharies</title>
+	<!--<meta name="description" content="free website template" />
+	<meta name="keywords" content="enter your keywords here" />-->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<link rel="stylesheet" type="text/css" href="../static/css/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="../static/js/help.js"></script>
+	<!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
+	<!--<script type="text/javascript" src="../static/js/image_slide.js"></script>-->
 </head>
 
 <body>
-  <div id="main">
-    <div id="header">
-	  <div id="banner">
-	    <div id="welcome">
-	      <h1></h1>
-	    </div><!--close welcome-->
-	    <div id="welcome_slogan">
-	      <h1 style="text-shadow: 4px 4px 1px #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
-	    </div><!--close welcome_slogan-->
-	  </div><!--close banner-->
-    </div><!--close header-->
+	<div id="main">
+		<div id="header">
+			<div id="banner">
+				<div id="welcome">
+					<h1></h1>
+				</div><!--close welcome-->
+				<div id="welcome_slogan">
+					<h1 style="text-shadow: 4px 4px 1px #000000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shopping Just Got Easier!</h1>
+				</div><!--close welcome_slogan-->
+			</div><!--close banner-->
+		</div><!--close header-->
 
-	<div id="menubar">
-      <ul id="menu">
-        <li><a href="index">Home	</a></li>
-        <li><a href="FAQ">FAQ		</a></li>
-		<li><a href="about">About	</a></li>
-        <li><a href="logout" style="float:right;">Logout	</a></li>
-      </ul>
-    </div><!--close menubar-->
+		<div id="menubar">
+			<ul id="menu">
+				<li><a href="index">Home	</a></li>
+				<li><a href="FAQ">FAQ		</a></li>
+				<li><a href="about">About	</a></li>
+				<li><a href="logout" style="float:right;">Logout</a></li>
+			</ul>
+		</div><!--close menubar-->
 	
-	<div id="site_content">	
-
-	  <div class="sidebar_container">       
-		<div class="sidebar">
-		<!-- style="overflow:auto;height:190px;width:200px;direction:rtl;text-align:left;">-->
-          <div class="sidebar_item">
-            <h2>Groups</h2>
-			 <a href="createGroup" ><h3>Create Group</h3></a>
-			 {% for i in userGroups %}
-			<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
-			{% endfor %}
-          </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->     		
-		<div class="sidebar" style="visibility: hidden">
-          <div class="sidebar_item">
-            <h2>Lists</h2>
-			 <a href="createList"><h3>Create List</h3></a>
-			<p><a href="list"> list1<br/> </a></p>
-			<p><a href="list"> list2<br/> </a></p>
-			<p><a href="list"> list3<br/> </a></p>
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar-->
-		<div class="sidebar">
-          <div class="sidebar_item">
-           
-           
-		  </div><!--close sidebar_item--> 
-        </div><!--close sidebar--> 
-       </div><!--close sidebar_container-->
+		<div id="site_content">	
+			<div class="sidebar_container">       
+				<div class="sidebar">
+					<!-- style="overflow:auto;height:190px;width:200px;direction:rtl;text-align:left;">-->
+					<div class="sidebar_item">
+						<h2>Groups</h2>
+						<a href="createGroup" ><h3>Create Group</h3></a>
+						{% for i in userGroups %}
+						<p><a href="listPage?gid={{i.0}}" id ={{i.0}}>{{i.1}}<br/> </a></p>
+						{% endfor %}
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar-->     		
+				<div class="sidebar" style="visibility: hidden">
+					<div class="sidebar_item">
+						<h2>Lists</h2>
+						<a href="createList"><h3>Create List</h3></a>
+						<p><a href="list"> list1<br/> </a></p>
+						<p><a href="list"> list2<br/> </a></p>
+						<p><a href="list"> list3<br/> </a></p>
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar-->
+				
+				<div class="sidebar">
+					<div class="sidebar_item">
+					</div><!--close sidebar_item--> 
+				</div><!--close sidebar--> 
+			</div><!--close sidebar_container-->
 		
-      <div id="content">
-        <div class="content_item">
-			<h2>
-				Hello <span id='emailUser'>{{userEmail}}</span>. <br><br>
-				Welcome to Grosharies!
-			</h2>
-	    </div><!--close content_item-->
-      </div><!--close content-->   
-	</div><!--close site_content-->  
- 
-  </div><!--close main-->
+			<div id="content">
+				<div class="content_item" >
+					<table>
+						<tr>
+							<td valign="top">
+								<p><p><p>
+								<h2 style="text-shadow: 4px 4px 1px #000000;" >
+									Hello <span id='emailUser'>{{userEmail}}</span> <br><br>
+									Welcome to Grosharies!
+								</h2>
+								<p><p><p><p><p><p><p><p><p><p>
+								<h3 style="text-shadow: 4px 4px 1px #000000;">
+									Want to invite a friend? Send him an email!
+								</h3>
+								<input id="userToEmail" size="24" placeholder="Friend Email"> &nbsp;&nbsp;
+								<img src="../static/images/sendEmailButton.png" id="inviteUser" style="vertical-align:bottom">
+							</td>
+							<td style="vertical-align:center">
+								<img src="../static/images/logo.png"  width="400" height="350">
+							</td>
+						</tr>
+					</table>
+				</div><!--close content_item-->
+				<div class="content_item">
+				</div>
+			</div><!--close content-->   
+		</div><!--close site_content-->  
+	</div><!--close main-->
   
-  <div id="feedback">
-	<input id="homeHelp" type="image" width="100px" height="100px" title="Help" src="../static/images/help.png">
-  </div>
+	<div id="feedback">
+		<input id="homeHelp" type="image" width="100px" height="100px" title="Help" src="../static/images/help.png">
+	</div>
   
-  <div id="footer">
-	  <a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
-	  <br/> © Copyright 2015 Grosharies
-  </div><!--close footer--> 	
+	<div id="footer">
+		<a href="contact">Contact Us</a> | <a href="terms">Terms of Use</a> | <a href="privacy">Privacy Policy</a>
+		<br/> © Copyright 2015 Grosharies
+	</div> 	
   
 </body>
 </html>
