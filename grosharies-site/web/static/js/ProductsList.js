@@ -62,14 +62,15 @@ function changeProduct(index)
 	var p_name = $("#Pname").val();
 	var p_quantity = $("#Pquantity").val();
 	var p_units = $("#Punits").val();
+	p_quantity = parseFloat(p_quantity);
 	if(p_name== "") 
 	{
 		swal("Missing Product Name!", "please enter a name for the product", "info");
 		return;
 	}
-	if(p_quantity=="")
+	if (!p_quantity)
 	{
-		swal("Missing Quantity!", "please enter a quantity number of the product", "info");
+		swal("Missing Quantity!", "quantity number is illegal or missing", "info");
 		return;
 	}
 	if(p_units=="")
@@ -259,14 +260,15 @@ function AddNewProduct()
 	var productName = $("#New_Product_name").val();
 	var productQuantity =$("#New_Product_quantity").val();
 	var productUnits = $("#New_Product_units").val();
+	productQuantity = parseFloat(productQuantity);
 	if(productUnits=="")
 	{
 		swal("Missing Units!", "please enter the product's unit", "info");
 		return;
 	}
-	if(productQuantity =="")
+	if(!productQuantity)
 	{
-		swal("Missing Quantity!", "please enter a quantity number of the product", "info");
+		swal("Missing Quantity!", "quantity number is illegal or missing", "info");
 		return;
 	}
 	if(productName=="")
