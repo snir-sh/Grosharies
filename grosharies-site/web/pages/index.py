@@ -20,6 +20,10 @@ class IndexHandler(webapp2.RequestHandler):
 		if groupsNames:
 			template_params['userGroups'] = groupsNames
 					
+		userToInvite = self.request.get('userToInvite')
+		if userToInvite:
+			self.response.write(json.dumps(userToInvite))
+					
 		html = template.render("web/templates/index.html", template_params)
 		self.response.write(html)
 app = webapp2.WSGIApplication([
