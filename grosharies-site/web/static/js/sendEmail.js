@@ -19,7 +19,7 @@ function send() {
 			  }
 			],
 		  'autotext': 'true',
-		  'subject': 'Grosharies: Contact Us',
+		  'subject': 'Grosharies: Contact Information',
 		  'html': 'Person contact name: ' + name + '<br><br>Email: ' + email + '<br><br>Subject: ' + subject + '<br><br>Content: ' + content
 		}
 	  }
@@ -45,11 +45,11 @@ function reply() {
 			],
 		  'autotext': 'true',
 		  'subject': 'Thank you for contacting Grosharies!',
-		  'html': 'Thank you for your reply. Grosharies takes every reply and notes seriously.'
+		  'html': 'Thank you for your reply. We are dedicated to the success of Grosharies and happy to hear of any issues or suggestions for our site.'
 		}
 	  }
 	});
-	alert('Thank you for contacting Grosharies!');
+	swal("Thank you for contacting Grosharies!");
 }
 
 function sendInvintation() {
