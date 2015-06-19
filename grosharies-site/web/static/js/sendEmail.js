@@ -1,25 +1,26 @@
-$(document).ready(function(){	
-	$('#inviteUser').on('click', sendInvintation);
-});
-
 function send() {
+	var name = $("#name").val();
+	var email = $("#email").val();
+	var subject = $("#subject").val();
+	var content = $("#details").val();
+	
 	$.ajax({
 	  type: 'POST',
 	  url: 'https://mandrillapp.com/api/1.0/messages/send.json',
 	  data: {
 		'key': 'ELifZve5ZJbKw3Sc2Pik7Q',
 		'message': {
-		  'from_email': 'sshilderman@gmail.com',
+		'from_email': 'groshariesteam@gmail.com',
 		  'to': [
 			  {
-				'email': 'sshilderman@gmail.com',
-				'name': '',
+				'email': 'groshariesteam@gmail.com',
+				'name': '<No Reply>',
 				'type': 'to'
 			  }
 			],
 		  'autotext': 'true',
 		  'subject': 'Grosharies: Contact Us',
-		  'html': 'Hello, this is my message body!'
+		  'html': 'Person contact name: ' + name + '<br><br>Email: ' + email + '<br><br>Subject: ' + subject + '<br><br>Content: ' + content
 		}
 	  }
 	});
@@ -27,8 +28,7 @@ function send() {
 }
 
 function reply() {
-	swal("Thank you for contacting Grosharies!");
-	
+	var email = $("#email").val();
 	$.ajax({
 	  type: 'POST',
 	  url: 'https://mandrillapp.com/api/1.0/messages/send.json',
@@ -38,7 +38,7 @@ function reply() {
 		  'from_email': 'groshariesteam@gmail.com',
 		  'to': [
 			  {
-				'email': 'sshilderman@gmail.com',
+				'email': email,
 				'name': '',
 				'type': 'to'
 			  }
@@ -49,6 +49,7 @@ function reply() {
 		}
 	  }
 	});
+	alert('Thank you for contacting Grosharies!');
 }
 
 function sendInvintation() {
