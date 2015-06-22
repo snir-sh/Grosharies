@@ -26,6 +26,7 @@ $(document).ready(function()
 
 var listProducts;
 var user_permit;
+var listName;
 function deleteProduct(index) 
 {
 	pid = listProducts[index][3];
@@ -393,17 +394,16 @@ function FinishList()
 				});
 				return;
 			}
-			var users = data;
-			var allMailes ="";
+			var users = data[0];
+			listName =data[1]
+			var group_id = data[2]
 			for(i=0;i<users.length;++i)
 			{
 				sendEmail(users[i]);
-				alert(users[i])
 			}
-				//allMailes+= users[i] +";";
-			$("#finishList").empty();
-			listProducts =null;
-			showProducts(listProducts,user_permit);
+			swal("Sent Email to all members of the list!");
+			window.location.replace("listPage?gid="+group_id);
+			return;
 			
 		},
 		error:function(xhr, status, error) {
@@ -440,12 +440,12 @@ function sendEmail(email)
 				  }
 				],
 			  'autotext': 'true',
-			  'subject': 'A friend just invited you to Grosharies!',
-			  'html': 'Hi! one of your friends just invited you to join Grosharies, the web that helps you manage your groceries!<br>To enter our site, please <a href="http://grosharies-site.appspot.com/index">click here.</a>'
+			  'subject': '',
+			  'html': 'Hi!<br>The list '+ listName +' is now closed and deleted from your account, to the website <a href="http://grosharies-site.appspot.com/index">click here.</a>'
 			}
 		}
 	});
-	swal("Sent!");
+	
 	
 }
 

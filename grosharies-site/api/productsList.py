@@ -85,8 +85,13 @@ class ProductFinshListHandler(webapp2.RequestHandler):
 		group_id = int(self.request.cookies.get('group_id_cookie'))
 		if list_id:
 			users = List.getAllListUsersWithoutLogUser(list_id,user.email)
-			if users:
-				self.response.write(json.dumps(users))
+			list_name = List.getListNameByID(list_id)
+			if users and list_name:
+				data =[]
+				data.append(users)
+				data.append(list_name)
+				data.append(group_id)
+				self.response.write(json.dumps(data))
 				List.deleteList(list_id,group_id)
 				return
 					
