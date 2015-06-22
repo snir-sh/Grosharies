@@ -234,3 +234,15 @@ class List(ndb.Model):
 			return query.userPermit
 		else:
 			return 'Admin'
+			
+	@classmethod
+	def getAllListUsersWithoutLogUser(self,list_id,user_name):
+		users = []
+		query = List.query(List.ListID == list_id).fetch()
+		if query:
+			for user in query:
+				if user.ListUser and user.ListUser!=user_name:
+					users.append(user.ListUser)			
+		if users:
+			return users
+		return None

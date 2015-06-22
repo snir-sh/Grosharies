@@ -251,8 +251,22 @@ function showProducts(listProducts,user_permit,add)
 				colorType =1;
 			}
 			
-		}
+		}	
 	}
+	if(user_permit!='Viewer' && listProducts!=null)
+	{
+		for (i = 0; i < listProducts.length; ++i)
+		{
+			if(listProducts[i][4]==false)
+			{
+				$("#finishList").empty();
+				return;
+			}
+		}
+		var dom2 = document.getElementById('finishList');
+		dom2.insertAdjacentHTML('beforeend','<button style=float:right; onclick=FinishList()>Finish</button>');
+	}
+	
 }
 
 function AddNewProduct()
@@ -360,6 +374,79 @@ function StrikeRow(index)
 			console.error(xhr, status, error);
 		}
 	});	
+}
+
+function FinishList()
+ {
+	$.ajax({
+		url:'/finishProducts',
+		type:'GET',
+		dataType:'json',
+		success:function(data, status, xhr) {
+			if (data.status == "error")
+			{
+				swal({
+					title: "Error!",
+					text: "Something Went Wrong!",
+					type: "error",
+					confirmButtonText: "OK"
+				});
+				return;
+			}
+			var users = data;
+			var allMailes ="";
+			for(i=0;i<users.length;++i)
+			{
+				sendEmail(users[i]);
+				alert(users[i])
+			}
+				//allMailes+= users[i] +";";
+			$("#finishList").empty();
+			listProducts =null;
+			showProducts(listProducts,user_permit);
+			
+		},
+		error:function(xhr, status, error) {
+			swal({
+				title: "Error!",
+				text: "Something Went Wrong!",
+				type: "error",
+				confirmButtonText: "OK"
+			});
+			console.error(xhr, status, error);
+		}
+	});	
+	
+	
+	
+}
+
+function sendEmail(email)
+{
+	$.ajax({
+		type: 'POST',
+		url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+		data: 
+		{
+			'key': 'ELifZve5ZJbKw3Sc2Pik7Q',
+			'message': 
+			{
+			  'from_email': 'groshariesteam@gmail.com',
+			  'to': [
+				  {
+					'email': email,
+					'name': '',
+					'type': 'to'
+				  }
+				],
+			  'autotext': 'true',
+			  'subject': 'A friend just invited you to Grosharies!',
+			  'html': 'Hi! one of your friends just invited you to join Grosharies, the web that helps you manage your groceries!<br>To enter our site, please <a href="http://grosharies-site.appspot.com/index">click here.</a>'
+			}
+		}
+	});
+	swal("Sent!");
+	
 }
 
 
