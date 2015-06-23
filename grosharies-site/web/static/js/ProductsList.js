@@ -458,8 +458,9 @@ function sendEmail(email)
 				  }
 				],
 			  'autotext': 'true',
-			  'subject': '',
-			  'html': 'Hi!<br>The list '+ listName +' is now closed and deleted from your account, to the website <a href="http://grosharies-site.appspot.com/index">click here.</a>'
+			  'subject': 'The List ' + listName + ' Closed',
+			  'html': 'Hello,</br></br>The list '+ listName +' is now closed and all the products were removed. '
+			  + '<br>you are welcome to continue to use our website <a href="http://grosharies-site.appspot.com/index">click here.</a>'
 			}
 		}
 	});
