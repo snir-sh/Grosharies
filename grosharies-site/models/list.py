@@ -246,3 +246,13 @@ class List(ndb.Model):
 		if users:
 			return users
 		return None
+		
+		
+	@classmethod
+	def deleteAllProducts(self, list_id):
+		AllPids = ListOfProducts.query(ListOfProducts.ListID==list_id).fetch()
+		if AllPids:
+			for product in AllPids:
+				List.deleteProductFromList(list_id,product.ProductID)
+				
+		

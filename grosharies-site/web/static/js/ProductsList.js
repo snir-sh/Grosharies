@@ -204,6 +204,7 @@ function showProducts(listProducts,user_permit,add)
 	var dom = document.getElementById('product_table');
 	
 	$("#product_table").empty();
+	$("#finishList").empty();
 	
 	if(user_permit != 'Viewer')
 		dom.insertAdjacentHTML('beforeend',title);
@@ -256,6 +257,7 @@ function showProducts(listProducts,user_permit,add)
 	}
 	if(user_permit!='Viewer' && listProducts!=null)
 	{
+		
 		for (i = 0; i < listProducts.length; ++i)
 		{
 			if(listProducts[i][4]==false)
@@ -264,8 +266,11 @@ function showProducts(listProducts,user_permit,add)
 				return;
 			}
 		}
-		var dom2 = document.getElementById('finishList');
-		dom2.insertAdjacentHTML('beforeend','<button style=float:right; onclick=FinishList()>Finish</button>');
+		if (listProducts.length != 0)
+		{
+			var dom2 = document.getElementById('finishList');
+		dom2.insertAdjacentHTML('beforeend','</br></br><img src="../static/images/finish.png" width="60" height="60" title="Finish List" style=float:right; onclick=FinishList()></img>');
+		}
 	}
 	
 }
@@ -379,46 +384,59 @@ function StrikeRow(index)
 
 function FinishList()
  {
-	$.ajax({
-		url:'/finishProducts',
-		type:'GET',
-		dataType:'json',
-		success:function(data, status, xhr) {
-			if (data.status == "error")
-			{
-				swal({
-					title: "Error!",
-					text: "Something Went Wrong!",
-					type: "error",
-					confirmButtonText: "OK"
+		swal({
+		title: "Are you sure?",
+		text: "Close the list and send Email to all members of the list?",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, do it!",
+		cancelButtonText: "No, cancel!",
+		},
+		function(isConfirm){
+			if (isConfirm) {
+				var confirmDeletion = "yes";
+				$.ajax({
+				url:'/finishProducts',
+				type:'GET',
+				dataType:'json',
+				data:{confirmDeletion:confirmDeletion},
+				success:function(data, status, xhr) {
+					if (data.status == "error")
+					{
+						swal({
+							title: "Error!",
+							text: "Something Went Wrong!",
+							type: "error",
+							confirmButtonText: "OK"
+						});
+						return;
+					}
+					var users = data[0];
+					listName =data[1];
+					for(i=0;i<users.length;++i)
+					{
+						sendEmail(users[i]);
+					}
+					listProducts = [];
+					showProducts(null,user_permit,add=false);
+					return;
+				},
+				error:function(xhr, status, error) {
+					swal({
+						title: "Error!",
+						text: "Something Went Wrong!",
+						type: "error",
+						confirmButtonText: "OK"
+					});
+					console.error(xhr, status, error);
+				}
 				});
+			} 
+			else {
 				return;
 			}
-			var users = data[0];
-			listName =data[1]
-			var group_id = data[2]
-			for(i=0;i<users.length;++i)
-			{
-				sendEmail(users[i]);
-			}
-			swal("Sent Email to all members of the list!");
-			window.location.replace("listPage?gid="+group_id);
-			return;
-			
-		},
-		error:function(xhr, status, error) {
-			swal({
-				title: "Error!",
-				text: "Something Went Wrong!",
-				type: "error",
-				confirmButtonText: "OK"
-			});
-			console.error(xhr, status, error);
-		}
-	});	
-	
-	
-	
+		});
 }
 
 function sendEmail(email)

@@ -87,12 +87,12 @@ class ProductFinshListHandler(webapp2.RequestHandler):
 			users = List.getAllListUsersWithoutLogUser(list_id,user.email)
 			list_name = List.getListNameByID(list_id)
 			if users and list_name:
+				List.deleteAllProducts(list_id)
 				data =[]
 				data.append(users)
 				data.append(list_name)
-				data.append(group_id)
 				self.response.write(json.dumps(data))
-				List.deleteList(list_id,group_id)
+				
 				return
 					
 app = webapp2.WSGIApplication([
