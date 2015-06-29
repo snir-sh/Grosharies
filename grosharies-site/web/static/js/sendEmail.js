@@ -14,7 +14,7 @@ function send() {
 		  'to': [
 			  {
 				'email': 'groshariesteam@gmail.com',
-				'name': '<No Reply>',
+				'name': '',
 				'type': 'to'
 			  }
 			],
@@ -29,6 +29,12 @@ function send() {
 
 function reply() {
 	var email = $("#email").val();
+	var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    if (!filter.test(email)) {
+		swal('Please provide a valid email address');
+		email.focus;
+		return;
+	}
 	$.ajax({
 	  type: 'POST',
 	  url: 'https://mandrillapp.com/api/1.0/messages/send.json',
